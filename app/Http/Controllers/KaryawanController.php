@@ -60,6 +60,8 @@ class KaryawanController extends Controller
             'tanggal_lahir' => 'required',
             'tanggal_mulaikerja' => 'required',
             'jenis_kelamin' => 'required',
+            'jabatan' => 'required',
+            'npwp' => 'required|numeric',
             'agama' => 'required',
             'departemen' => 'required',
             'foto' => 'required',
@@ -78,6 +80,8 @@ class KaryawanController extends Controller
                 'tanggal_mulaikerja' => $request->tanggal_mulaikerja,
                 'jenis_kelamin' => $request->jenis_kelamin,
                 'agama' => $request->agama,
+                'jabatan' => $request->jabatan,
+                'npwp' => $request->npwp,
                 'departemen' => $request->departemen,
                 'status_karyawan' => $request->status_karyawan,
                 'foto' => $karyawan,
@@ -132,9 +136,10 @@ class KaryawanController extends Controller
      * @param  \App\karyawan  $karyawan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(karyawan $request)
+    public function destroy(Request $request)
     {
         $nik = $request->id;
+
 
         DB::table('karyawan')->where('nik_karyawan', $nik)->delete();
         return redirect('/Karyawan')->with('success', 'data berhasil di hapus');

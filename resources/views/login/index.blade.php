@@ -45,18 +45,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <!-- /.login-logo -->
         <div class="card bg-dark shadow bg-danger rounded justify-content-center">
-            <h4 class=" font-weight-bold m-3 text-left">PT.Indomarco Prismatama</h4>
-            <div class="login-logo mx-auto">
-                <img src="{{ asset('asset/images/logo.jpg') }} " alt="Logo" class="  elevation-3 mt-3  float-left"
-                    style="opacity: 17" width="313px" height="90px" class="img-thumbnail">
-            </div>
+
+
+
+
+            <h5 class=" font-weight-bold text-left ml-4 mx-3 mt-3"
+                style="font-family: Verdana, Geneva, Tahoma, sans-serif"> <strong>PT.</strong> Indomarco Prismatama
+            </h5>
+            <span class=" font text-left ml-4 "><strong>S</strong>istem <strong>P</strong>endukung
+                <strong>K</strong>eputusan</span>
             <div class="card-body login-card-body bg-dark ">
-
-
-
+                <div class=" login-logo mx-auto">
+                    <img src="{{ asset('asset/images/logo.jpg') }} " alt="Logo"
+                        class="  elevation-3 mb-3  float-left" style="opacity: 17" width="313px" height="100px"
+                        class="img-thumbnail">
+                </div>
                 <form action="{{ url('/login') }}" method="post">
                     @csrf
-                    <div class="input-group mb-3">
+                    <div class="input-group ">
                         <input type="text" class="form-control " placeholder="Nik karyawan" name="nik_karyawan"
                             autocomplete="off">
                         <div class="input-group-append">
@@ -69,7 +75,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         </div>
                     </div>
-                    <div class="input-group mb-3">
+                    <div class="input-group mt-3">
                         <input type="password" class="form-control " placeholder="Password" name="password"
                             autocomplete="off">
 
@@ -82,7 +88,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-3">
 
                         <!-- /.col -->
                         <div class="col">

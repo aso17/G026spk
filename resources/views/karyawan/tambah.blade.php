@@ -210,6 +210,38 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
+                                                <label for="jabatan">Jabatan</label>
+                                                <input type="text"
+                                                    class="form-control @error('jabatan') is-invalid @enderror "
+                                                    id="jabatan" name="jabatan" value="{{ old('jabatan') }}">
+                                                @error('jabatan')
+
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+
+                                            <div class="form-group">
+                                                <label for="npwp">NPWP</label>
+                                                <input type="text" class="form-control @error('npwp') is-invalid @enderror "
+                                                    id="npwp" name="npwp" value="{{ old('npwp') }}">
+                                                @error('npwp')
+
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
                                                 <label for="tanggal_mulaikerja">Tanggal mulai bekerja</label>
                                                 <input type="date"
                                                     class="form-control @error('tanggal_mulaikerja') is-invalid @enderror "

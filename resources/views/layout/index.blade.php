@@ -137,10 +137,18 @@
                             </li>
 
                             <li class="nav-item ml-2">
-                                <a href="" class="nav-link">
+                                <a href="{{ url('/proses') }}" class="nav-link">
                                     <h6 class="mr-2 text-light">
                                         <i class="fab fa-accusoft"></i>
                                         Proses/ Nilai
+                                    </h6>
+                                </a>
+                            </li>
+                            <li class="nav-item ml-2">
+                                <a href="{{ url('/proses') }}" class="nav-link">
+                                    <h6 class="mr-2 text-light">
+                                        <i class="fas fa-fax"></i>
+                                        Hasil Proses
                                     </h6>
                                 </a>
                             </li>
@@ -237,7 +245,7 @@
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: true,
-                timer: 3000
+                timer: 10000
             });
             Toast.fire({
                 icon: 'success',

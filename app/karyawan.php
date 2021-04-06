@@ -16,6 +16,8 @@ class karyawan extends Model
         'tanggal_mulaikerja',
         'jenis_kelamin',
         'agama',
+        'jabatan',
+        'npwp',
         'departemen',
         'status_karyawan',
         'no_telepon',
