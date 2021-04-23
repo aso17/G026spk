@@ -28,3 +28,5 @@ Route::get('/Sub_kriteria/{sub_kriteria}', 'SubkriteriaController@index');
 Route::get('/sub_kriteria/tambah/{sub_kriteria}', 'SubkriteriaController@create');
 Route::post('/subkriteria', 'SubkriteriaController@store');
 Route::get('/proses', 'ProsesController@index');
+Route::get('/proses/{kriteria}', 'ProsesController@prosesdetail');
+Route::post('/proses/tambah', 'ProsesController@store');

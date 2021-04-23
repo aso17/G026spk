@@ -7,209 +7,62 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="bg-danger"><i class="fas fa-tag"></i>Proses</h5>
+                        <h5 class="bg-danger"><i class="fas fa-tag"></i> Proses</h5>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-7">
+                            <div class="col-md-12">
                                 <!-- Info Boxes Style 2 -->
                                 <div class="info-box">
 
 
                                     <div class="info-box-content">
-                                        <h5 class="bg-primary"><i class="fas fa-tag"></i> Form proses </h5>
-                                        <span class="info-box-text"></span>
-                                        <span class="info-box-number"></span>
+                                        <h5 class="bg-primary"><i class="fas fa-tag"></i> Proses Penilain</h5>
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <form method="post" action="/proses/tambah" enctype="">
-                                                    @csrf
-                                                    <div class="card-body">
-                                                        <input type="hidden" id="id" value="">
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="">
-                                                                    <div
-                                                                        class="pl-2  rounded-top rounded-right rounded-left border border-dark border-bottom p-0 mb-0 pl-3 pr-3 ml-1">
 
-                                                                        <div class="form-group">
 
-                                                                            <label for="nik_karyawan">Ketikan Nik
-                                                                                karyawan</label>
-                                                                            <input type="text"
-                                                                                class="form-control @error('nik_karyawan') is-invalid @enderror "
-                                                                                id="nik_karyawan" name="nik_karyawan"
-                                                                                value="{{ old('nik_karyawan') }}">
+                                                <div class="card-body">
+                                                    <input type="hidden" id="id" value="">
+                                                    <div class="row">
+                                                        @foreach ($kriteria as $krite)
+                                                            <div class="col-md-3">
 
-                                                                            @error('nik_karyawan')
-                                                                                <div class="invalid-feedback">
-                                                                                    {{ $message }}
-                                                                                </div>
-                                                                            @enderror
-                                                                        </div>
-                                                                    </div>
+                                                                <ul class="list-group ">
 
-                                                                </div>
+                                                                    <li
+                                                                        class="list-group-item d-flex justify-content-center">
+                                                                        <a href="{{ url('/proses/' . $krite->id) }}">
+                                                                            <button class="btn btn-default text-primary"
+                                                                                type="button">{{ $krite->nama_kriteria }}</button></a>
+
+                                                                    </li>
+                                                                </ul>
                                                             </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-
-                                                                    <label for="c1">Absensi (C1)</label>
-                                                                    <input type="hidden" class="form-control " id="c1"
-                                                                        name="c1" value="{{ old('c1') }}">
-
-                                                                    <div class="form-group">
-                                                                        <div class="custom-control custom-radio">
-                                                                            <input class="custom-control-input" type="radio"
-                                                                                id="customRadio2" name="c3">
-                                                                            <label for="customRadio2"
-                                                                                class="custom-control-label">Custom
-                                                                                Radio</label>
-                                                                        </div>
-
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="nama_karyawan">nama karyawan </label>
-                                                                    <input type="text" class="form-control  "
-                                                                        id="nama_karyawan" name="nama_karyawan" value=""
-                                                                        readonly>
-
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-
-                                                                    <label for="c2">Kooperatif (C2)</label>
-                                                                    <input type="hidden" class="form-control " id="c2"
-                                                                        name="c2" value="{{ old('c2') }}">
-                                                                    <div class="form-group">
-                                                                        <div class="custom-control custom-radio">
-                                                                            <input class="custom-control-input" type="radio"
-                                                                                id="customRadio2" name="c2">
-                                                                            <label for="customRadio2"
-                                                                                class="custom-control-label">Custom
-                                                                                Radio</label>
-                                                                        </div>
-
-
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="departemen">Departemen</label>
-                                                                    <input type="text" class="form-control  "
-                                                                        id="departemen" name="departemen" value="" readonly>
-
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-
-                                                                    <label for="c3">Etika Kerja (C3)</label>
-                                                                    <input type="hidden" class="form-control " id="c3"
-                                                                        name="c3" value="{{ old('c3') }}">
-                                                                    <div class="form-group">
-                                                                        <div class="custom-control custom-radio">
-                                                                            <input class="custom-control-input" type="radio"
-                                                                                id="customRadio3" name="c3">
-                                                                            <label for="customRadio3"
-                                                                                class="custom-control-label">Custom
-                                                                                Radio</label>
-                                                                        </div>
-
-
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="status_karyawan">Status karyawan</label>
-                                                                    <input type="text" class="form-control  "
-                                                                        id="status_karyawan" name="status_karyawan" value=""
-                                                                        readonly>
-
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-
-                                                                    <label for="c4">Produktifitas (C4)</label>
-                                                                    <input type="hidden" class="form-control " id="c4"
-                                                                        name="c4" value="{{ old('c4') }}">
-
-                                                                    <div class="form-group">
-                                                                        <div class="custom-control custom-radio">
-                                                                            <input class="custom-control-input" type="radio"
-                                                                                id="customRadio1" name="c4">
-                                                                            <label for="customRadio1"
-                                                                                class="custom-control-label">Custom
-                                                                                Radio</label>
-                                                                        </div>
-
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                                                        @endforeach
                                                     </div>
+                                                </div>
 
-
-                                                    <!-- /.card-body -->
-
-                                                    <div class="card-footer mt-3">
-
-
-                                                        <div class="button-container float-left ">
-                                                            <button type="submit" class="button " id="submit"
-                                                                onclick="validation()"><span class="icon text-white-5 "><i
-                                                                        class="far fa-paper-plane"></i>
-                                                                    tambahkan </span></button>
-                                                        </div>
-
-                                                    </div>
-                                                </form>
                                             </div>
                                         </div>
+
+
+                                        <!-- /.card-body -->
+
+
+
                                     </div>
-                                    <!-- /.info-box-content -->
-
                                 </div>
-
-
-
+                                <!-- /.info-box-content -->
 
                             </div>
+
+
+
+
                         </div>
+
 
                         <div class="card card-outline">
                             <div class="card-header  ">
