@@ -14,6 +14,24 @@ class ProsesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function cari()
+    {
+        $nik = $_GET['nik_karyawan'];
+        $karyawan =  DB::table('karyawan')->where('nik_karyawan', $nik)->first();
+        $data = [
+
+            "id" => $karyawan->id,
+            "nik_karyawan" => $karyawan->nik_karyawan,
+            "nama_lengkap" => $karyawan->nama_lengkap,
+            "status_karyawan" => $karyawan->status_karyawan,
+            "departemen" => $karyawan->departemen,
+            "jabatan" => $karyawan->jabatan,
+
+
+
+        ];
+        echo json_encode($data);
+    }
     public function index()
     {
         // $data['kriteria'] = DB::table('kriteria')->where('id', $kode)->first();

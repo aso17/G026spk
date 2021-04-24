@@ -30,3 +30,4 @@ Route::post('/subkriteria', 'SubkriteriaController@store');
 Route::get('/proses', 'ProsesController@index');
 Route::get('/proses/{kriteria}', 'ProsesController@prosesdetail');
 Route::post('/proses/tambah', 'ProsesController@store');
+Route::get('/cari', 'ProsesController@cari');

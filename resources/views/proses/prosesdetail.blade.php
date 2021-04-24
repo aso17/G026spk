@@ -43,7 +43,8 @@
                                                                             <input type="text"
                                                                                 class="form-control @error('nik_karyawan') is-invalid @enderror "
                                                                                 id="nik_karyawan" name="nik_karyawan"
-                                                                                value="{{ old('nik_karyawan') }}">
+                                                                                value="{{ old('nik_karyawan') }}"
+                                                                                onkeyup="ketik()">
 
                                                                             @error('nik_karyawan')
                                                                                 <div class="invalid-feedback">
@@ -78,9 +79,10 @@
                                                         </div>
 
                                                         <div class="row ">
-                                                            <div class="col-md-6">
+                                                            <div class="col-md-6 mt-2">
                                                                 <div class="form-group">
-                                                                    <label for="nama_karyawan">nama karyawan </label>
+                                                                    <label class="ml-3" for="nama_karyawan">nama karyawan
+                                                                    </label>
                                                                     <input type="text" class="form-control  "
                                                                         id="nama_karyawan" name="nama_karyawan" value=""
                                                                         readonly>
@@ -95,7 +97,8 @@
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
-                                                                    <label for="status_karyawan">Status karyawan</label>
+                                                                    <label class="ml-3" for="status_karyawan">Status
+                                                                        karyawan</label>
                                                                     <input type="text" class="form-control  "
                                                                         id="status_karyawan" name="status_karyawan" value=""
                                                                         readonly>
@@ -106,7 +109,7 @@
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
-                                                                    <label for="departemen">Departemen</label>
+                                                                    <label class="ml-3" for="departemen">Departemen</label>
                                                                     <input type="text" class="form-control  "
                                                                         id="departemen" name="departemen" value="" readonly>
 
@@ -148,4 +151,27 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        function ketik() {
+            var nik_karyawan = $("#nik_karyawan").val();
+            $.ajax({
+
+                url: "{{ url('') }}/cari",
+                data: "nik_karyawan=" + nik_karyawan,
+                success: function(data) {
+                    var json = data;
+                    obj = JSON.parse(json);
+                    $('#nik_karyawan').val(obj.nik_karyawan);
+                    $('#nama_karyawan').val(obj.nama_lengkap);
+                    $('#status_karyawan').val(obj.status_karyawan);
+                    $('#departemen').val(obj.departemen);
+                    $('#jabatan').val(obj.jabatan);
+
+
+                }
+
+            });
+        }
+
+    </script>
 @endsection
