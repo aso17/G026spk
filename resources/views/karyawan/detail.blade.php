@@ -32,11 +32,11 @@
                         <div class="row">
                             <div class="col-md-12 mb-2">
 
-                                <button class="btn hap btn btn-sm mr-3 float-right" id="hapus" data-toggle="modal"
-                                    data-target="#deletemodal" data-nik-karyawan="{{ $karyawan->nik_karyawan }}"><i
-                                        class=" fas fa-trash-alt"></i>
+                                <button class="btn hapus btn btn-sm mr-3 float-right text-light" id="hapus"
+                                    data-toggle="modal" data-target="#deletemodal"
+                                    data-nik-karyawan="{{ $karyawan->nik_karyawan }}"><i class=" fas fa-trash-alt"></i>
                                     Delete</button>
-                                <a href=" #" class="btn fourth btn-sm mr-2 float-right" id="ubah"><i
+                                <a href=" #" class="btn edit btn-sm mr-2 float-right text-light" id="ubah"><i
                                         class="fas fa-edit"></i>
                                     Edit</a>
 
@@ -116,7 +116,7 @@
 
                     </div>
                     <div class="modal-footer border-warning">
-                        <button class="btn btn- btn hap btn btn-sm float-left" type="button" data-dismiss="modal"><i
+                        <button class="btn btn- btn hapus btn btn-sm float-left" type="button" data-dismiss="modal"><i
                                 class="fas fa-times"> Cancel</i></button>
                         <button id="btn-delete" type="submit" class="btn fourth btn  btn-sm"><i class="fas fa-check">
                                 Ok</i></button>

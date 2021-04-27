@@ -80,11 +80,12 @@
 
 
                                                         <td class="justify-content-center">
-                                                            <button class="btn hap btn btn-sm mr-3 float-right" id="hapus"
-                                                                data-toggle="modal" data-target="#deletemodal"
+                                                            <button class="btn hapus btn btn-sm mr-3 float-right text-light"
+                                                                id="hapus" data-toggle="modal" data-target="#deletemodal"
                                                                 data-nik-karyawan=""><i class=" fas fa-trash-alt"></i>
                                                                 Delete</button>
-                                                            <a href="/kriteria/" class="btn fourth btn-sm mr-3 float-right"
+                                                            <a href="/kriteria/"
+                                                                class="btn edit btn-sm mr-3 float-right text-light"
                                                                 id="ubah"><i class="fas fa-edit"></i>
                                                                 Edit</a>
 

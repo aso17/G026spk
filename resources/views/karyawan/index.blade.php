@@ -39,7 +39,7 @@
                                         <td class="">
 
                                             <a href="/karyawan/{{ $kar->id }}"
-                                                class="btn det btn bg-gradient-info btn-sm text-dark ml-3" id="detail"
+                                                class="btn detail btn bg-gradient-info btn-sm text-dark ml-3" id="detail"
                                                 style="height: 300%"><i class="fas fa-arrow-circle-right text-danger"></i>
                                                 View</a>
 

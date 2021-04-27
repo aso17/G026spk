@@ -117,8 +117,11 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <button class=" btn btn-primary float-right "
-                                                        type="submit">Submit</button>
+                                                    <a href="{{ url('/proses') }}"><button
+                                                            class="btn cancel btn btn-sm float-right text-light"
+                                                            type="button">Cancel</button></a>
+                                                    <button class=" btn tambah btn btn-sm  " type="submit">Tambah</button>
+
                                             </div>
 
 

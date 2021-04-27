@@ -34,7 +34,8 @@
                                                                     <li
                                                                         class="list-group-item d-flex justify-content-center">
                                                                         <a href="{{ url('/proses/' . $krite->id) }}">
-                                                                            <button class="btn btn-default text-primary"
+                                                                            <button
+                                                                                class="btn nilai btn btn-default text-light"
                                                                                 type="button">{{ $krite->nama_kriteria }}</button></a>
 
                                                                     </li>
@@ -98,14 +99,15 @@
                                                     <td></td>
 
                                                     <td class="justify-content-center">
-                                                        <button class="btn hap btn btn-sm mr-3 float-right" id="hapus"
-                                                            data-toggle="modal" data-target="#deletemodal"
+                                                        <button class="btn hapus btn btn-sm mr-1 float-right text-light"
+                                                            id="hapus" data-toggle="modal" data-target="#deletemodal"
                                                             data-nik-karyawan=""><i class=" fas fa-trash-alt"></i>
                                                             Delete</button>
-                                                        <a href="" class="btn fourth btn-sm mr-3 float-right" id="ubah"><i
-                                                                class="fas fa-edit"></i>
+                                                        <a href="" class="btn edit btn-sm mr-3 float-right text-light"
+                                                            id="ubah"><i class="fas fa-edit"></i>
                                                             Edit</a>
-                                                        <a href="" class="btn det btn btn-sm mr-3 text-dark float-right "
+                                                        <a href=""
+                                                            class="btn detail btn btn-sm mr-3  float-right text-light"
                                                             id="sub_kriteria"><i class="fas fa-eye"></i>
                                                             Detail
                                                         </a>

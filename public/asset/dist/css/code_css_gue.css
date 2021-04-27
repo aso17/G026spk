@@ -4,18 +4,18 @@
   outline: 0;
 }
 
-.fourth {
-
+.tambah {
+  background: rgb(9, 31, 97);
   border-color: #0d12b1;
   border-radius: ;
-  color: #449dad;
+  color: #e4ebe5;
   position: relative;
   overflow: hidden;
   z-index: 1;
   transition: color 150ms ease-in-out;
 }
 
-.fourth:after {
+.tambah:after {
   content: '';
   position: absolute;
   display: block;
@@ -25,74 +25,23 @@
   transform: translateX(-50%);
   width: 0;
   height: 100%;
-  background: #0bd8d5;
+  background: #0f29d1;
   z-index: -1;
   transition: width 150ms ease-in-out;
 }
 
-.fourth:hover {
+.tambah:hover {
   color: #fff;
-  transform: scaleX(0);
-  transition: all .4s;
-  transition-delay: .4s;
+
 }
 
-.fourth:hover:after {
+.tambah:hover:after {
   width: 110%;
 }
 
-detail {}
-
-.btn:hover,
-.btn:focus {
-  color: rgb(10, 2, 2);
-  outline: 0;
-}
-
-.det {
-
-  border-color: #2c6d81;
-  border-radius: ;
-  color: #df9814;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-  transition: color 150ms ease-in-out;
-}
-
-.det:after {
-  content: '';
-  position: absolute;
-  display: block;
-  top: 0;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
-  width: 0;
-  height: 100%;
-  background: hsl(39, 90%, 52%);
-  z-index: -1;
-  transition: width 150ms ease-in-out;
-}
-
-.det:hover {
-  color: rgb(173, 201, 50);
-}
-
-.det:hover:after {
-  width: 110%;
-}
-
-hapus {}
-
-.btn:hover,
-.btn:focus {
-  color: rgb(10, 2, 2);
-  outline: 0;
-}
-
-.hap {
-
+/* button cancel */
+.cancel {
+  background: rgb(9, 31, 97);
   border-color: #d11313;
   border-radius: ;
   color: #d11313;
@@ -102,7 +51,7 @@ hapus {}
   transition: color 150ms ease-in-out;
 }
 
-.hap:after {
+.cancel:after {
   content: '';
   position: absolute;
   display: block;
@@ -117,20 +66,179 @@ hapus {}
   transition: width 150ms ease-in-out;
 }
 
-.hap:hover {
+.cancel:hover {
   color: #fff;
+
 }
 
-.hap:hover:after {
+.cancel:hover:after {
+  width: 110%;
+}
+
+
+/* button edit */
+.edit {
+  background: rgb(9, 31, 97);
+  border-color: #0d12b1;
+  border-radius: ;
+  color: #10d44e;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 150ms ease-in-out;
+}
+
+.edit:after {
+  content: '';
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  width: 0;
+  height: 100%;
+  background: #0bd83b;
+  z-index: -1;
+  transition: width 150ms ease-in-out;
+}
+
+.edit:hover {
+  color: #fff;
+  transform: scaleX(0);
+  transition: all .4s;
+  transition-delay: .4s;
+}
+
+.edit:hover:after {
+  width: 110%;
+}
+
+
+
+/* detail edit */
+
+.detail {
+  background: rgb(9, 31, 97);
+  border-color: #2c6d81;
+  border-radius: ;
+  color: #df9814;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 150ms ease-in-out;
+}
+
+.detail:after {
+  content: '';
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  width: 0;
+  height: 100%;
+  background: hsl(39, 90%, 52%);
+  z-index: -1;
+  transition: width 150ms ease-in-out;
+}
+
+.detail:hover {
+  color: rgb(173, 201, 50);
+  transform: scaleX(0);
+  transition: all .4s;
+  transition-delay: .4s;
+}
+
+.detail:hover:after {
+  width: 110%;
+}
+
+/* button nilai kriteria */
+
+
+.nilai {
+  background: rgb(9, 31, 97);
+  border-color: #1349d1;
+  border-radius: ;
+  color: #1352d1;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 150ms ease-in-out;
+
+}
+
+.nilai:after {
+  content: '';
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  width: 0;
+  height: 100%;
+  background: #1313d1;
+  z-index: -1;
+  transition: width 150ms ease-in-out;
+}
+
+.nilai:hover {
+  color: rgb(15, 42, 241);
+  transform: scaleX(0);
+  transition: all .4s;
+  transition-delay: .4s;
+}
+
+.nilai:hover:after {
+  width: 100%;
+}
+
+/* hapus button */
+
+.hapus {
+  background: rgb(9, 31, 97);
+  border-color: #d11313;
+  border-radius: ;
+  color: #d11313;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 150ms ease-in-out;
+}
+
+.hapus:after {
+  content: '';
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  width: 0;
+  height: 100%;
+  background: #d11313;
+  z-index: -1;
+  transition: width 150ms ease-in-out;
+}
+
+.hapus:hover {
+  color: #fff;
+  transform: scaleX(0);
+  transition: all .4s;
+  transition-delay: .4s;
+}
+
+.hapus:hover:after {
   width: 110%;
 }
 
 
 
 
-.button-container {
-  text-align: center;
-}
+
 
 .button {
   position: relative;

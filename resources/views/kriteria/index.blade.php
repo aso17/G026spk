@@ -93,16 +93,16 @@
                                                         <td>{{ $krite->type }}</td>
 
                                                         <td class="justify-content-center">
-                                                            <button class="btn hap btn btn-sm mr-3 float-right" id="hapus"
-                                                                data-toggle="modal" data-target="#deletemodal"
+                                                            <button class="btn hapus btn btn-sm mr-3 float-right text-light"
+                                                                id="hapus" data-toggle="modal" data-target="#deletemodal"
                                                                 data-nik-karyawan=""><i class=" fas fa-trash-alt"></i>
                                                                 Delete</button>
                                                             <a href="/kriteria/{{ $krite->id }}"
-                                                                class="btn fourth btn-sm mr-3 float-right" id="ubah"><i
-                                                                    class="fas fa-edit"></i>
+                                                                class="btn edit btn-sm mr-3 float-right text-light"
+                                                                id="ubah"><i class="fas fa-edit"></i>
                                                                 Edit</a>
                                                             <a href="/Sub_kriteria/{{ $krite->id }}"
-                                                                class="btn det btn btn-sm mr-3 text-dark float-right "
+                                                                class="btn detail btn btn-sm mr-3 text-light float-right "
                                                                 id="sub_kriteria">
                                                                 sub_kriteria
                                                             </a>
