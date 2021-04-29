@@ -18,7 +18,7 @@
 
 
                                     <div class="info-box-content">
-                                        <h5 class="bg-primary"><i class="fas fa-tag"></i> Nilai Aturan</h5>
+                                        <h5 class="bg-primary"><i class="fas fa-tag"></i> Memorandum</h5>
                                         <span class="info-box-text"></span>
                                         <span class="info-box-number"></span>
                                         <table class="table  table table-hover table-responsive-sm">

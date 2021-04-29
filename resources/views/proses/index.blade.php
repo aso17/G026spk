@@ -36,7 +36,9 @@
                                                                         <a href="{{ url('/proses/' . $krite->id) }}">
                                                                             <button
                                                                                 class="btn nilai btn btn-default text-light"
-                                                                                type="button">{{ $krite->nama_kriteria }}</button></a>
+                                                                                type="button"><i
+                                                                                    class="fas fa-location-arrow mr-1">
+                                                                                </i>{{ $krite->nama_kriteria }}</button></a>
 
                                                                     </li>
                                                                 </ul>
@@ -67,7 +69,7 @@
 
                         <div class="card card-outline">
                             <div class="card-header  ">
-                                <h5 class="bg-warning"><i class="fas fa-tag"></i> Daftar Pelanggaran Karyawan</h5>
+                                <h5 class="bg-warning"><i class="fas fa-tag"></i>Tabel Normalisasi</h5>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -78,10 +80,12 @@
 
                                                 <tr class="text">
                                                     <th>#</th>
+                                                    <th>Nama Karyawan</th>
                                                     <th>kode</th>
-                                                    <th>Nama Kriteria</th>
                                                     <th>Bobot kriteria</th>
+                                                    <th>Bobot Sub kriteria</th>
                                                     <th>Type</th>
+
 
                                                     <th style="width: 30%" class="text-center text-primary">Option</th>
                                                 </tr>
@@ -89,31 +93,35 @@
                                             <tbody>
 
 
+                                                @foreach ($normalisasi as $normal)
 
 
-                                                <tr>
-                                                    <td></td>
-                                                    <td> </td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
+                                                    <tr>
+                                                        <td>{{ $loop->iteration }}.</td>
+                                                        <td> {{ $normal->nama_lengkap }} </td>
+                                                        <td> {{ $normal->kode_kriteria }} </td>
+                                                        <td> {{ $normal->bobot }}</td>
+                                                        <td> {{ $normal->bobot_subkriteria }}</td>
+                                                        <td>{{ $normal->type }}</td>
 
-                                                    <td class="justify-content-center">
-                                                        <button class="btn hapus btn btn-sm mr-1 float-right text-light"
-                                                            id="hapus" data-toggle="modal" data-target="#deletemodal"
-                                                            data-nik-karyawan=""><i class=" fas fa-trash-alt"></i>
-                                                            Delete</button>
-                                                        <a href="" class="btn edit btn-sm mr-3 float-right text-light"
-                                                            id="ubah"><i class="fas fa-edit"></i>
-                                                            Edit</a>
-                                                        <a href=""
-                                                            class="btn detail btn btn-sm mr-3  float-right text-light"
-                                                            id="sub_kriteria"><i class="fas fa-eye"></i>
-                                                            Detail
-                                                        </a>
 
-                                                    </td>
-                                                </tr>
+                                                        <td class="justify-content-center">
+                                                            <button class="btn hapus btn btn-sm mr-1 float-right text-light"
+                                                                id="hapus" data-toggle="modal" data-target="#deletemodal"
+                                                                data-nik-karyawan=""><i class=" fas fa-trash-alt"></i>
+                                                                Delete</button>
+                                                            <a href="" class="btn edit btn-sm mr-3 float-right text-light"
+                                                                id="ubah"><i class="fas fa-edit"></i>
+                                                                Edit</a>
+                                                            <a href=""
+                                                                class="btn detail btn btn-sm mr-3  float-right text-light"
+                                                                id="sub_kriteria"><i class="fas fa-eye"></i>
+                                                                Detail
+                                                            </a>
+
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
 
 
 

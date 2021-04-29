@@ -18,6 +18,7 @@ class CreatNormalisasiTable extends Migration
             $table->foreignId('id_karyawan')->constrained('karyawan')->onDelete('cascade')->OnUpdate('cascade');
             $table->foreignId('id_kriteria')->constrained('kriteria')->onDelete('cascade')->OnUpdate('cascade');
             $table->foreignId('id_subkriteria')->constrained('subkriteria')->onDelete('cascade')->OnUpdate('cascade');
+            $table->timestamps();
         });
     }
 

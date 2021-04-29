@@ -6,6 +6,16 @@
                 "autoWidth": false,
                 "autoWidth": false,
             });
+            $("#proses").DataTable({
+
+                "responsive": true,
+                "autoWidth": true,
+                "info": false,
+                "lengthChange": false,
+                "scrollY": 300,
+                "paging": false,
+                
+            });
             $("#karyawan").DataTable({
 
                 "responsive": true,

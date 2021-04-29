@@ -38,20 +38,7 @@ class KaryawanController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->hasFile('foto'));
-        // Karyawan::create([
-        //     'nik_karyawan' => $request->nik_karyawan,
-        //     'nama_lengkap' => $request->nama_lengkap,
-        //     'tanggal_lahir' => $request->tgl_lahir,
-        //     'jenis_kelamin' => $request->j_kelamin,
-        //     'departemen' => $request->nik_karyawan,
-        //     'status_karyawan' => $request->status,
-        //     'no_telepon' => $request->tlp,
-        //     'email' => $request->email
-        // ]);
-        // $message = [
-        //     'required' => 'harus di isi kaka'
-        // ];
+
 
         $request->validate([
             'nik_karyawan' => 'required|unique:Karyawan|size:10',

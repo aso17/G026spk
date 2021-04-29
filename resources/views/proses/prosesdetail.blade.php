@@ -28,7 +28,8 @@
                                                 <form method="post" action="/proses/tambah" enctype="">
                                                     @csrf
                                                     <div class="card-body">
-                                                        <input type="hidden" id="idkriteria" name="idkriteria"
+                                                        <input type="hidden" id="id_karyawan" name="id_karyawan">
+                                                        <input type="hidden" id="id_kriteria" name="id_kriteria"
                                                             value="{{ $kriteria->id }}">
                                                         <div class="row">
                                                             <div class="col-md-6">
@@ -62,14 +63,22 @@
                                                                     <div class="form-group">
                                                                         <label>Sub kriteria
                                                                             {{ $kriteria->nama_kriteria }}</label>
-                                                                        <select class="form-control" name="subkriteria">
-                                                                            <option hidden>pilih</option>
+                                                                        <select
+                                                                            class="form-control @error('id_subkriteria') is-invalid @enderror "
+                                                                            name="id_subkriteria">
+                                                                            <option selected hidden value="">-- pilih --
+                                                                            </option>
                                                                             @foreach ($subkriteria as $sub)
                                                                                 <option value="{{ $sub->id }}">
                                                                                     {{ $sub->sub_kriteria }}</option>
                                                                             @endforeach
 
                                                                         </select>
+                                                                        @error('id_subkriteria')
+                                                                            <div class="invalid-feedback">
+                                                                                {{ $message }}
+                                                                            </div>
+                                                                        @enderror
                                                                     </div>
 
 
@@ -120,7 +129,8 @@
                                                     <a href="{{ url('/proses') }}"><button
                                                             class="btn cancel btn btn-sm float-right text-light"
                                                             type="button">Cancel</button></a>
-                                                    <button class=" btn tambah btn btn-sm  " type="submit">Tambah</button>
+                                                    <button class=" btn tambah btn btn-sm  " type="submit"
+                                                        name="submit">Tambah</button>
 
                                             </div>
 
@@ -164,6 +174,7 @@
                 success: function(data) {
                     var json = data;
                     obj = JSON.parse(json);
+                    $('#id_karyawan').val(obj.id);
                     $('#nik_karyawan').val(obj.nik_karyawan);
                     $('#nama_karyawan').val(obj.nama_lengkap);
                     $('#status_karyawan').val(obj.status_karyawan);

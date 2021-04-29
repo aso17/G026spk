@@ -116,9 +116,10 @@
 
                     </div>
                     <div class="modal-footer border-warning">
-                        <button class="btn btn- btn hapus btn btn-sm float-left" type="button" data-dismiss="modal"><i
+                        <button class="btn cancel btn btn-sm float-left text-light" type="button" data-dismiss="modal"><i
                                 class="fas fa-times"> Cancel</i></button>
-                        <button id="btn-delete" type="submit" class="btn fourth btn  btn-sm"><i class="fas fa-check">
+                        <button id=" btn-delete" type="submit" class="btn edit btn  btn-sm text-light"><i
+                                class="fas fa-check">
                                 Ok</i></button>
 
                     </div>

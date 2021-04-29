@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+
 use App\kriteria;
+use App\Proses;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -34,9 +36,14 @@ class ProsesController extends Controller
     }
     public function index()
     {
-        // $data['kriteria'] = DB::table('kriteria')->where('id', $kode)->first();
+
+        $data['normalisasi'] = DB::table('normalisasi')
+            ->Join('karyawan', 'karyawan.id', '=', 'normalisasi.id_karyawan')
+            ->Join('kriteria', 'kriteria.id', '=', 'normalisasi.id_kriteria')
+            ->Join('subkriteria', 'subkriteria.id', '=', 'normalisasi.id_subkriteria')->get();
         $data['kriteria'] = DB::table('kriteria')->get();
-        // dd($data['kriteria']);
+
+
         return view('proses.index', $data);
     }
 
@@ -45,17 +52,9 @@ class ProsesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function prosesdetail($id_kriteria)
-    {
-        // DB::table('karyawan')->where('nik_karyawan', $nik)->delete();
-        $data['kriteria'] = DB::table('kriteria')->where('id', $id_kriteria)->first();
-        // dd($data['kriteria']);
-        $data['subkriteria'] = DB::table('subkriteria')->where('id_kriteria', $id_kriteria)->get();
-        return view('proses.prosesdetail', $data);
-    }
+
     public function create()
     {
-        //
     }
 
     /**
@@ -66,7 +65,6 @@ class ProsesController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request['subkriteria'], $request['idkriteria']);
     }
 
     /**
