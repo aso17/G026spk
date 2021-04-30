@@ -8,6 +8,7 @@ use App\Proses;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\Foreach_;
 
 class ProsesController extends Controller
 {
@@ -40,9 +41,15 @@ class ProsesController extends Controller
         $data['normalisasi'] = DB::table('normalisasi')
             ->Join('karyawan', 'karyawan.id', '=', 'normalisasi.id_karyawan')
             ->Join('kriteria', 'kriteria.id', '=', 'normalisasi.id_kriteria')
-            ->Join('subkriteria', 'subkriteria.id', '=', 'normalisasi.id_subkriteria')->get();
+            ->Join('subkriteria', 'subkriteria.id', '=', 'normalisasi.id_subkriteria')
+            ->orderBy('normalisasi.id', 'ASC')
+            ->limit(4)
+            ->get();
         $data['kriteria'] = DB::table('kriteria')->get();
-
+        $data['idkaryawan'] = DB::table('normalisasi')
+            ->orderBy('normalisasi.id_karyawan', 'DESC')
+            ->limit(1)
+            ->get();
 
         return view('proses.index', $data);
     }
@@ -53,8 +60,20 @@ class ProsesController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function create()
+    public function create($idkaryawan)
     {
+        $data['normalisasi'] = DB::table('normalisasi')
+            ->Join('karyawan', 'karyawan.id', '=', 'normalisasi.id_karyawan')
+            ->Join('kriteria', 'kriteria.id', '=', 'normalisasi.id_kriteria')
+            ->Join('subkriteria', 'subkriteria.id', '=', 'normalisasi.id_subkriteria')
+            ->where('normalisasi.id_karyawan', $idkaryawan)
+            ->orderBy('normalisasi.id', 'ASC')
+            ->limit(4)
+            ->get();
+
+        foreach ($data['normalisasi'] as $da) {
+            print_r($da->kode_kriteria);
+        }
     }
 
     /**

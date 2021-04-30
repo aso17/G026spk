@@ -32,3 +32,4 @@ Route::get('/proses', 'ProsesController@index');
 Route::get('/cari', 'ProsesController@cari');
 Route::get('/proses/{kriteria}', 'DetailProsesController@create');
 Route::post('/proses/tambah', 'DetailProsesController@store');
+Route::get('/proses/nilai/{idkaryawan}', 'ProsesController@create');

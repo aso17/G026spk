@@ -96,15 +96,15 @@
                                                             <button class="btn hapus btn btn-sm mr-3 float-right text-light"
                                                                 id="hapus" data-toggle="modal" data-target="#deletemodal"
                                                                 data-nik-karyawan=""><i class=" fas fa-trash-alt"></i>
-                                                                Delete</button>
+                                                            </button>
                                                             <a href="/kriteria/{{ $krite->id }}"
                                                                 class="btn edit btn-sm mr-3 float-right text-light"
                                                                 id="ubah"><i class="fas fa-edit"></i>
-                                                                Edit</a>
+                                                            </a>
                                                             <a href="/Sub_kriteria/{{ $krite->id }}"
                                                                 class="btn detail btn btn-sm mr-3 text-light float-right "
                                                                 id="sub_kriteria">
-                                                                sub_kriteria
+                                                                Sub kriteria
                                                             </a>
 
                                                         </td>

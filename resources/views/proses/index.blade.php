@@ -1,7 +1,7 @@
 @extends('layout.index')
 @section('content')
 
-    <div class="container-fluid">
+    <div class="container-fluid bg-primary">
 
         <div class="row">
             <div class="col-lg-12">
@@ -74,7 +74,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md">
-                                        <table class="table table-sm table-hover table-responsive-sm" id="proses">
+                                        <table class="table table-sm table-hover table-responsive-sm text-dark" id="proses">
                                             <thead>
 
 
@@ -87,7 +87,7 @@
                                                     <th>Type</th>
 
 
-                                                    <th style="width: 30%" class="text-center text-primary">Option</th>
+                                                    <th style="width: 20%" class="text-center text-primary">Option</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -109,14 +109,14 @@
                                                             <button class="btn hapus btn btn-sm mr-1 float-right text-light"
                                                                 id="hapus" data-toggle="modal" data-target="#deletemodal"
                                                                 data-nik-karyawan=""><i class=" fas fa-trash-alt"></i>
-                                                                Delete</button>
+                                                            </button>
                                                             <a href="" class="btn edit btn-sm mr-3 float-right text-light"
                                                                 id="ubah"><i class="fas fa-edit"></i>
-                                                                Edit</a>
+                                                            </a>
                                                             <a href=""
                                                                 class="btn detail btn btn-sm mr-3  float-right text-light"
                                                                 id="sub_kriteria"><i class="fas fa-eye"></i>
-                                                                Detail
+
                                                             </a>
 
                                                         </td>
@@ -128,6 +128,22 @@
 
                                             </tbody>
                                         </table>
+                                        @foreach ($idkaryawan as $id)
+                                            @if ('{{ $idkaryawan->id !== null }}')
+
+                                                <a href="{{ '/proses/nilai/' . $id->id_karyawan }}"> <button
+                                                        class="btn tambah btn- float-right mt-3"><i
+                                                            class="fab fa-accusoft"></i>
+                                                        Proses
+                                                        Penilain</button></a>
+                                            @else
+                                                null
+
+                                            @endif
+
+                                        @endforeach
+
+
                                     </div>
                                 </div>
                             </div>

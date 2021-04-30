@@ -12,7 +12,7 @@
                 "autoWidth": true,
                 "info": false,
                 "lengthChange": false,
-                "scrollY": 300,
+                "scrollY": 150,
                 "paging": false,
                 
             });
