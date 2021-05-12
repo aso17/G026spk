@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\kriteria;
 use App\alternatif;
 use Illuminate\Http\Request;
 
-class KriteriaController extends Controller
+class AlternatifController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +14,7 @@ class KriteriaController extends Controller
      */
     public function index()
     {
-        $data['kriteria'] = Kriteria::all();
-        $data['alternatif'] = alternatif::all();
-        return view('kriteria.index', $data);
+        //
     }
 
     /**
@@ -27,7 +24,6 @@ class KriteriaController extends Controller
      */
     public function create()
     {
-        return view('kriteria.tambah');
     }
 
     /**
@@ -39,22 +35,20 @@ class KriteriaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'kode_kriteria' => 'required|unique:kriteria|size:2',
-            'nama_kriteria' => 'required',
-            'bobot' => 'required|numeric',
-            'type' => 'required',
+            'nama_alternatif' => 'required',
+
         ]);
-        Kriteria::create($request->all());
-        return redirect('/kriteria')->with('success', 'data kriteria berhasil di tambah');
+        alternatif::create($request->all());
+        return redirect('/kriteria')->with('success', 'data Alternatif berhasil di tambah');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\kriteria  $kriteria
+     * @param  \App\alternatif  $alternatif
      * @return \Illuminate\Http\Response
      */
-    public function show(kriteria $kriteria)
+    public function show(alternatif $alternatif)
     {
         //
     }
@@ -62,10 +56,10 @@ class KriteriaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\kriteria  $kriteria
+     * @param  \App\alternatif  $alternatif
      * @return \Illuminate\Http\Response
      */
-    public function edit(kriteria $kriteria)
+    public function edit(alternatif $alternatif)
     {
         //
     }
@@ -74,10 +68,10 @@ class KriteriaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\kriteria  $kriteria
+     * @param  \App\alternatif  $alternatif
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, kriteria $kriteria)
+    public function update(Request $request, alternatif $alternatif)
     {
         //
     }
@@ -85,10 +79,10 @@ class KriteriaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\kriteria  $kriteria
+     * @param  \App\alternatif  $alternatif
      * @return \Illuminate\Http\Response
      */
-    public function destroy(kriteria $kriteria)
+    public function destroy(alternatif $alternatif)
     {
         //
     }

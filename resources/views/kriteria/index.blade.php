@@ -18,34 +18,28 @@
 
 
                                     <div class="info-box-content">
-                                        <h5 class="bg-primary"><i class="fas fa-tag"></i> Memorandum</h5>
+                                        <h5 class="bg-primary"><i class="fas fa-tag"></i>Alternatif</h5>
                                         <span class="info-box-text"></span>
                                         <span class="info-box-number"></span>
+                                        <div class="row">
+                                            <div class="col">
+
+                                                <button class="btn btn-default btn-sm" data-toggle="modal"
+                                                    data-target="#exampleModal"><i class="fas fa-plus-circle"></i></button>
+                                            </div>
+                                        </div>
                                         <table class="table  table table-hover table-responsive-sm">
                                             <thead>
 
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Nilai Ketentuan</th>
-                                                    <th>keterangan</th>
-                                                </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>0>=5</td>
-                                                    <td>Teguran lisan</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>0>=5</td>
-                                                    <td>Surat Teguran</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>0>=5</td>
-                                                    <td>Surat Peringatan</td>
-                                                </tr>
+                                                @foreach ($alternatif as $alter)
+                                                    <tr>
+                                                        <td>{{ $loop->iteration }}.</td>
+
+                                                        <td>{{ $alter->nama_alternatif }}</td>
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -120,6 +114,40 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <h5 class="modal-title" id="exampleModalLabel">Form Tambah Alternatif</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ '/alternatif' }}" method="post">
+                        @csrf
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Nama Alternatif</label>
+                            <input type="text" class="form-control  @error('nama_alternatif') is-invalid @enderror"
+                                id="nama_alternatif" name="nama_alternatif">
+                            @error('nama_alternatif')
+
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn cancel btn-sm text-light" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Save</button>
+                    </form>
                 </div>
             </div>
         </div>

@@ -127,7 +127,7 @@
 
                             <li class="nav-item mr-1">
                                 <a href="{{ url('/kriteria') }}" class="nav-link ">
-                                    <h6 class="ml-3 text-light ">
+                                    <h6 class="ml-2 text-light ">
                                         <i class="fas fa-columns mr-1"></i>Data Kriteria
 
                                     </h6>
@@ -135,6 +135,7 @@
 
 
                             </li>
+                           
 
                             <li class="nav-item ml-2">
                                 <a href="{{ url('/proses') }}" class="nav-link">

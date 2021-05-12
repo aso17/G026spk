@@ -62,7 +62,7 @@ class ProsesController extends Controller
 
     public function create($idkaryawan)
     {
-        $data['normalisasi'] = DB::table('normalisasi')
+        $data = DB::table('normalisasi')
             ->Join('karyawan', 'karyawan.id', '=', 'normalisasi.id_karyawan')
             ->Join('kriteria', 'kriteria.id', '=', 'normalisasi.id_kriteria')
             ->Join('subkriteria', 'subkriteria.id', '=', 'normalisasi.id_subkriteria')
@@ -71,8 +71,21 @@ class ProsesController extends Controller
             ->limit(4)
             ->get();
 
-        foreach ($data['normalisasi'] as $da) {
-            print_r($da->kode_kriteria);
+        // var_dump($data[0]->kode_kriteria);
+        // var_dump($data[1]->kode_kriteria);
+        // var_dump($data[2]->kode_kriteria);
+        // var_dump($data[3]->kode_kriteria);
+
+        // die;
+        $kriteria[] = $data[0]->bobot . $data[0]->bobot_subkriteria;
+        $kriteria[] = $data[1]->bobot . $data[1]->bobot_subkriteria;
+        $kriteria[] = $data[2]->bobot . $data[2]->bobot_subkriteria;
+        $kriteria[] = $data[3]->bobot . $data[3]->bobot_subkriteria;
+
+        var_dump($kriteria);
+        die;
+        foreach ($data as $da) {
+            print_r($da['bobot']);
         }
     }
 
