@@ -26,19 +26,19 @@
                                                 <div class="card-body">
                                                     <input type="hidden" id="id" value="">
                                                     <div class="row">
-                                                        @foreach ($kriteria as $krite)
+                                                        @foreach ($alternatif as $alter)
                                                             <div class="col-md-3">
 
                                                                 <ul class="list-group ">
 
                                                                     <li
                                                                         class="list-group-item d-flex justify-content-center">
-                                                                        <a href="{{ url('/proses/' . $krite->id) }}">
+                                                                        <a href="{{ url('/detailproses') }}">
                                                                             <button
                                                                                 class="btn nilai btn btn-default text-light"
                                                                                 type="button"><i
                                                                                     class="fas fa-location-arrow mr-1">
-                                                                                </i>{{ $krite->nama_kriteria }}</button></a>
+                                                                                </i>{{ $alter->nama_alternatif }}</button></a>
 
                                                                     </li>
                                                                 </ul>

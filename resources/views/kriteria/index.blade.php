@@ -36,8 +36,20 @@
                                                 @foreach ($alternatif as $alter)
                                                     <tr>
                                                         <td>{{ $loop->iteration }}.</td>
-
                                                         <td>{{ $alter->nama_alternatif }}</td>
+
+                                                        <td class="justify-content-center">
+                                                            <button class="btn hapus btn btn-sm float-right text-light"
+                                                                id="hapus" data-toggle="modal" data-target="#deletemodal"
+                                                                data-nik-karyawan=""><i class=" fas fa-trash-alt"></i>
+                                                            </button>
+                                                            <a href="/alternatiif/{{ $alter->id }}"
+                                                                class="btn edit btn-sm mr-2 float-right text-light"
+                                                                id="ubah"><i class="fas fa-edit"></i>
+                                                            </a>
+
+
+                                                        </td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>

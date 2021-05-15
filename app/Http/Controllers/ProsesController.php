@@ -45,7 +45,7 @@ class ProsesController extends Controller
             ->orderBy('normalisasi.id', 'ASC')
             ->limit(4)
             ->get();
-        $data['kriteria'] = DB::table('kriteria')->get();
+        $data['alternatif'] = DB::table('alternatif')->get();
         $data['idkaryawan'] = DB::table('normalisasi')
             ->orderBy('normalisasi.id_karyawan', 'DESC')
             ->limit(1)

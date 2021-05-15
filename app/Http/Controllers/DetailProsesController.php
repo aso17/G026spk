@@ -13,9 +13,29 @@ class DetailProsesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function pilih()
+    {
+
+        $id = $_GET['id'];
+        $data = DB::table('subkriteria')
+            ->Join('kriteria', 'kriteria.id', '=', 'subkriteria.id_kriteria', 'right')
+            ->where('id_kriteria', $id)
+            ->orderBy('kriteria.type')->get();
+        $output = '<option selected hidden value="">-- pilih --
+        </option>';
+        $output = '<span class="info-box-text text-right font-weight-bold text-danger mr-3">type :</span>';
+        foreach ($data as $row) {
+            $output .= '<option value="' . $row->id . '">' . $row->sub_kriteria . '</option>';
+            $output .= '<span class="info-box-text text-right font-weight-bold text-danger mr-3">type : ' . $row->type . '</span>';
+        }
+        return response()->json($output);
+        //return response()->json();
+    }
     public function index()
     {
-        //
+        $data['kriteria'] = DB::table('kriteria')->get();
+
+        return view('detailProses.index', $data);
     }
 
     /**
@@ -23,13 +43,13 @@ class DetailProsesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id_kriteria)
+    public function create()
     {
 
         // DB::table('karyawan')->where('nik_karyawan', $nik)->delete();
-        $data['kriteria'] = DB::table('kriteria')->where('id', $id_kriteria)->first();
+        $data['kriteria'] = DB::table('kriteria')->get();
         // dd($data['kriteria']);
-        $data['subkriteria'] = DB::table('subkriteria')->where('id_kriteria', $id_kriteria)->get();
+        $data['subkriteria'] = DB::table('subkriteria')->get();
         return view('proses.prosesdetail', $data);
     }
 
@@ -41,6 +61,7 @@ class DetailProsesController extends Controller
      */
     public function store(Request $request)
     {
+
 
         $request->validate([
             'nik_karyawan' => 'required',
