@@ -20,17 +20,19 @@
                                     <div class="info-box-content">
                                         <h5 class="bg-primary"><i class="fas fa-tag"></i> Form
                                             proses Kriteria</h5>
-                                        <span id="tipe">type :
-                                        </span>
+
 
                                         <div class="row">
                                             <div class="col-md-12">
+                                                <span class="info-box-text text-right font-weight-bold  mr-3">Alternatif
+                                                    Sanksi : {{ $alternatif->nama_alternatif }}</span>
                                                 <form method="post" action="/detailproses/tambah" enctype="" name="form1"
                                                     id="form1">
                                                     @csrf
                                                     <div class="card-body">
                                                         <input type="hidden" id="id_karyawan" name="id_karyawan">
-                                                        <input type="hidden" id="id_kriteria" name="id_kriteria" value="">
+                                                        <input type="hidden" id="id_alternatif" name="id_kriteria"
+                                                            value="{{ $alternatif->id }}">
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="">
@@ -138,6 +140,11 @@
 
                                                                 </div>
                                                             </div>
+
+                                                            <div class="col-md-6">
+                                                                <span id="type">
+                                                                </span>
+                                                            </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-md-6">
@@ -199,9 +206,30 @@
                         id: id
                     },
                     dataType: "JSON",
+                    success: function(sub) {
+
+                        $('#idsubkriteria').html(sub);
+
+
+
+                    }
+
+                });
+
+            });
+            $('#idkriteria').change(function() {
+                var id_kriteria = $(this).val();
+                $.ajax({
+                    type: "GET",
+                    url: "{{ url('') }}/type",
+                    data: {
+                        id: id_kriteria
+                    },
+                    dataType: "JSON",
                     success: function(response) {
 
-                        $('#idsubkriteria').html(response);
+                        $('#type').html(response);
+
 
 
                     }
@@ -211,6 +239,7 @@
             });
 
         });
+
 
 
 

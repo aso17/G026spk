@@ -33,7 +33,8 @@
 
                                                                     <li
                                                                         class="list-group-item d-flex justify-content-center">
-                                                                        <a href="{{ url('/detailproses') }}">
+                                                                        <a
+                                                                            href="{{ url('/detailproses/' . $alter->id) }}">
                                                                             <button
                                                                                 class="btn nilai btn btn-default text-light"
                                                                                 type="button"><i

@@ -18,21 +18,29 @@ class DetailProsesController extends Controller
 
         $id = $_GET['id'];
         $data = DB::table('subkriteria')
-            ->Join('kriteria', 'kriteria.id', '=', 'subkriteria.id_kriteria', 'right')
+            ->Join('kriteria', 'kriteria.id', '=', 'subkriteria.id_kriteria')
             ->where('id_kriteria', $id)
-            ->orderBy('kriteria.type')->get();
+            ->get();
         $output = '<option selected hidden value="">-- pilih --
         </option>';
-        $output = '<span class="info-box-text text-right font-weight-bold text-danger mr-3">type :</span>';
         foreach ($data as $row) {
             $output .= '<option value="' . $row->id . '">' . $row->sub_kriteria . '</option>';
-            $output .= '<span class="info-box-text text-right font-weight-bold text-danger mr-3">type : ' . $row->type . '</span>';
         }
+
         return response()->json($output);
-        //return response()->json();
     }
-    public function index()
+    public function type()
     {
+        $id = $_GET['id'];
+        $tipe = DB::table('kriteria')->where('id', $id)->first();
+        $output = '<span fo-box-text text-right font-weight-bold text-danger mr-3"></span>';
+        $output .= '<span class="info-box-text text-right font-weight-bold text-danger mr-3">type : ' . $tipe->type . '</span>';
+        return response()->json($output);
+    }
+    public function index($id_alternatif)
+    {
+
+        $data['alternatif'] = DB::table('alternatif')->where('id', $id_alternatif)->first();
         $data['kriteria'] = DB::table('kriteria')->get();
 
         return view('detailProses.index', $data);
