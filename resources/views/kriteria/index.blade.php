@@ -80,7 +80,7 @@
                                                     <th>#</th>
                                                     <th>kode</th>
                                                     <th>Nama Kriteria</th>
-                                                    <th>Bobot kriteria</th>
+
                                                     <th>Type</th>
 
                                                     <th style="width: 30%" class="text-center text-primary">Option</th>
@@ -95,7 +95,6 @@
                                                         <td>{{ $loop->iteration }}.</td>
                                                         <td> {{ $krite->kode_kriteria }} </td>
                                                         <td>{{ $krite->nama_kriteria }}</td>
-                                                        <td>{{ $krite->bobot }}</td>
                                                         <td>{{ $krite->type }}</td>
 
                                                         <td class="justify-content-center">

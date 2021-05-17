@@ -94,16 +94,16 @@
                                             <tbody>
 
 
-                                                @foreach ($normalisasi as $normal)
+                                                
 
 
                                                     <tr>
-                                                        <td>{{ $loop->iteration }}.</td>
-                                                        <td> {{ $normal->nama_lengkap }} </td>
-                                                        <td> {{ $normal->kode_kriteria }} </td>
-                                                        <td> {{ $normal->bobot }}</td>
-                                                        <td> {{ $normal->bobot_subkriteria }}</td>
-                                                        <td>{{ $normal->type }}</td>
+                                                        <td></td>
+                                                        <td>  </td>
+                                                        <td>  </td>
+                                                        <td> </td>
+                                                        <td> </td>
+                                                        <td></td>
 
 
                                                         <td class="justify-content-center">
@@ -122,7 +122,7 @@
 
                                                         </td>
                                                     </tr>
-                                                @endforeach
+                                               
 
 
 
