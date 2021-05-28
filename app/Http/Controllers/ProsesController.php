@@ -21,9 +21,10 @@ class ProsesController extends Controller
     {
         $nik = $_GET['nik_karyawan'];
         $karyawan =  DB::table('karyawan')->where('nik_karyawan', $nik)->first();
+
         $data = [
 
-            "id" => $karyawan->id,
+            "id_karyawan" => $karyawan->id,
             "nik_karyawan" => $karyawan->nik_karyawan,
             "nama_lengkap" => $karyawan->nama_lengkap,
             "status_karyawan" => $karyawan->status_karyawan,

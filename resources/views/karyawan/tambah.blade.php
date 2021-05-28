@@ -211,9 +211,28 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="jabatan">Jabatan</label>
-                                                <input type="text"
+
+                                                <select name="jabatan"
                                                     class="form-control @error('jabatan') is-invalid @enderror "
-                                                    id="jabatan" name="jabatan" value="{{ old('jabatan') }}">
+                                                    id="jabatan" value="">
+                                                    <option value="{{ old('jabatan') }}" hidden>-- Pilih --
+                                                    </option>
+                                                    <option value="spv" {{ @old('jabatan') == 'spv' ? 'selected' : '' }}>
+                                                        Supervisor</option>
+                                                    <option value="officer"
+                                                        {{ @old('jabatan') == 'officer' ? 'selected' : '' }}>
+                                                        Officer
+                                                    </option>
+
+                                                    <option value="checker"
+                                                        {{ @old('jabatan') == 'checker' ? 'selected' : '' }}>
+                                                        Checker
+                                                    </option>
+                                                    <option value="helper"
+                                                        {{ @old('jabatan') == 'helper' ? 'selected' : '' }}>
+                                                        Helper
+                                                    </option>
+                                                </select>
                                                 @error('jabatan')
 
                                                     <div class="invalid-feedback">
@@ -315,7 +334,7 @@
                                             <i class="fas fa-arrow-circle-left"></i></span>
                                         <span class="font-weight-bold text-danger">Cancel</span></a>
 
-                                    <div class="button-container float-left ">
+                                    <div class="button-container ">
                                         <button type="submit" class="button " id="submit" onclick="validation()"><span
                                                 class="icon text-white-5 "><i class="far fa-paper-plane"></i>
                                                 Save </span></button>

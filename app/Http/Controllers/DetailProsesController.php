@@ -54,9 +54,8 @@ class DetailProsesController extends Controller
     public function create()
     {
 
-        // DB::table('karyawan')->where('nik_karyawan', $nik)->delete();
+
         $data['kriteria'] = DB::table('kriteria')->get();
-        // dd($data['kriteria']);
         $data['subkriteria'] = DB::table('subkriteria')->get();
         return view('proses.prosesdetail', $data);
     }
@@ -70,12 +69,14 @@ class DetailProsesController extends Controller
     public function store(Request $request)
     {
 
-
         $request->validate([
             'nik_karyawan' => 'required',
-            'id_subkriteria' => 'required',
+            'idkriteria' => 'required',
+            'idsubkriteria' => 'required',
 
         ]);
+
+
         Proses::create([
             "id_karyawan" => $request->id_karyawan,
             "id_kriteria" => $request->id_kriteria,

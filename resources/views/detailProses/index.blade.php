@@ -30,7 +30,7 @@
                                                     id="form1">
                                                     @csrf
                                                     <div class="card-body">
-                                                        <input type="hidden" id="id_karyawan" name="id_karyawan">
+                                                        <input type="hidden" id="idkaryawan" name="idkaryawan">
                                                         <input type="hidden" id="id_alternatif" name="id_kriteria"
                                                             value="{{ $alternatif->id }}">
                                                         <div class="row">
@@ -66,7 +66,7 @@
                                                                         <label>Kriteria
                                                                         </label>
                                                                         <select
-                                                                            class="form-control @error('id_subkriteria') is-invalid @enderror "
+                                                                            class="form-control @error('idkriteria') is-invalid @enderror "
                                                                             name="idkriteria" id="idkriteria">
                                                                             <option selected hidden value="">-- pilih --
                                                                             </option>
@@ -78,7 +78,7 @@
                                                                             @endforeach
 
                                                                         </select>
-                                                                        @error('id_subkriteria')
+                                                                        @error('idkriteria')
                                                                             <div class="invalid-feedback">
                                                                                 {{ $message }}
                                                                             </div>
@@ -108,13 +108,13 @@
                                                                         <label>Sub Kriteria
                                                                         </label>
                                                                         <select
-                                                                            class="form-control @error('id_subkriteria') is-invalid @enderror "
+                                                                            class="form-control @error('idsubkriteria') is-invalid @enderror "
                                                                             name="idsubkriteria" id="idsubkriteria">
 
 
 
                                                                         </select>
-                                                                        @error('id_subkriteria')
+                                                                        @error('idsubkriteria')
                                                                             <div class="invalid-feedback">
                                                                                 {{ $message }}
                                                                             </div>
@@ -252,7 +252,7 @@
                 success: function(data) {
                     var json = data;
                     obj = JSON.parse(json);
-                    $('#id_karyawan').val(obj.id);
+                    $('#idkaryawan').val(obj.id_karyawan);
                     $('#nik_karyawan').val(obj.nik_karyawan);
                     $('#nama_karyawan').val(obj.nama_lengkap);
                     $('#status_karyawan').val(obj.status_karyawan);
