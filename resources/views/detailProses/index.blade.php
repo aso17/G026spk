@@ -30,8 +30,8 @@
                                                     id="form1">
                                                     @csrf
                                                     <div class="card-body">
-                                                        <input type="hidden" id="idkaryawan" name="idkaryawan">
-                                                        <input type="hidden" id="id_alternatif" name="id_kriteria"
+                                                        <input type="hidden" id="id_karyawan" name="id_karyawan">
+                                                        <input type="hidden" id="id_alternatif" name="id_alternatif"
                                                             value="{{ $alternatif->id }}">
                                                         <div class="row">
                                                             <div class="col-md-6">
@@ -182,6 +182,18 @@
                                 <!-- /.info-box-content -->
 
                             </div>
+                            <div class="col-md-4">
+                                <ul class="list-group">
+                                    @foreach ($normalisasi as $normal)
+
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            {{ $normal->nama_alternatif }}
+                                            <span class="badge badge-primary badge-pill">14</span>
+                                        </li>
+                                    @endforeach
+
+                                </ul>
+                            </div>
 
 
 
@@ -252,7 +264,7 @@
                 success: function(data) {
                     var json = data;
                     obj = JSON.parse(json);
-                    $('#idkaryawan').val(obj.id_karyawan);
+                    $('#id_karyawan').val(obj.id_karyawan);
                     $('#nik_karyawan').val(obj.nik_karyawan);
                     $('#nama_karyawan').val(obj.nama_lengkap);
                     $('#status_karyawan').val(obj.status_karyawan);

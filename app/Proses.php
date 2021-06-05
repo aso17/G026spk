@@ -11,8 +11,10 @@ class Proses extends Model
     protected $primarykey = 'id';
     protected $fillable = [
         'id_karyawan',
-        'id_kriteria',
-        'id_subkriteria'
+        'id_alternatif',
+        'C1',
+        'C2',
+        'C3'
 
     ];
 }
