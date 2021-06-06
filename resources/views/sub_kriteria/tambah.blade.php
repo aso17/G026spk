@@ -25,7 +25,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <input type="hidden" name="id_kriteria" value="{{ $kriteria->id }}">
-                                            <label for="kode_kriteria">Kode kriteria</label>
+                                            <label for="kode_kriteria">Kode kriteria {{ $kriteria->nama_kriteria }}</label>
                                             <input type="text"
                                                 class="form-control @error('kode_kriteria') is-invalid @enderror "
                                                 id="kode_kriteria" name="kode_kriteria"

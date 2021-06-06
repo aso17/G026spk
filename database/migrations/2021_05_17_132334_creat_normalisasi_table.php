@@ -15,11 +15,11 @@ class CreatNormalisasiTable extends Migration
     {
         Schema::create('normalisasi', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_karyawan')->constrained('karyawan');
+            $table->foreignId('id_karyawan')->nullable()->constrained('karyawan');
             $table->foreignId('id_alternatif')->constrained('alternatif');
-            $table->foreignId('C1')->constrained('subkriteria');
-            $table->foreignId('C2')->constrained('subkriteria');
-            $table->foreignId('C3')->constrained('subkriteria');
+            $table->integer('C1')->nullable();
+            $table->integer('C2')->nullable();
+            $table->integer('C3')->nullable();
             $table->timestamps();
         });
     }

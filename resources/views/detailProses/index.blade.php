@@ -184,14 +184,30 @@
                             </div>
                             <div class="col-md-4">
                                 <ul class="list-group">
+                                    {{-- {{ dd($normalisasi) }} --}}
                                     @foreach ($normalisasi as $normal)
-
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                                            {{ $normal->nama_alternatif }}
-                                            <span class="badge badge-primary badge-pill">14</span>
+                                            Nik karyawan
+                                            <span
+                                                class="badge badge-primary badge-pill">{{ $normal->nik_karyawan }}</span>
                                         </li>
                                     @endforeach
-
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Nama karyawan
+                                        <span class="badge badge-primary badge-pill">{{ $normal->nama_lengkap }}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Bobot Absensi
+                                        <span class="badge badge-primary badge-pill">{{ $normal->C1 }}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Bobot Produktifitas
+                                        <span class="badge badge-primary badge-pill">{{ $normal->C2 }}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Bobot Kooperatif
+                                        <span class="badge badge-primary badge-pill">{{ $normal->C2 }}</span>
+                                    </li>
                                 </ul>
                             </div>
 
