@@ -41,6 +41,7 @@ Route::get('/detailproses/{alternatif}', 'DetailProsesController@index');
 Route::get('/pilih', 'DetailProsesController@pilih');
 Route::get('/type', 'DetailProsesController@type');
 Route::post('/detailproses/tambah', 'DetailProsesController@store');
+//Route::get('/detailProses/tambah', 'DetailProsesController@store');
 
 //alternatif
 Route::post('/alternatif', 'AlternatifController@store');

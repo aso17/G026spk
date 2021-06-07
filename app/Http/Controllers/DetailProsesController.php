@@ -41,22 +41,23 @@ class DetailProsesController extends Controller
     public function index($id_alternatif)
     {
 
-        $data['normalisasi'] = DB::table('normalisasi')
-            ->join('karyawan', 'karyawan.id', '=', 'normalisasi.id_karyawan')
-            ->join('alternatif', 'alternatif.id', '=', 'normalisasi.id_alternatif')
-            ->where('id_alternatif', $id_alternatif)
-            ->get();
+
 
         //proses insert data
 
         $data['alternatif'] = DB::table('alternatif')->where('id', $id_alternatif)->first();
         $data['kriteria'] = DB::table('kriteria')->get();
-        $id = $data['alternatif']->id;
-        Proses::create([
-            "id_alternatif" => $id,
+        // Proses::create([
+        //     "id_alternatif" => $id_alternatif,
 
-        ]);
+        // ]);
 
+
+        // $data['normalisasi'] = DB::table('normalisasi')
+        //     ->join('karyawan', 'karyawan.id', '=', 'normalisasi.id_karyawan')
+        //     ->join('alternatif', 'alternatif.id', '=', 'normalisasi.id_alternatif')
+        //     ->where('normalisasi.id_alternatif', $id_alternatif)
+        //     ->first();
         return view('detailProses.index', $data);
     }
 
@@ -69,9 +70,9 @@ class DetailProsesController extends Controller
     {
 
 
-        $data['kriteria'] = DB::table('kriteria')->get();
-        $data['subkriteria'] = DB::table('subkriteria')->get();
-        return view('proses.prosesdetail', $data);
+        // $data['kriteria'] = DB::table('kriteria')->get();
+        // $data['subkriteria'] = DB::table('subkriteria')->get();
+        // return view('proses.prosesdetail', $data);
     }
 
     /**
@@ -95,11 +96,12 @@ class DetailProsesController extends Controller
         // ambil data alternatif
         $data['alternatif'] = DB::table('alternatif')->where('id', $request->id_alternatif)->first();
 
+
         // ambil data kriteria
         $id_kriteria = $request->id_kriteria;
         $datakriteria = DB::table('kriteria')->where('id', $id_kriteria)->first();
         $kriteria = $datakriteria->kode_kriteria;
-        $idkriteria = $datakriteria->id;
+        // $idkriteria = $datakriteria->id;
         // ambil data normalisasi
         $datanormalisasi = DB::table('normalisasi')->where('id_alternatif', $request->id_alternatif)->first();
         // ambil data subkriteria
@@ -108,42 +110,70 @@ class DetailProsesController extends Controller
         //dd($bobot_sub);
         // ambil data normalisasi
         $datanormalisasi = DB::table('normalisasi')->where('id_alternatif', $request->id_alternatif)->first();
-        $id_normalisasi = $datanormalisasi->id;
+        //$id_normalisasi = $datanormalisasi->id;
+
+
+        // dd($datanor);
+
+
+
+        if ($kriteria == "C1") {
+            Proses::create([
+                "id_karyawan" => $request->id_karyawan,
+                "id_alternatif" => $request->id_alternatif,
+                "C1" => $bobot_sub
+            ]);
+        } elseif ($kriteria == "C2") {
+            Proses::create([
+                "id_karyawan" => $request->id_karyawan,
+                "id_alternatif" => $request->id_alternatif,
+                "C2" => $bobot_sub
+            ]);
+        } else {
+            Proses::create([
+                "id_karyawan" => $request->id_karyawan,
+                "id_alternatif" => $request->id_alternatif,
+                "C3" => $bobot_sub
+            ]);
+        }
+        // } else {
+        //     if ($kriteria == "C1") {
+        //         DB::table('normalisasi')
+        //             ->where('id', $request->id_alternatif)
+        //             ->update([
+        //                 "id_karyawan" => $request->id_karyawan,
+        //                 "id_alternatif" => $request->id_alternatif,
+        //                 "C1" => $bobot_sub
+        //             ]);
+        //     } elseif ($kriteria == "C2") {
+        //         DB::table('normalisasi')
+        //             ->where('id', $request->id_alternatif)
+        //             ->update([
+        //                 "id_karyawan" => $request->id_karyawan,
+        //                 "id_alternatif" => $request->id_alternatif,
+        //                 "C1" => $bobot_sub
+        //             ]);
+        //     } else {
+        //         DB::table('normalisasi')
+        //             ->where('id', $request->id_alternatif)
+        //             ->update([
+        //                 "id_karyawan" => $request->id_karyawan,
+        //                 "id_alternatif" => $request->id_alternatif,
+        //                 "C1" => $bobot_sub
+        //             ]);
+        //     }
+        // }
         //ambil data  normalisasi join
+        $idal = $request->id_alternatif;
         $data['normalisasi'] = DB::table('normalisasi')
             ->join('karyawan', 'karyawan.id', '=', 'normalisasi.id_karyawan')
             ->join('alternatif', 'alternatif.id', '=', 'normalisasi.id_alternatif')
-            ->where('idkriteria', $id_normalisasi)
-            ->get();
+            ->where('normalisasi.id_alternatif', $idal)
+            ->first();
+        $data['alternatif'] = DB::table('alternatif')->where('id', $request->id_alternatif)->first();
+        $data['kriteria'] = DB::table('kriteria')->get();
 
-        //dd($request->id_karyawan);
-
-        if ($kriteria == "C1") {
-            DB::table('normalisasi')
-                ->where('id', $id_normalisasi)
-                ->update([
-                    "id_karyawan" => $request->id_karyawan,
-                    "idkriteria" => $idkriteria,
-                    "C1" => $bobot_sub
-                ]);
-        } elseif ($kriteria == "C2") {
-            DB::table('normalisasi')
-                ->where('id', $id_normalisasi)
-                ->update([
-                    "id_karyawan" => $request->id_karyawan,
-                    "idkriteria" => $idkriteria,
-                    "C2" => $bobot_sub
-                ]);
-        } else {
-            DB::table('normalisasi')
-                ->where('id', $id_normalisasi)
-                ->update([
-                    "id_karyawan" => $request->id_karyawan,
-                    "idkriteria" => $idkriteria,
-                    "C3" => $bobot_sub
-                ]);
-        }
-        return view('detailProses.index', $data);
+        return view('detailProses.edit', $data);
     }
 
     /**
@@ -163,9 +193,9 @@ class DetailProsesController extends Controller
      * @param  \App\Proses  $proses
      * @return \Illuminate\Http\Response
      */
-    public function edit(Proses $proses)
+    public function edit($data)
     {
-        //
+        return view('detailProses.edit', $data);
     }
 
     /**

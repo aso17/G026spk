@@ -21,7 +21,7 @@
                                         <h5 class="bg-primary"><i class="fas fa-tag"></i> Form
                                             proses Kriteria</h5>
 
-
+                                        {{ dd($normalisasi) }}
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <span class="info-box-text text-right font-weight-bold  mr-3">Alternatif
