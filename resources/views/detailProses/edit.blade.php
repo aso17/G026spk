@@ -21,14 +21,15 @@
                                         <h5 class="bg-primary"><i class="fas fa-tag"></i> Form
                                             proses Kriteria</h5>
 
-                                        {{ dd($normalisasi) }}
+                                        {{-- {{ dd($normalisasi) }} --}}
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <span class="info-box-text text-right font-weight-bold  mr-3">Alternatif
                                                     Sanksi : {{ $alternatif->nama_alternatif }}</span>
-                                                <form method="post" action="/detailproses/tambah" enctype="" name="form1"
+                                                <form method="post" action="/detailProses/ubah" enctype="" name="form1"
                                                     id="form1">
                                                     @csrf
+                                                    @method('patch')
                                                     <div class="card-body">
                                                         <input type="hidden" id="id_karyawan" name="id_karyawan">
                                                         <input type="hidden" id="id_alternatif" name="id_alternatif"
@@ -159,7 +160,7 @@
                                                     </div>
                                                     <a href="{{ url('/proses') }}"><button
                                                             class="btn cancel btn btn-sm float-right text-light"
-                                                            type="button">Cancel</button></a>
+                                                            type="button">Back</button></a>
                                                     <button class=" btn tambah btn btn-sm float-right mr-2   " type="submit"
                                                         name="submit" value="submit">Save</button>
 
@@ -184,12 +185,12 @@
                             </div>
                             <div class="col-md-4">
                                 <ul class="list-group">
-                                    <?php if ($alternatif->id == true) { ?>
-                                    {{-- <li class="list-group-item d-flex justify-content-between align-items-center">
+
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
                                         Nik karyawan
 
                                         <span
-                                            class="badge badge-primary badge-pill">{{ $normalisasi['nik_karyawan'] }}</span>
+                                            class="badge badge-primary badge-pill">{{ $normalisasi->nik_karyawan }}</span>
 
                                     </li>
 
@@ -197,37 +198,29 @@
                                         Nama karyawan
 
                                         <span
-                                            class="badge badge-primary badge-pill">{{ $normalisasi['nama_lengkap'] }}</span>
+                                            class="badge badge-primary badge-pill">{{ $normalisasi->nama_lengkap }}</span>
 
-                                    </li> --}}
-                                    {{-- <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Bobot Absensi
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Kriteria Absensi ( C1)
 
                                         <span class="badge badge-primary badge-pill">{{ $normalisasi->C1 }}</span>
 
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Bobot Produktifitas
+                                        Kriteria Produktifitas ( C2)
 
                                         <span class="badge badge-primary badge-pill">{{ $normalisasi->C2 }}</span>
 
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Bobot Kooperatif
+                                        Kriteria Kooperatif ( C3)
 
                                         <span class="badge badge-primary badge-pill">{{ $normalisasi->C3 }}</span>
-                                    </li> --}}
 
-
-
-
-                                    <?php } else { ?>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Bobot Kooperatif
-
-                                        <span class="badge badge-primary badge-pill">noting</span>
                                     </li>
-                                    <?php } ?>
+
+
                                 </ul>
                             </div>
 

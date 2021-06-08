@@ -82,28 +82,26 @@
                                                 <tr class="text">
                                                     <th>#</th>
                                                     <th>Nama Karyawan</th>
-                                                    <th>kode</th>
-                                                    <th>Bobot kriteria</th>
-                                                    <th>Bobot Sub kriteria</th>
-                                                    <th>Type</th>
+                                                    <th>Alternatif</th>
+                                                    <th>C1</th>
+                                                    <th>C3</th>
+                                                    <th>C3</th>
 
 
                                                     <th style="width: 20%" class="text-center text-primary">Option</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-
-
-                                                
-
+                                                @foreach ($normalisasi as $norma)
 
                                                     <tr>
-                                                        <td></td>
-                                                        <td>  </td>
-                                                        <td>  </td>
-                                                        <td> </td>
-                                                        <td> </td>
-                                                        <td></td>
+                                                        <td>{{ $loop->iteration }}.</td>
+                                                        <td>{{ $norma->nama_lengkap }}</td>
+                                                        <td>{{ $norma->nama_alternatif }} </td>
+                                                        <td>{{ $norma->C1 }} </td>
+                                                        <td>{{ $norma->C1 }} </td>
+                                                        <td>{{ $norma->C1 }} </td>
+
 
 
                                                         <td class="justify-content-center">
@@ -122,7 +120,8 @@
 
                                                         </td>
                                                     </tr>
-                                               
+                                                @endforeach
+
 
 
 

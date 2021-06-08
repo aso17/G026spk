@@ -39,13 +39,12 @@ class ProsesController extends Controller
     public function index()
     {
 
-        // $data['normalisasi'] = DB::table('normalisasi')
-        //     ->Join('karyawan', 'karyawan.id', '=', 'normalisasi.id_karyawan')
-        //     ->Join('kriteria', 'kriteria.id', '=', 'normalisasi.id_kriteria')
-        //     ->Join('subkriteria', 'subkriteria.id', '=', 'normalisasi.id_subkriteria')
-        //     ->orderBy('normalisasi.id', 'ASC')
-        //     ->limit(4)
-        //     ->get();
+        $data['normalisasi'] = DB::table('normalisasi')
+            ->Join('karyawan', 'karyawan.id', '=', 'normalisasi.id_karyawan')
+            ->Join('alternatif', 'alternatif.id', '=', 'normalisasi.id_alternatif')
+            ->orderBy('normalisasi.id', 'DESC')
+            ->limit(3)
+            ->get();
         $data['alternatif'] = DB::table('alternatif')->get();
         $data['idkaryawan'] = DB::table('normalisasi')
             ->orderBy('normalisasi.id_karyawan', 'DESC')

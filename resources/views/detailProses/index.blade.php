@@ -182,54 +182,7 @@
                                 <!-- /.info-box-content -->
 
                             </div>
-                            <div class="col-md-4">
-                                <ul class="list-group">
-                                    <?php if ($alternatif->id == true) { ?>
-                                    {{-- <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Nik karyawan
 
-                                        <span
-                                            class="badge badge-primary badge-pill">{{ $normalisasi['nik_karyawan'] }}</span>
-
-                                    </li>
-
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Nama karyawan
-
-                                        <span
-                                            class="badge badge-primary badge-pill">{{ $normalisasi['nama_lengkap'] }}</span>
-
-                                    </li> --}}
-                                    {{-- <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Bobot Absensi
-
-                                        <span class="badge badge-primary badge-pill">{{ $normalisasi->C1 }}</span>
-
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Bobot Produktifitas
-
-                                        <span class="badge badge-primary badge-pill">{{ $normalisasi->C2 }}</span>
-
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Bobot Kooperatif
-
-                                        <span class="badge badge-primary badge-pill">{{ $normalisasi->C3 }}</span>
-                                    </li> --}}
-
-
-
-
-                                    <?php } else { ?>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Bobot Kooperatif
-
-                                        <span class="badge badge-primary badge-pill">noting</span>
-                                    </li>
-                                    <?php } ?>
-                                </ul>
-                            </div>
 
 
 
