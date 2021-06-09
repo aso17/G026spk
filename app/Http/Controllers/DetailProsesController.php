@@ -18,7 +18,6 @@ class DetailProsesController extends Controller
 
         $id = $_GET['id'];
         $data = DB::table('subkriteria')
-            ->Join('kriteria', 'kriteria.id', '=', 'subkriteria.id_kriteria')
             ->where('id_kriteria', $id)
             ->get();
         $output = '<option selected hidden value="">-- pilih --
@@ -104,6 +103,7 @@ class DetailProsesController extends Controller
         // ambil data subkriteria
         $datasubkriteria = DB::table('subkriteria')->where('id', $request->idsubkriteria)->first();
         $bobot_sub = $datasubkriteria->bobot_subkriteria;
+        // dd($bobot_sub);
         // ambil data normalisasi
         $datanormalisasi = DB::table('normalisasi')->where('id_alternatif', $request->id_alternatif)->first();
         //$id_normalisasi = $datanormalisasi->id;
@@ -135,11 +135,17 @@ class DetailProsesController extends Controller
 
         //ambil data  normalisasi join
         $idal = $request->id_alternatif;
+        $idnor = DB::table('normalisasi')->max('id');
         $data['normalisasi'] = DB::table('normalisasi')
             ->join('karyawan', 'karyawan.id', '=', 'normalisasi.id_karyawan')
             ->join('alternatif', 'alternatif.id', '=', 'normalisasi.id_alternatif')
-            ->where('normalisasi.id_alternatif', $idal)
+            ->where('normalisasi.id', $idnor)
+            // ->orderBy('normalisasi.id', 'DESC')
+            // ->limit(3)
             ->first();
+
+
+
         $data['alternatif'] = DB::table('alternatif')->where('id', $request->id_alternatif)->first();
         $data['kriteria'] = DB::table('kriteria')->get();
 
@@ -211,10 +217,11 @@ class DetailProsesController extends Controller
         }
         //ambil data  normalisasi join
         $idal = $request->id_alternatif;
+        $idnor = DB::table('normalisasi')->max('id');
         $data['normalisasi'] = DB::table('normalisasi')
             ->join('karyawan', 'karyawan.id', '=', 'normalisasi.id_karyawan')
             ->join('alternatif', 'alternatif.id', '=', 'normalisasi.id_alternatif')
-            ->where('normalisasi.id_alternatif', $idal)
+            ->where('normalisasi.id', $idnor)
             ->first();
         $data['alternatif'] = DB::table('alternatif')->where('id', $request->id_alternatif)->first();
         $data['kriteria'] = DB::table('kriteria')->get();
