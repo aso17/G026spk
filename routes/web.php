@@ -37,11 +37,11 @@ Route::get('/proses/{kriteria}', 'DetailProsesController@create');
 Route::post('/proses/tambah', 'DetailProsesController@store');
 Route::get('/proses/nilai/{idkaryawan}', 'ProsesController@create');
 //detail proses
-Route::get('/detailproses/{alternatif}', 'DetailProsesController@index');
+Route::get('/detailproses', 'DetailProsesController@index');
 Route::get('/pilih', 'DetailProsesController@pilih');
 Route::get('/type', 'DetailProsesController@type');
 Route::post('/detailproses/tambah', 'DetailProsesController@store');
 Route::patch('/detailProses/ubah', 'DetailProsesController@update');
 
 //alternatif
-Route::post('/alternatif', 'AlternatifController@store');
+Route::post('/sanksi', 'SanksiController@store');

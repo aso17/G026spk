@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatAlternatifTable extends Migration
+class CreatKetentuanTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreatAlternatifTable extends Migration
      */
     public function up()
     {
-        Schema::create('alternatif', function (Blueprint $table) {
+        Schema::create('ketentuan', function (Blueprint $table) {
             $table->id();
-            $table->char('nama_alternatif', 50);
+            $table->char('nama_sanksi', 50);
+            $table->char('nilai_ketentuan', 10);
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreatAlternatifTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('alternatif');
+        Schema::dropIfExists('ketentuan');
     }
 }

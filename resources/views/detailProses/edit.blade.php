@@ -25,15 +25,14 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <span class="info-box-text text-right font-weight-bold  mr-3">Alternatif
-                                                    Sanksi : {{ $alternatif->nama_alternatif }}</span>
+                                                    Sanksi : </span>
                                                 <form method="post" action="/detailProses/ubah" enctype="" name="form1"
                                                     id="form1">
                                                     @csrf
                                                     @method('patch')
                                                     <div class="card-body">
                                                         <input type="hidden" id="id_karyawan" name="id_karyawan">
-                                                        <input type="hidden" id="id_alternatif" name="id_alternatif"
-                                                            value="{{ $alternatif->id }}">
+                                                        <input type="hidden" id="id_alternatif" name="id_alternatif">
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="">
@@ -61,6 +60,7 @@
                                                                 </div>
                                                             </div>
 
+
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <div class="form-group">
@@ -71,7 +71,7 @@
                                                                             name="idkriteria" id="idkriteria">
                                                                             <option selected hidden value="">-- pilih --
                                                                             </option>
-                                                                            @foreach ($kriteria as $krite)
+                                                                            @foreach ($kri as $krite)
 
                                                                                 <option value="{{ $krite->id }}">
                                                                                     {{ $krite->nama_kriteria }}
@@ -90,6 +90,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+
 
 
                                                         <div class="row ">
@@ -165,76 +166,54 @@
                                                         name="submit" value="submit">Save</button>
 
                                             </div>
-
-
-
-
-
-
-                                            <!-- /.card-body -->
-
-
-                                            </form>
-
                                         </div>
 
-                                    </div>
-                                </div>
-                                <!-- /.info-box-content -->
 
+
+
+
+
+                                        <!-- /.card-body -->
+
+
+                                        </form>
+
+                                    </div>
+
+                                </div>
                             </div>
+                            <!-- /.info-box-content -->
+
+
                             <div class="col-md-4">
                                 <ul class="list-group">
+                                    @foreach ($kriteria as $kr)
 
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Nik karyawan
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            {{ $kr->nama_kriteria }}
+                                            @foreach ($subkriteria as $sub)
+                                                <span
+                                                    class="badge badge-primary badge-pill">{{ $sub->bobot_subkriteria }}</span>
+                                            @endforeach
 
-                                        <span
-                                            class="badge badge-primary badge-pill">{{ $normalisasi->nik_karyawan }}</span>
-
-                                    </li>
-
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Nama karyawan
-
-                                        <span
-                                            class="badge badge-primary badge-pill">{{ $normalisasi->nama_lengkap }}</span>
-
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Kriteria Absensi ( C1)
-
-                                        <span class="badge badge-primary badge-pill">{{ $normalisasi->C1 }}</span>
-
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Kriteria Produktifitas ( C2)
-
-                                        <span class="badge badge-primary badge-pill">{{ $normalisasi->C2 }}</span>
-
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Kriteria Kooperatif ( C3)
-
-                                        <span class="badge badge-primary badge-pill">{{ $normalisasi->C3 }}</span>
-
-                                    </li>
-
+                                        </li>
+                                    @endforeach
 
                                 </ul>
                             </div>
 
-
-
-
                         </div>
 
 
-
                     </div>
+
+
+
+
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <script type="text/javascript">
         $(document).ready(function() {

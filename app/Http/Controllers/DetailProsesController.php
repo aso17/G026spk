@@ -37,26 +37,9 @@ class DetailProsesController extends Controller
         $output .= '<input type="hidden" id="id_kriteria" name="id_kriteria" value="' . $tipe->id . '">';
         return response()->json($output);
     }
-    public function index($id_alternatif)
+    public function index()
     {
-
-
-
-        //proses insert data
-
-        $data['alternatif'] = DB::table('alternatif')->where('id', $id_alternatif)->first();
         $data['kriteria'] = DB::table('kriteria')->get();
-        // Proses::create([
-        //     "id_alternatif" => $id_alternatif,
-
-        // ]);
-
-
-        // $data['normalisasi'] = DB::table('normalisasi')
-        //     ->join('karyawan', 'karyawan.id', '=', 'normalisasi.id_karyawan')
-        //     ->join('alternatif', 'alternatif.id', '=', 'normalisasi.id_alternatif')
-        //     ->where('normalisasi.id_alternatif', $id_alternatif)
-        //     ->first();
         return view('detailProses.index', $data);
     }
 
@@ -69,7 +52,6 @@ class DetailProsesController extends Controller
     {
 
 
-        // $data['kriteria'] = DB::table('kriteria')->get();
         // $data['subkriteria'] = DB::table('subkriteria')->get();
         // return view('proses.prosesdetail', $data);
     }
@@ -90,64 +72,30 @@ class DetailProsesController extends Controller
 
         ]);
 
-        //ambil data kriteria
-        $data['kriteria'] = DB::table('kriteria')->get();
-        // ambil data alternatif
-        $data['alternatif'] = DB::table('alternatif')->where('id', $request->id_alternatif)->first();
 
+        Proses::create([
+            "id_karyawan" => $request->id_karyawan,
+            "id_kriteria" => $request->id_kriteria,
+            "id_subkriteria" => $request->idsubkriteria,
 
-        // ambil data kriteria
-        $id_kriteria = $request->id_kriteria;
-        $datakriteria = DB::table('kriteria')->where('id', $id_kriteria)->first();
-        $kriteria = $datakriteria->kode_kriteria;
-        // ambil data subkriteria
-        $datasubkriteria = DB::table('subkriteria')->where('id', $request->idsubkriteria)->first();
-        $bobot_sub = $datasubkriteria->bobot_subkriteria;
-        // dd($bobot_sub);
-        // ambil data normalisasi
-        $datanormalisasi = DB::table('normalisasi')->where('id_alternatif', $request->id_alternatif)->first();
-        //$id_normalisasi = $datanormalisasi->id;
-
-
-        // dd($datanor);
-
-
-
-        if ($kriteria == "C1") {
-            Proses::create([
-                "id_karyawan" => $request->id_karyawan,
-                "id_alternatif" => $request->id_alternatif,
-                "C1" => $bobot_sub
-            ]);
-        } elseif ($kriteria == "C2") {
-            Proses::create([
-                "id_karyawan" => $request->id_karyawan,
-                "id_alternatif" => $request->id_alternatif,
-                "C2" => $bobot_sub
-            ]);
-        } else {
-            Proses::create([
-                "id_karyawan" => $request->id_karyawan,
-                "id_alternatif" => $request->id_alternatif,
-                "C3" => $bobot_sub
-            ]);
-        }
-
+        ]);
         //ambil data  normalisasi join
-        $idal = $request->id_alternatif;
+
         $idnor = DB::table('normalisasi')->max('id');
         $data['normalisasi'] = DB::table('normalisasi')
             ->join('karyawan', 'karyawan.id', '=', 'normalisasi.id_karyawan')
-            ->join('alternatif', 'alternatif.id', '=', 'normalisasi.id_alternatif')
+            ->join('kriteria', 'kriteria.id', '=', 'normalisasi.id_kriteria')
+            ->join('subkriteria', 'subkriteria.id', '=', 'normalisasi.id_subkriteria')
             ->where('normalisasi.id', $idnor)
-            // ->orderBy('normalisasi.id', 'DESC')
-            // ->limit(3)
             ->first();
+        $data['kri'] = DB::table('kriteria')->get();
 
-
-
-        $data['alternatif'] = DB::table('alternatif')->where('id', $request->id_alternatif)->first();
-        $data['kriteria'] = DB::table('kriteria')->get();
+        $data['kriteria'] = DB::table('kriteria')
+            ->where('id', $request->id_kriteria)
+            ->get();
+        $data['subkriteria'] = DB::table('subkriteria')
+            ->where('id', $request->idsubkriteria)
+            ->get();
 
         return view('detailProses.edit', $data);
     }

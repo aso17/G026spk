@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\alternatif;
+use App\sanksi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class AlternatifController extends Controller
+class SanksiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,6 @@ class AlternatifController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -24,6 +24,7 @@ class AlternatifController extends Controller
      */
     public function create()
     {
+        //
     }
 
     /**
@@ -34,21 +35,23 @@ class AlternatifController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
-            'nama_alternatif' => 'required',
+            'nama_sanksi' => 'required',
+            'nilai_ketentuan' => 'required',
 
         ]);
-        alternatif::create($request->all());
-        return redirect('/kriteria')->with('success', 'data Alternatif berhasil di tambah');
+        sanksi::create($request->all());
+        return redirect('/proses')->with('success', 'data Sanksi berhasil di tambah');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\alternatif  $alternatif
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(alternatif $alternatif)
+    public function show($id)
     {
         //
     }
@@ -56,10 +59,10 @@ class AlternatifController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\alternatif  $alternatif
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(alternatif $alternatif)
+    public function edit($id)
     {
         //
     }
@@ -68,10 +71,10 @@ class AlternatifController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\alternatif  $alternatif
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, alternatif $alternatif)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -79,10 +82,10 @@ class AlternatifController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\alternatif  $alternatif
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(alternatif $alternatif)
+    public function destroy($id)
     {
         //
     }

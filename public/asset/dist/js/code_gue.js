@@ -14,7 +14,13 @@
                 "lengthChange": false,
                 "scrollY": 150,
                 "paging": false,
-                
+                dom: 'Bfrtip',
+                buttons: [{
+                    text: 'Proses karyawan',
+                    action: function() {
+                        window.location.href = "/detailproses"
+                    }
+                }]
             });
             $("#karyawan").DataTable({
 
