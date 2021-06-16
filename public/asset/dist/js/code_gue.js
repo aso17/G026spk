@@ -22,6 +22,16 @@
                     }
                 }]
             });
+            $("#hasil").DataTable({
+
+                "responsive": true,
+                "autoWidth": true,
+                "info": false,
+                "lengthChange": false,
+                "scrollY": 150,
+                "paging": false,
+                
+            });
             $("#karyawan").DataTable({
 
                 "responsive": true,

@@ -35,13 +35,16 @@ Route::get('/proses', 'ProsesController@index');
 Route::get('/cari', 'ProsesController@cari');
 Route::get('/proses/{kriteria}', 'DetailProsesController@create');
 Route::post('/proses/tambah', 'DetailProsesController@store');
-Route::get('/proses/nilai/{idkaryawan}', 'ProsesController@create');
+Route::get('/proses/hitung/{id_karyawan}', 'ProsesController@create');
 //detail proses
 Route::get('/detailproses', 'DetailProsesController@index');
 Route::get('/pilih', 'DetailProsesController@pilih');
 Route::get('/type', 'DetailProsesController@type');
 Route::post('/detailproses/tambah', 'DetailProsesController@store');
-Route::patch('/detailProses/ubah', 'DetailProsesController@update');
+// Route::post('/detailproses/tambah', 'ProsesController@store');
+Route::post('/detailProses/ubah', 'DetailProsesController@update');
 
-//alternatif
+//sanksi
 Route::post('/sanksi', 'SanksiController@store');
+//hasil
+Route::get('/hasil', 'HasilController@index');

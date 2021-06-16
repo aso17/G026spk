@@ -135,7 +135,7 @@
 
 
                             </li>
-                           
+
 
                             <li class="nav-item ml-2">
                                 <a href="{{ url('/proses') }}" class="nav-link">
@@ -146,7 +146,7 @@
                                 </a>
                             </li>
                             <li class="nav-item ml-2">
-                                <a href="{{ url('/proses') }}" class="nav-link">
+                                <a href="{{ url('/hasil') }}" class="nav-link">
                                     <h6 class="mr-2 text-light">
                                         <i class="fas fa-fax"></i>
                                         Hasil Proses

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\kriteria;
 use App\sanksi;
+use App\detail;
 use App\Proses;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -52,6 +53,9 @@ class ProsesController extends Controller
         //     ->limit(1)
         //     ->get();
         $data['ketentuan'] = sanksi::all();
+        $data['detail'] = DB::table('detail_normalisasi')
+            ->join('karyawan', 'karyawan.id', '=', 'detail_normalisasi.id_karyawan')
+            ->get();
         return view('proses.index', $data);
     }
 
@@ -64,174 +68,74 @@ class ProsesController extends Controller
     public function create($idkaryawan)
     {
 
-
-
-        // $alternatif = array();
-        $kriteria[] = array();
-        // $r = array();
-        // $kriteria[] = 'C1';
-        // $kriteria[] = 'C2';
-        // $kriteria[] = 'C3';
-        // $kriteria[] = 'C4';
-
-
-        // var_dump($kriteria);
-
-
-        // $alternatif[] = array('a1', 3, 2, 3, 4);
-        // $alternatif[] = array('a2', 2, 4, 3, 3);
-        // $alternatif[] = array('a3', 4, 5, 5, 5);
-        // var_dump($alternatif);
-        // $index_alternatif = 0;
-        // foreach ($alternatif as $alt) {
-        //     $index_kriteria = 0;
-        //     foreach ($kriteria as $kr) {
-        //         if ($kr == 'C1' || $kr == 'C2') {
-
-        //             $r[$index_alternatif][$index_kriteria] = min(array_column($alternatif, $index_kriteria)) / $alternatif[$index_alternatif][$index_kriteria];
-        //         } elseif ($kr == 'C3' || $kr == 'C4') {
-        //             $r[$index_alternatif][$index_kriteria] = $alternatif[$index_alternatif][$index_kriteria] / max(array_column($alternatif, $index_kriteria));
-        //             // $r[$index_alternatif][$index_kriteria] = $alternatif[$index_alternatif][$index_kriteria]  / max(array_column($alternatif, $index_kriteria));
-        //         }
-        //         $index_kriteria++;
-        //     }
-        //     $index_alternatif++;
-        // }
-        // echo '<pre>';
-        // print_r($r);
-        // echo '</pre>';
-
-        // var_dump($kriteria);
-        // die;
         $alter = [];
-        $K1 = [];
-        $K2 = [];
-        $K3 = [];
-        $r = [];
+
         $kriteria = [];
         $data = [];
-        //$id = [];
-
+        $bobot = [];
 
         $kriteria[] = 'C1';
         $kriteria[] = 'C2';
         $kriteria[] = 'C3';
 
-
-
-
-        $data['normalisasi'] = DB::table('normalisasi')
-            ->Join('karyawan', 'karyawan.id', '=', 'normalisasi.id_karyawan')
-            ->Join('alternatif', 'alternatif.id', '=', 'normalisasi.id_alternatif')
-            ->where('normalisasi.id_karyawan', $idkaryawan)
+        $data['detail'] = DB::table('detail_normalisasi')
+            ->Join('karyawan', 'karyawan.id', '=', 'detail_normalisasi.id_karyawan')
+            ->where('detail_normalisasi.id_karyawan', $idkaryawan)
             ->get();
-        foreach ($data['normalisasi'] as $kri) {
-            $K1[] = $kri->C1;
-            $K2[] = $kri->C2;
-            $K3[] = $kri->C3;
-
+        $min_c1 = DB::table('detail_normalisasi')->min('bobot_c1');
+        $max_c2 = DB::table('detail_normalisasi')->max('bobot_c2');
+        $max_c3 = DB::table('detail_normalisasi')->max('bobot_c3');
+        $data['hitung'] = DB::table('detail_normalisasi')->get();
+        foreach ($data['detail'] as $kri) {
             $alter[] = [
-                $kri->C1,
-                $kri->C2,
-                $kri->C3
+                $kri->bobot_c1,
+                $kri->bobot_c2,
+                $kri->bobot_c3,
             ];
-
             $index_al = 0;
             foreach ($alter as $alt) {
                 $index_kr = 0;
                 foreach ($kriteria as $kr) {
-                    $r[$index_al][$index_kr] = min(array_column($alter, $index_kr)) / $alter[$index_al][$index_kr];
+                    if ($kr == 'C1') {
+                        $r[$index_al][$index_kr] = round($min_c1 / $alter[$index_al][$index_kr], 2);
+                    } elseif ($kr == 'C2') {
+                        $r[$index_al][$index_kr] = round($alter[$index_al][$index_kr] / $max_c2, 2);
+                    } else {
+                        $r[$index_al][$index_kr] = round($alter[$index_al][$index_kr] / $max_c3, 2);
+                    }
                     $index_kr++;
                 }
                 $index_al++;
             }
+
+
+            $dat = DB::table('kriteria')->get();
+            $index_w = 0;
+
+            $w[] = $dat[0]->bobot;
+            $w[] = $dat[1]->bobot;
+            $w[] = $dat[2]->bobot;
+
+            //foreach ($w as $b) {
+            $index_al = 0;
+            foreach ($alter as $alt) {
+                $index_r = 0;
+                $v = 0;
+                foreach ($kriteria as $kr) {
+                    $v += $w[$index_w] * $r[$index_al][$index_r];
+                    $index_r++;
+                    $index_w++;
+                }
+                $nilai_v[$index_al] = $v;
+                $index_al++;
+            }
+            // }
+
             echo '<pre>';
             print_r($r);
+            print_r($nilai_v);
             echo '</pre>';
         }
-        //->toArray();
-
-        // $index_al = 0;
-        // foreach ($data as $d) {
-        //     $id = $d->id_alternatif;
-        //     $id_karyawan = $d->id_karyawan;
-
-        //     $dat = DB::table('normalisasi')
-        //         ->Join('karyawan', 'karyawan.id', '=', 'normalisasi.id_karyawan')
-        //         ->Join('alternatif', 'alternatif.id', '=', 'normalisasi.id_alternatif')
-        //         ->where('normalisasi.id_karyawan', $idkaryawan)
-        //         ->first();
-
-
-        //     
-
-
-
-        //     foreach ($alter as $alt) {
-
-        //         $index_kr = 3;
-        //         foreach ($kriteria as $kr) {
-        //             if ($kr == 'C1' || $kr == 'C2') {
-
-        //                 $r[$index_al][$index_kr] = min(array_column($alter, $index_kr)) / $alter[$index_al][$index_kr];
-        //             } elseif ($kr == 'C3' || $kr == 'C4') {
-        //                 // $r[$index_al][$index_kr] = $alter[$index_al][$index_kr] / max(array_column($alter, $index_kr));
-        //                 // $r[$index_alternatif][$index_kriteria] = $alternatif[$index_alternatif][$index_kriteria]  / max(array_column($alternatif, $index_kriteria));
-        //             }
-        //             $index_kr++;
-        //         }
-        //         $index_al++;
-        //     }
-        // }
-
-        // echo '<pre>';
-        // print_r($r);
-        // echo '</pre>';
-
-
-
-        // $dataall[] = $data;
-        // $alter = array();
-        // $kriteria = array();
-        // $r = array();
-        // $index_kr = 0;
-        // $kriteria[] = $data[0]->C1;
-
-        // $kriteria[] = 'C1';
-        // $kriteria[] = 'C2';
-        // $kriteria[] = 'C3';
-        // foreach ($data as $da) {
-        //     // $kriteria[] = $data[0]->C1;
-
-        //     // $kriteria[] = $data[1]->C2;
-        //     // $kriteria[] = $data[2]->C3;
-
-        //     $id = $da->id_alternatif;
-        //     $alternatif = DB::table('normalisasi')
-        //         ->Join('karyawan', 'karyawan.id', '=', 'normalisasi.id_karyawan')
-        //         ->Join('alternatif', 'alternatif.id', '=', 'normalisasi.id_alternatif')
-        //         ->where('normalisasi.id_karyawan', $idkaryawan)
-        //         ->where('normalisasi.id_alternatif', $id)
-        //         ->first();
-        //     $alter[] = $alternatif->C1;
-        //     $alter[] = $alternatif->C2;
-        //     $alter[] = $alternatif->C3;
-
-        //     $index_al = 0;
-        //     foreach ($alter as $alt) {
-
-        //         $index_kr = 0;
-
-        //         foreach ($kriteria as $kr) {
-        //             // var_dump($index_kr);
-        //             // die;
-        //             // $r[$index_al][$index_kr] = min(array_column($data, 'C1')) / $alter[$index_al][$index_kr];
-        //             $index_kr++;
-        //         }
-        //         $index_al++;
-        //         var_dump($index_kr);
-        //     }
-        //  }
     }
 
     /**
@@ -242,6 +146,7 @@ class ProsesController extends Controller
      */
     public function store(Request $request)
     {
+        // var_dump($request->id_kriteria);
     }
 
     /**

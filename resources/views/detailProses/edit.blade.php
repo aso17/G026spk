@@ -29,7 +29,7 @@
                                                 <form method="post" action="/detailProses/ubah" enctype="" name="form1"
                                                     id="form1">
                                                     @csrf
-                                                    @method('patch')
+
                                                     <div class="card-body">
                                                         <input type="hidden" id="id_karyawan" name="id_karyawan">
                                                         <input type="hidden" id="id_alternatif" name="id_alternatif">
@@ -187,17 +187,45 @@
 
                             <div class="col-md-4">
                                 <ul class="list-group">
-                                    @foreach ($kriteria as $kr)
 
-                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                            {{ $kr->nama_kriteria }}
-                                            @foreach ($subkriteria as $sub)
-                                                <span
-                                                    class="badge badge-primary badge-pill">{{ $sub->bobot_subkriteria }}</span>
-                                            @endforeach
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Nik Karyawan
 
-                                        </li>
-                                    @endforeach
+                                        <span
+                                            class="badge badge-primary badge-pill">{{ $normalisasi->nik_karyawan }}</span>
+
+
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Nama Karyawan
+
+                                        <span
+                                            class="badge badge-primary badge-pill">{{ $normalisasi->nama_lengkap }}</span>
+
+
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Absensi
+
+                                        <span class="badge badge-primary badge-pill">{{ $normalisasi->bobot_c1 }}</span>
+
+
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Kooperatif
+
+                                        <span class="badge badge-primary badge-pill">{{ $normalisasi->bobot_c2 }}</span>
+
+
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Produktifitas
+
+                                        <span class="badge badge-primary badge-pill">{{ $normalisasi->bobot_c3 }}</span>
+
+
+                                    </li>
+
 
                                 </ul>
                             </div>
