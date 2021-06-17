@@ -63,7 +63,7 @@
                                                 id="bobot" name="bobot" value="{{ old('bobot') }}">
                                             @error('bobot')
 
-                                                <div class="invalid-feedback">
+                                                <div class=" invalid-feedback">
                                                     {{ $message }}
                                                 </div>
                                             @enderror

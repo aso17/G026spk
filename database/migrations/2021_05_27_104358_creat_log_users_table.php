@@ -14,8 +14,8 @@ class CreatLogUsersTable extends Migration
     public function up()
     {
         Schema::create('log_users', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('id_karyawan')->constrained('karyawan')->onDelete('cascade')->OnUpdate('cascade');;
+            $table->id('id_user');
+            $table->foreignId('karyawan_id')->constrained('karyawan')->onDelete('cascade')->OnUpdate('cascade');;
             $table->string('password', 100);
             $table->rememberToken();
             $table->timestamps();

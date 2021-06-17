@@ -93,7 +93,7 @@
 
 
 
-                                                    <th style="width: 20%" class="text-center text-primary">Option</th>
+                                                    <th style="width" class="text-center text-primary">Option</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -117,19 +117,21 @@
                                                                 id="hapus" data-toggle="modal" data-target="#deletemodal"
                                                                 data-nik-karyawan=""><i class=" fas fa-trash-alt"></i>
                                                             </button>
-                                                            <a href="" class="btn edit btn-sm mr-3 float-right text-light"
+                                                            <a href="" class="btn edit btn-sm mr-2 float-right text-light"
                                                                 id="ubah"><i class="fas fa-edit"></i>
                                                             </a>
                                                             <a href=""
-                                                                class="btn detail btn btn-sm mr-3  float-right text-light"
+                                                                class="btn detail btn btn-sm mr-2  float-right text-light"
                                                                 id="sub_kriteria"><i class="fas fa-eye"></i>
 
                                                             </a>
-                                                            <a href="{{ 'proses/hitung/' . $d->id_karyawan }}"
-                                                                class="btn detail btn btn-sm mr-3  float-right text-light"
+
+                                                            <a href="{{ 'proses/hitung/' . $d->id }}"
+                                                                class="btn detail btn btn-sm mr-2  float-right text-light"
                                                                 id="proses"><i class="fas fa-ey">Proses</i>
 
                                                             </a>
+
 
                                                         </td>
                                                     </tr>
@@ -165,7 +167,7 @@
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header bg-primary">
+                <div class="modal-header bg-dark">
                     <h5 class="modal-title" id="exampleModalLabel">Form Tambah Alternatif sanki</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>

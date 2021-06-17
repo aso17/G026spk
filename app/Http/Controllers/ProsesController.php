@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\kriteria;
 use App\sanksi;
 use App\detail;
+use App\hasil;
 use App\Proses;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -41,21 +42,14 @@ class ProsesController extends Controller
     public function index()
     {
 
-        // $data['normalisasi'] = DB::table('normalisasi')
-        //     ->Join('karyawan', 'karyawan.id', '=', 'normalisasi.id_karyawan')
-        //     ->Join('alternatif', 'alternatif.id', '=', 'normalisasi.id_alternatif')
-        //     ->orderBy('normalisasi.id', 'DESC')
-        //     ->limit(3)
-        //     ->get();
-        // $data['alternatif'] = DB::table('alternatif')->get();
-        // $data['idkaryawan'] = DB::table('normalisasi')
-        //     ->orderBy('normalisasi.id_karyawan', 'DESC')
-        //     ->limit(1)
-        //     ->get();
+
         $data['ketentuan'] = sanksi::all();
         $data['detail'] = DB::table('detail_normalisasi')
             ->join('karyawan', 'karyawan.id', '=', 'detail_normalisasi.id_karyawan')
             ->get();
+
+
+
         return view('proses.index', $data);
     }
 
@@ -65,76 +59,95 @@ class ProsesController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function create($idkaryawan)
+    public function create($iddetail)
     {
+        $cek = DB::table('hasil')
+            ->where('id_detail', '=', $iddetail)
+            ->first();
 
-        $alter = [];
+        if ($cek->hasil == null) {
 
-        $kriteria = [];
-        $data = [];
-        $bobot = [];
 
-        $kriteria[] = 'C1';
-        $kriteria[] = 'C2';
-        $kriteria[] = 'C3';
 
-        $data['detail'] = DB::table('detail_normalisasi')
-            ->Join('karyawan', 'karyawan.id', '=', 'detail_normalisasi.id_karyawan')
-            ->where('detail_normalisasi.id_karyawan', $idkaryawan)
-            ->get();
-        $min_c1 = DB::table('detail_normalisasi')->min('bobot_c1');
-        $max_c2 = DB::table('detail_normalisasi')->max('bobot_c2');
-        $max_c3 = DB::table('detail_normalisasi')->max('bobot_c3');
-        $data['hitung'] = DB::table('detail_normalisasi')->get();
-        foreach ($data['detail'] as $kri) {
-            $alter[] = [
-                $kri->bobot_c1,
-                $kri->bobot_c2,
-                $kri->bobot_c3,
-            ];
-            $index_al = 0;
-            foreach ($alter as $alt) {
-                $index_kr = 0;
-                foreach ($kriteria as $kr) {
-                    if ($kr == 'C1') {
-                        $r[$index_al][$index_kr] = round($min_c1 / $alter[$index_al][$index_kr], 2);
-                    } elseif ($kr == 'C2') {
-                        $r[$index_al][$index_kr] = round($alter[$index_al][$index_kr] / $max_c2, 2);
-                    } else {
-                        $r[$index_al][$index_kr] = round($alter[$index_al][$index_kr] / $max_c3, 2);
+            $alter = [];
+
+            $kriteria = [];
+            $data = [];
+            $bobot = [];
+
+            $kriteria[] = 'C1';
+            $kriteria[] = 'C2';
+            $kriteria[] = 'C3';
+
+            $data['detail'] = DB::table('detail_normalisasi')
+                ->Join('karyawan', 'karyawan.id', '=', 'detail_normalisasi.id_karyawan')
+                ->where('detail_normalisasi.id', $iddetail)
+                ->get();
+            $min_c1 = DB::table('detail_normalisasi')->min('bobot_c1');
+            $max_c2 = DB::table('detail_normalisasi')->max('bobot_c2');
+            $max_c3 = DB::table('detail_normalisasi')->max('bobot_c3');
+
+            $data['hitung'] = DB::table('detail_normalisasi')->get();
+            foreach ($data['detail'] as $kri) {
+                $alter[] = [
+                    $kri->bobot_c1,
+                    $kri->bobot_c2,
+                    $kri->bobot_c3,
+                ];
+                $index_al = 0;
+                foreach ($alter as $alt) {
+                    $index_kr = 0;
+                    foreach ($kriteria as $kr) {
+                        if ($kr == 'C1') {
+                            $r[$index_al][$index_kr] = round($min_c1 / $alter[$index_al][$index_kr], 2);
+                        } elseif ($kr == 'C2') {
+                            $r[$index_al][$index_kr] = round($alter[$index_al][$index_kr] / $max_c2, 2);
+                        } else {
+                            $r[$index_al][$index_kr] = round($alter[$index_al][$index_kr] / $max_c3, 2);
+                        }
+                        $index_kr++;
                     }
-                    $index_kr++;
+                    $index_al++;
                 }
-                $index_al++;
+
+
+                $dat = DB::table('kriteria')->get();
+                $index_w = 0;
+
+                $w[] = $dat[0]->bobot;
+                $w[] = $dat[1]->bobot;
+                $w[] = $dat[2]->bobot;
+
+                //foreach ($w as $b) {
+                $index_al = 0;
+                foreach ($alter as $alt) {
+                    $index_r = 0;
+                    $v = 0;
+                    foreach ($kriteria as $kr) {
+                        $v += $w[$index_w] * $r[$index_al][$index_r];
+                        $index_r++;
+                        $index_w++;
+                    }
+                    $nilai_v[$index_al] = $v;
+                    $index_al++;
+                }
             }
 
 
-            $dat = DB::table('kriteria')->get();
-            $index_w = 0;
+            $hasil = $nilai_v[0];
+            $id_detail = $iddetail;
 
-            $w[] = $dat[0]->bobot;
-            $w[] = $dat[1]->bobot;
-            $w[] = $dat[2]->bobot;
 
-            //foreach ($w as $b) {
-            $index_al = 0;
-            foreach ($alter as $alt) {
-                $index_r = 0;
-                $v = 0;
-                foreach ($kriteria as $kr) {
-                    $v += $w[$index_w] * $r[$index_al][$index_r];
-                    $index_r++;
-                    $index_w++;
-                }
-                $nilai_v[$index_al] = $v;
-                $index_al++;
-            }
-            // }
+            hasil::create([
+                'id_detail' => $id_detail,
+                'hasil' => $hasil,
+                'status_pengajuan' => 'pending'
 
-            echo '<pre>';
-            print_r($r);
-            print_r($nilai_v);
-            echo '</pre>';
+            ]);
+
+            return redirect('/proses')->with('success', 'proses karyawan berhasil');
+        } else {
+            return redirect('/proses')->with('warning', 'sudah dilakukan proses');
         }
     }
 

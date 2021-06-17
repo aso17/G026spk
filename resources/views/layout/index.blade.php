@@ -259,6 +259,26 @@
 
 
 @endif
+@if (session('warning'))
+    <script language="JavaScript" type="text/javascript">
+        $(function() {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: true,
+                timer: 10000
+            });
+            Toast.fire({
+                icon: 'warning',
+                class: '',
+                title: "{{ session('warning') }}"
+            });
+        });
+
+    </script>
+
+
+@endif
 <script>
     $('.custom-file-input').on('change', function() {
         let filename = $(this).val().split('\\').pop();

@@ -17,7 +17,7 @@ class CreateKriteriaTable extends Migration
             $table->id();
             $table->char('kode_kriteria', 5)->unique();
             $table->string('nama_kriteria', 50);
-            $table->char('bobot', 10);
+            $table->decimal('bobot', 1, 1);
             $table->char('type', 20);
             $table->timestamps();
         });

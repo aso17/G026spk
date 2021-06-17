@@ -16,12 +16,11 @@ class CreatHasilTable extends Migration
         Schema::create('hasil', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_detail')->constrained('detail_normalisasi');
-            $table->foreignId('id_sanksi')->constrained('ketentuan_sanksi');
-            $table->decimal('hasil', 4, 4);
-            $table->char('sanksi', 20);
-            $table->char('status_pengajuan', 10);
-            $table->date('tgl_pengajuan');
-            $table->date('tgl_approve');
+            $table->foreignId('sanksi_id')->nullable()->constrained('ketentuan_sanksi');
+            $table->decimal('hasil', 2, 2)->nullable();
+            $table->char('status_pengajuan', 10)->nullable();
+            $table->date('tgl_pengajuan')->nullable();
+            $table->date('tgl_approve')->nullable();
             $table->timestamps();
         });
     }
