@@ -48,6 +48,22 @@
                     }
                 }]
             });
+            $("#user").DataTable({
+
+                "responsive": true,
+                "autoWidth": true,
+                "info": false,
+                "lengthChange": false,
+                "scrollY": 300,
+                "paging": false,
+                dom: 'Bfrtip',
+                buttons: [{
+                    text: 'Create User',
+                    action: function() {
+                        window.location.href = "/user/tambah"
+                    }
+                }]
+            });
             $("#kriteria").DataTable({
 
                 "responsive": false,

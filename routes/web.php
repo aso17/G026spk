@@ -48,3 +48,5 @@ Route::post('/detailProses/ubah', 'DetailProsesController@update');
 Route::post('/sanksi', 'SanksiController@store');
 //hasil
 Route::get('/hasil', 'HasilController@index');
+//user
+Route::get('/user', 'UserController@index');

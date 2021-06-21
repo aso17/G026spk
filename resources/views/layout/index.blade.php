@@ -167,10 +167,10 @@
 
 
                             <li class="nav-item ">
-                                <a href="" class="nav-link" class="nav-link mr-2">
+                                <a href="{{ '/user' }}" class="nav-link" class="nav-link mr-2">
                                     <h6 class="ml-1 text-light mr-4">
                                         <i class="fas fa-user-cog"></i>
-                                        Data User
+                                        All User
                                     </h6>
                                 </a>
                             </li>
@@ -254,7 +254,6 @@
                 title: "{{ session('success') }}"
             });
         });
-
     </script>
 
 
@@ -274,7 +273,6 @@
                 title: "{{ session('warning') }}"
             });
         });
-
     </script>
 
 
@@ -284,5 +282,4 @@
         let filename = $(this).val().split('\\').pop();
         $(this).next('.custom-file-label').addClass("selected").html(filename);
     });
-
 </script>
