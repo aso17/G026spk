@@ -50,3 +50,5 @@ Route::post('/sanksi', 'SanksiController@store');
 Route::get('/hasil', 'HasilController@index');
 //user
 Route::get('/user', 'UserController@index');
+Route::get('/user/tambah', 'UserController@create');
+Route::post('/user/tambah', 'UserController@store');

@@ -197,7 +197,7 @@
         <footer class="main-footer bg-dark">
             <!-- To the right -->
             <div class="float-right d-none d-sm-inline">
-                Powered by <a href="https://gisaka.net/">A_so</a>
+                Powered by <a href="https://gisaka.net/">A_so17</a>
             </div>
             <!-- Default to the left -->
             <strong>Copyright &copy; <a href="">G026spk</a> .</strong> All

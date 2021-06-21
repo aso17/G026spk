@@ -128,9 +128,10 @@
                                                     </div>
                                                     <a href="{{ url('/proses') }}"><button
                                                             class="btn cancel btn btn-sm float-right text-light"
-                                                            type="button">Cancel</button></a>
-                                                    <button class=" btn tambah btn btn-sm  " type="submit"
-                                                        name="submit">Tambah</button>
+                                                            type="button"> <i class="fas fa-arrow-circle-left"></i>
+                                                            Cancel</button></a>
+                                                    <button class=" btn tambah btn btn-sm  " type="submit" name="submit"><i
+                                                            class="far fa-paper-plane"></i> Create</button>
 
                                             </div>
 
@@ -186,6 +187,5 @@
 
             });
         }
-
     </script>
 @endsection

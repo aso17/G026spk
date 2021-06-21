@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\hasil;
+use App\sanksi;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,7 @@ class HasilController extends Controller
      */
     public function index()
     {
+        $data['ketentuan'] = sanksi::all();
         $data['hasil_ahir'] = DB::table('hasil')
             ->Join('detail_normalisasi', 'detail_normalisasi.id', '=', 'hasil.id_detail')
             ->Join('karyawan', 'karyawan.id', '=', 'detail_normalisasi.id_karyawan')

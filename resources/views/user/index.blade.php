@@ -19,31 +19,37 @@
                                     <th>#</th>
                                     <th>Nik karyawan</th>
                                     <th>Nama Lengkap</th>
-                                    <th>Jenis Kelamin</th>
-                                    <th>Status</th>
-                                    <th>No telpon</th>
-                                    <th style="width: 10%" class="text-center ">Option</th>
+                                    <th>Role</th>
+                                    <th>Departemen</th>
+
+                                    <th style="width: 20%" class="text-center ">Option</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($user as $us)
 
 
-                                <tr>
-                                    <td>.</td>
-                                    <td> </td>
-                                    <td> </td>
+                                    <tr>
+                                        <td>{{ $loop->iteration }} </td>
+                                        <td>{{ $us->nik_karyawan }}</td>
+                                        <td>{{ $us->nama_lengkap }} </td>
+                                        <td>{{ $us->jabatan }} </td>
+                                        <td> {{ $us->departemen }}</td>
 
-                                    <td> </td>
-                                    <td> </td>
-                                    <td> </td>
-                                    <td class="">
 
-                                        <a href="" class="btn detail btn bg-gradient-info btn-sm text-dark ml-3" id="detail"
-                                            style="height: 300%"><i class="fas fa-arrow-circle-right text-danger"></i>
-                                            View</a>
+                                        <td class="">
 
-                                    </td>
-                                </tr>
+                                            <button class="btn hapus btn btn-sm mr-3 float-right text-light" id="hapus"
+                                                data-toggle="modal" data-target="#deletemodal" data-nik-karyawan=""><i
+                                                    class=" fas fa-trash-alt"></i>
+                                                Delete</button>
+                                            <a href="/kriteria/" class="btn edit btn-sm mr-3 float-right text-light"
+                                                id="ubah"><i class="fas fa-edit"></i>
+                                                Edit</a>
+
+                                        </td>
+                                    </tr>
+                                @endforeach
 
 
                             </tbody>

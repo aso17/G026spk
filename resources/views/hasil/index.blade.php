@@ -11,7 +11,65 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <!-- Info Boxes Style 2 -->
+                                <div class="info-box">
 
+
+                                    <div class="info-box-content">
+                                        <h5 class="bg-primary"><i class="fas fa-tag"></i>Nilai Ketentuan Sanksi</h5>
+                                        <span class="info-box-text"></span>
+                                        <span class="info-box-number"></span>
+                                        <div class="row">
+                                            <div class="col">
+
+                                                <button class="btn btn-default btn-sm" data-toggle="modal"
+                                                    data-target="#exampleModal"><i class="fas fa-plus-circle"></i></button>
+                                            </div>
+                                        </div>
+                                        <table class="table  table table-hover table-responsive-sm text-dark">
+                                            <thead>
+                                                <th>#</th>
+                                                <th>nama sanksi</th>
+                                                <th>Niali Ketentuan sanksi</th>
+                                                <th></th>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($ketentuan as $kte)
+
+
+                                                    <tr>
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>{{ $kte->nama_sanksi }}</td>
+                                                        <td style="widht">{{ $kte->nilai_ketentuan }}</td>
+
+                                                        <td class="justify-content-center">
+                                                            <button class="btn hapus btn btn-sm float-right text-light"
+                                                                id="hapus" data-toggle="modal" data-target="#deletemodal"
+                                                                data-nik-karyawan=""><i class=" fas fa-trash-alt"></i>
+                                                            </button>
+                                                            <a href="/sanksi/"
+                                                                class="btn edit btn-sm mr-2 float-right text-light"
+                                                                id="ubah"><i class="fas fa-edit"></i>
+                                                            </a>
+
+
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.info-box-content -->
+
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
 
 
                         <div class="card card-outline">
@@ -67,8 +125,8 @@
                                                                 data-nik="{{ $h->nik_karyawan }}"
                                                                 data-nama_l="{{ $h->nama_lengkap }}"
                                                                 data-jaba="{{ $h->jabatan }}"
-                                                                data-foto="{{ $h->foto }}" data-h="{{ $h->hasil }}"
-                                                                id="sanksi">Sanksi</button>
+                                                                data-foto="{{ $h->foto }}"
+                                                                data-h="{{ $h->hasil }}" id="sanksi">Sanksi</button>
                                                             <button class="btn btn-default btn-sm float-right"
                                                                 data-toggle="modal"
                                                                 data-target="#approve">Persetujuan</button>
@@ -180,6 +238,52 @@
         </div>
 
     </div>
+    {{-- //modalbox --}}
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-dark">
+                    <h5 class="modal-title" id="exampleModalLabel">Form Tambah Alternatif sanki</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ '/sanksi' }}" method="post">
+                        @csrf
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Nama Sanksi</label>
+                            <input type="text" class="form-control  @error('nama_sanksi') is-invalid @enderror"
+                                id="nama_sanksi" name="nama_sanksi">
+                            @error('nama_sanksi')
+
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Nilai Ketentuan</label>
+                            <input type="text" class="form-control  @error('nilai_ketentuan') is-invalid @enderror"
+                                id="nilai_ketentuan" name="nilai_ketentuan">
+                            @error('nilai_ketentuan')
+
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn cancel btn-sm text-light" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     {{-- //modalbox persetujuan --}}
     <div class="modal fade" id="approve" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -243,6 +347,5 @@
 
             })
         })
-
     </script>
 @endsection

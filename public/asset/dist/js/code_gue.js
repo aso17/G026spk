@@ -73,7 +73,7 @@
                 "paging": false,
                 dom: 'Bfrtip',
                 buttons: [{
-                    text: 'Tambah kriteria',
+                    text: 'Creat kriteria',
                     position: 'top-end',
                     action: function() {
                         window.location.href = "/kriteria/tambah"

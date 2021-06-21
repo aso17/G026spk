@@ -98,16 +98,12 @@
                                 <!-- /.card-body -->
 
                                 <div class="card-footer mt-3">
-                                    <a href="/kriteria" class="btn btn-warning btn-icon-split btn-sm float-right"
-                                        style="margin-bottom: 5px;"><span class="icon text-white-5">
-                                            <i class="fas fa-arrow-circle-left"></i></span>
-                                        <span class="font-weight-bold text-danger">Cancel</span></a>
-
-                                    <div class="button-container float-left ">
-                                        <button type="submit" class="button " id="submit" onclick="validation()"><span
-                                                class="icon text-white-5 "><i class="far fa-paper-plane"></i>
-                                                Save </span></button>
-                                    </div>
+                                    <a href="{{ url('/kriteria') }}"><button
+                                            class="btn cancel btn btn-sm float-right text-light" type="button"><i
+                                                class="fas fa-arrow-circle-left"></i>
+                                            Cancel</button></a>
+                                    <button class=" btn tambah btn btn-sm float-right mr-3 " type="submit" name="submit"><i
+                                            class="far fa-paper-plane"></i> Create</button>
 
                                 </div>
                             </form>

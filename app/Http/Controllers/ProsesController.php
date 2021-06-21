@@ -43,7 +43,7 @@ class ProsesController extends Controller
     {
 
 
-        $data['ketentuan'] = sanksi::all();
+
         $data['detail'] = DB::table('detail_normalisasi')
             ->join('karyawan', 'karyawan.id', '=', 'detail_normalisasi.id_karyawan')
             ->get();

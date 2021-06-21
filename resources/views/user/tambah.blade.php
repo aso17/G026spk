@@ -7,7 +7,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="bg-danger"><i class="fas fa-tag"></i>Proses</h5>
+                        <h5 class="bg-danger"><i class="fas fa-tag"></i>Creat User</h5>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -19,17 +19,15 @@
 
                                     <div class="info-box-content">
                                         <h5 class="bg-primary"><i class="fas fa-tag"></i> Form
-                                            proses Kriteria</h5>
+                                            Tambah User log </h5>
 
 
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <span class="info-box-text text-right font-weight-bold  mr-3"></span>
-                                                <form method="post" action="/detailproses/tambah" enctype="" name="form1"
-                                                    id="form1">
+                                                <form method="post" action="/user/tambah" enctype="">
                                                     @csrf
                                                     <div class="card-body">
-                                                        <input type="hidden" id="id_karyawan" name="id_karyawan">
+
 
                                                         <div class="row">
                                                             <div class="col-md-6">
@@ -39,7 +37,7 @@
 
                                                                         <div class="form-group">
 
-                                                                            <label for="nik_karyawan">Ketikan Nik
+                                                                            <label for="nik_karyawan">Cari Nik
                                                                                 karyawan</label>
                                                                             <input type="text"
                                                                                 class="form-control @error('nik_karyawan') is-invalid @enderror "
@@ -61,38 +59,28 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <div class="form-group">
-                                                                        <label>Kriteria
-                                                                        </label>
-                                                                        <select
-                                                                            class="form-control @error('idkriteria') is-invalid @enderror "
-                                                                            name="idkriteria" id="idkriteria">
-                                                                            <option selected hidden value="">-- pilih --
-                                                                            </option>
-                                                                            @foreach ($kriteria as $krite)
+                                                                        <label>Password
+                                                                            <input type="password"
+                                                                                class="form-control @error('password') is-invalid @enderror  "
+                                                                                id="password" name="password" value="">
 
-                                                                                <option value="{{ $krite->id }}">
-                                                                                    {{ $krite->nama_kriteria }}
-                                                                                </option>
-                                                                            @endforeach
-
-                                                                        </select>
-                                                                        @error('idkriteria')
-                                                                            <div class="invalid-feedback">
-                                                                                {{ $message }}
-                                                                            </div>
-                                                                        @enderror
+                                                                            @error('password')
+                                                                                <div class="invalid-feedback">
+                                                                                    {{ $message }}
+                                                                                </div>
+                                                                            @enderror
                                                                     </div>
+
 
 
                                                                 </div>
                                                             </div>
                                                         </div>
 
-
                                                         <div class="row ">
                                                             <div class="col-md-6 mt-2">
                                                                 <div class="form-group">
-                                                                    <label class="ml-3" for="nama_karyawan">nama karyawan
+                                                                    <label class="ml-3" for="nama_karyawan">nama Lengkap
                                                                     </label>
                                                                     <input type="text" class="form-control  "
                                                                         id="nama_karyawan" name="nama_karyawan" value=""
@@ -100,48 +88,20 @@
 
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <div class="form-group">
-                                                                        <label>Sub Kriteria
-                                                                        </label>
-                                                                        <select
-                                                                            class="form-control @error('idsubkriteria') is-invalid @enderror "
-                                                                            name="idsubkriteria" id="idsubkriteria">
 
 
-
-                                                                        </select>
-                                                                        @error('idsubkriteria')
-                                                                            <div class="invalid-feedback">
-                                                                                {{ $message }}
-                                                                            </div>
-                                                                        @enderror
-                                                                    </div>
-
-
-                                                                </div>
-                                                            </div>
                                                         </div>
-
-
 
 
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
-                                                                    <label class="ml-3" for="status_karyawan">Status
-                                                                        karyawan</label>
-                                                                    <input type="text" class="form-control  "
-                                                                        id="status_karyawan" name="status_karyawan" value=""
-                                                                        readonly>
+                                                                    <label class="ml-3" for="status_karyawan">jabatan
+                                                                    </label>
+                                                                    <input type="text" class="form-control  " id="jabatan"
+                                                                        name="status_karyawan" value="" readonly>
 
                                                                 </div>
-                                                            </div>
-
-                                                            <div class="col-md-6">
-                                                                <span id="type">
-                                                                </span>
                                                             </div>
                                                         </div>
                                                         <div class="row">
@@ -155,13 +115,12 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <a href="{{ url('/proses') }}"><button
+                                                    <a href="{{ url('/user') }}"><button
                                                             class="btn cancel btn btn-sm float-right text-light"
                                                             type="button"><i class="fas fa-arrow-circle-left"></i>
                                                             Cancel</button></a>
-                                                    <button class=" btn tambah btn btn-sm float-right mr-2   " type="submit"
-                                                        name="submit" value="submit"> <i class="far fa-paper-plane"></i>
-                                                        Create</button>
+                                                    <button class=" btn tambah btn btn-sm float-right mr-3 " type="submit"
+                                                        name="submit"><i class="far fa-paper-plane"></i> Create</button>
 
                                             </div>
 
@@ -186,7 +145,6 @@
 
 
 
-
                         </div>
 
 
@@ -197,53 +155,6 @@
         </div>
     </div>
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('#idkriteria').change(function() {
-                var id = $(this).val();
-                $.ajax({
-                    type: "GET",
-                    url: "{{ url('') }}/pilih",
-                    data: {
-                        id: id
-                    },
-                    dataType: "JSON",
-                    success: function(sub) {
-
-                        $('#idsubkriteria').html(sub);
-
-
-
-                    }
-
-                });
-
-            });
-            $('#idkriteria').change(function() {
-                var id_kriteria = $(this).val();
-                $.ajax({
-                    type: "GET",
-                    url: "{{ url('') }}/type",
-                    data: {
-                        id: id_kriteria
-                    },
-                    dataType: "JSON",
-                    success: function(response) {
-
-                        $('#type').html(response);
-
-
-
-                    }
-
-                });
-
-            });
-
-        });
-
-
-
-
         function ketik() {
             var nik_karyawan = $("#nik_karyawan").val();
             $.ajax({
@@ -253,7 +164,7 @@
                 success: function(data) {
                     var json = data;
                     obj = JSON.parse(json);
-                    $('#id_karyawan').val(obj.id_karyawan);
+                    $('#id_karyawan').val(obj.id);
                     $('#nik_karyawan').val(obj.nik_karyawan);
                     $('#nama_karyawan').val(obj.nama_lengkap);
                     $('#status_karyawan').val(obj.status_karyawan);
@@ -265,9 +176,5 @@
 
             });
         }
-    </script>
-    <script>
-
-
     </script>
 @endsection
