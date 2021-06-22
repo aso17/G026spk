@@ -210,22 +210,25 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-3 d-flex justify-content-center">
-                            <i class="fas fa-exclamation" style="font-size: 70px; color:#008B8B;"></i>
-                        </div>
-                        <div class="col-9 pt-2">
-                            <h6>yakin ingin keluar?</h6>
+                    <form action="{{ '/logout' }}" method="post">
+                        @csrf
+                        <div class="row">
+                            <div class="col-3 d-flex justify-content-center">
+                                <i class="fas fa-exclamation" style="font-size: 70px; color:#008B8B;"></i>
+                            </div>
+                            <div class="col-9 pt-2">
+                                <h6>yakin ingin keluar?</h6>
 
+                            </div>
                         </div>
-                    </div>
 
                 </div>
                 <div class="modal-footer">
 
-                    <a id="btn-log" class="btn btn-danger">keluar</a>
+                    <button id="btn-log" class="btn btn-danger" type="submit" name="submit"> keluar</button>
                     <button type="button" class="btn btn-info" data-dismiss="modal">Batal</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>

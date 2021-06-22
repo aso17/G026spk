@@ -77,13 +77,13 @@ class LoginController extends Controller
                     "nik_karyawan" => $user->nik_karyawan,
                     "jabatan" => $user->jabatan
                 ]);
-                return redirect('/');
+                return redirect('/Dashboard');
             } else {
 
-                return redirect('/login')->with('warning', 'password wrong!');
+                return redirect('/')->with('warning', 'password wrong!');
             }
         } else {
-            return redirect('/login')->with('warning', 'user not found!');
+            return redirect('/')->with('warning', 'user not found!');
         }
     }
 
@@ -130,5 +130,11 @@ class LoginController extends Controller
     public function destroy(login $login)
     {
         //
+    }
+
+    public function logout(Request $request)
+    {
+        $request->session()->flush();
+        return redirect('/');
     }
 }
