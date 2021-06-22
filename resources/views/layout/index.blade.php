@@ -239,6 +239,7 @@
 </body>
 
 </html>
+
 @if (session('success'))
     <script language="JavaScript" type="text/javascript">
         $(function() {

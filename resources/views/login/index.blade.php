@@ -63,30 +63,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <form action="{{ url('/login') }}" method="post">
                     @csrf
                     <div class="input-group ">
-                        <input type="text" class="form-control " placeholder="Nik karyawan" name="nik_karyawan"
-                            autocomplete="off">
+                        <input type="text" class="form-control @error('nik_karyawan') is-invalid @enderror "
+                            placeholder="Nik karyawan" name="nik_karyawan" autocomplete="off">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <i class="fas fa-user"></i>
                             </div>
 
                         </div>
-                        <div class="invalid-feedback">
-
-                        </div>
+                        @error('nik_karyawan')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <div class="input-group mt-3">
-                        <input type="password" class="form-control " placeholder="Password" name="password"
-                            autocomplete="off">
+                        <input type="password" class="form-control @error('password') is-invalid @enderror "
+                            placeholder="Password" name="password" autocomplete="off">
 
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
                             </div>
                         </div>
-                        <div class="invalid-feedback">
-
-                        </div>
+                        @error('password')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <div class="row mt-3">
 
@@ -107,3 +111,43 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </body>
 
 </html>
+
+@if (session('success'))
+    <script language="JavaScript" type="text/javascript">
+        $(function() {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: true,
+                timer: 10000
+            });
+            Toast.fire({
+                icon: 'success',
+                class: '',
+                title: "{{ session('success') }}"
+            });
+        });
+    </script>
+
+
+@endif
+@if (session('warning'))
+    <script language="JavaScript" type="text/javascript">
+        $(function() {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: true,
+                timer: 10000
+            });
+            Toast.fire({
+                icon: 'warning',
+                class: '',
+                title: "{{ session('warning') }}"
+            });
+        });
+    </script>
+
+
+@endif
+<script>

@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/login', 'LoginController@index');
-Route::post('/login', 'LoginController@process');
+Route::post('/login', 'LoginController@store');
 Route::get('/', 'DashboardController@index');
 //karywan
 Route::get('/Karyawan', 'KaryawanController@index');
