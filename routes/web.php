@@ -49,8 +49,10 @@ Route::group(['middleware' => 'CekLogin'], function () {
 
     //sanksi
     Route::post('/sanksi', 'SanksiController@store');
+    Route::patch('/sanksi', 'SanksiController@update');
     //hasil
     Route::get('/hasil', 'HasilController@index');
+    // Route::post('/sanksi', 'HasilController@store');
     //user
     Route::get('/user', 'UserController@index');
     Route::get('/user/tambah', 'UserController@create');

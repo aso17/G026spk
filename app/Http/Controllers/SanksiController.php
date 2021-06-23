@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\sanksi;
+use App\hasil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -74,9 +75,30 @@ class SanksiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        // dd($request->approve);
+        $id_detail = $request->id_detail;
+
+        if (session('jabatan') == 'Spv') {
+
+            DB::table('hasil')
+                ->where('hasil.id_detail', $id_detail)
+                ->update([
+                    "sanksi_id" => $request->id_sanksi,
+                    "tgl_pengajuan" => $request->tgl_pengajuan
+                ]);
+            return redirect('/hasil')->with('success', 'sanki telah ditentukan');
+        } elseif (session('jabatan') == 'Manager') {
+
+            DB::table('hasil')
+                ->where('hasil.id', $id_detail)
+                ->update([
+                    "status_pengajuan" => $request->approve,
+                    "tgl_approve" => $request->tgl_approve
+                ]);
+            return redirect('/hasil')->with('success', 'sanki telah disetujui');
+        }
     }
 
     /**

@@ -18,9 +18,9 @@ class HasilController extends Controller
     {
         $data['ketentuan'] = sanksi::all();
         $data['hasil_ahir'] = DB::table('hasil')
-            ->Join('detail_normalisasi', 'detail_normalisasi.id', '=', 'hasil.id_detail')
-            ->Join('karyawan', 'karyawan.id', '=', 'detail_normalisasi.id_karyawan')
-            // ->Join('ketentuan_sanksi', 'ketentuan_sanksi.id', '=', 'hasil.sanksi_id')
+            ->Join('detail_normalisasi', 'detail_normalisasi.id', '=', 'hasil.id_detail', 'left')
+            ->Join('karyawan', 'karyawan.id', '=', 'detail_normalisasi.id_karyawan', 'left')
+            ->Join('ketentuan_sanksi', 'ketentuan_sanksi.id', '=', 'hasil.sanksi_id', 'left')
             // ->Join('detail_normalisasi', 'detail_normalisasi.id', '=', 'hasil.id_detail')
             ->get();
         $data['sanksi'] = DB::table('ketentuan_sanksi')

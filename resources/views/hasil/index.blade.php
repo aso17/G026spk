@@ -93,22 +93,32 @@
                                                     <th style="">Tanggal approve</th>
                                                     <th style="" class="text-center text-primary">Option</th>
                                                 </tr>
+
                                             </thead>
                                             <tbody>
                                                 @foreach ($hasil_ahir as $h)
 
                                                     <tr>
-                                                        <td></td>
+                                                        <td>{{ $loop->iteration }}</td>
                                                         <td>{{ $h->nik_karyawan }}</td>
                                                         <td>{{ $h->nama_lengkap }}</td>
                                                         <td>{{ $h->hasil }}</td>
-                                                        <td></td>
+                                                        <td>
+                                                            @if ($h->sanksi_id == null)
+                                                                <span class="badge bg-danger text-dark">Belum ada
+                                                                    sanksi</span>
+                                                            @endif
+                                                            @if ($h->sanksi_id !== null)
+                                                                <span class="badge text-dark">{{ $h->nama_sanksi }}</span>
+                                                            @endif
+
+                                                        </td>
                                                         <td>
                                                             @if ($h->status_pengajuan == 'pending')
                                                                 <span class="badge bg-warning text-dark">Pending</span>
 
                                                             @endif
-                                                            @if ($h->status_pengajuan == 'disetujui')
+                                                            @if ($h->status_pengajuan == 'Disetujui')
                                                                 <span class="badge bg-success text-dark">Di setujui</span>
 
                                                             @endif
@@ -118,18 +128,42 @@
                                                                 <span class="badge bg-warning text-dark">Pending</span>
 
                                                             @endif
+                                                            @if ($h->tgl_approve !== null)
+                                                                <span
+                                                                    class="badge bg-success text-dark">{{ $h->tgl_approve }}</span>
+
+                                                            @endif
                                                         </td>
                                                         <td>
-                                                            <button class="btn btn-default btn-sm float-right ml-2"
-                                                                data-toggle="modal" data-target="#sanksi-detail"
-                                                                data-nik="{{ $h->nik_karyawan }}"
-                                                                data-nama_l="{{ $h->nama_lengkap }}"
-                                                                data-jaba="{{ $h->jabatan }}"
-                                                                data-foto="{{ $h->foto }}"
-                                                                data-h="{{ $h->hasil }}" id="sanksi">Sanksi</button>
-                                                            <button class="btn btn-default btn-sm float-right"
-                                                                data-toggle="modal"
-                                                                data-target="#approve">Persetujuan</button>
+                                                            @if (session('jabatan') === 'Manager')
+
+                                                                <button
+                                                                    class="btn detail btn bg-gradient-info btn-sm text-dark ml-2 float-right"
+                                                                    data-toggle="modal" data-target="#approve"
+                                                                    data-iddetail="{{ $h->id_detail }}"
+                                                                    data-nik="{{ $h->nik_karyawan }}"
+                                                                    data-sanksi="{{ $h->nama_sanksi }}"
+                                                                    data-nama_l="{{ $h->nama_lengkap }}"
+                                                                    data-jaba="{{ $h->jabatan }}"
+                                                                    data-foto="{{ $h->foto }}"
+                                                                    data-h="{{ $h->hasil }}" id="persetujuan">
+                                                                    <i class="fas fa-arrow-circle-right text-danger"></i>
+                                                                    Persetujuan</button>
+                                                            @endif
+                                                            @if (session('jabatan') === 'Spv')
+
+                                                                <button
+                                                                    class="btn detail btn bg-gradient-info btn-sm text-dark float-right ml-2 "
+                                                                    data-toggle="modal" data-target="#sanksi-detail"
+                                                                    data-iddetail="{{ $h->id_detail }}"
+                                                                    data-nik="{{ $h->nik_karyawan }}"
+                                                                    data-nama_l="{{ $h->nama_lengkap }}"
+                                                                    data-jaba="{{ $h->jabatan }}"
+                                                                    data-foto="{{ $h->foto }}"
+                                                                    data-h="{{ $h->hasil }}" id="sanksi"> <i
+                                                                        class="fas fa-arrow-circle-right text-danger"></i>
+                                                                    Sanksi</button>
+                                                            @endif
                                                         </td>
                                                     </tr>
                                                 @endforeach
@@ -169,9 +203,10 @@
                                         src="" alt="User profile picture">
                                 </div>
                                 <strong>
+
                                     <p class="text-center mt-2" id="nik_k"></p>
                                 </strong>
-                                <p class="text-center mt-2" id="calon"></p>
+
                             </div>
 
                         </div>
@@ -192,15 +227,15 @@
                         <div class="modal-body">
                             <form action="{{ '/sanksi' }}" method="post">
                                 @csrf
-
-
+                                @method('patch')
+                                <input type="hidden" id="id_detail" name="id_detail">
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">Pilih sanksi</label>
                                     <select class="form-control" name="id_sanksi">
                                         <option hidden>Pilih</option>
                                         @foreach ($sanksi as $s)
                                             <option value="{{ $s->id }}">
-                                                {{ $s->nama_sanksi }}({{ $s->nilai_ketentuan }})</option>
+                                                {{ $s->nama_sanksi }} ({{ $s->nilai_ketentuan }})</option>
                                         @endforeach
 
                                     </select>
@@ -217,9 +252,9 @@
 
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">Tanggal sanksi</label>
-                                    <input type="date" class="form-control  @error('nilai_ketentuan') is-invalid @enderror"
-                                        id="nilai_ketentuan" name="nilai_ketentuan">
-                                    @error('nilai_ketentuan')
+                                    <input type="date" class="form-control  @error('tgl_pengajuan') is-invalid @enderror"
+                                        id="tgl_pengajuan" name="tgl_pengajuan">
+                                    @error('tgl_pengajuan')
 
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -230,8 +265,9 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn cancel btn-sm text-light" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary btn-sm">Save</button>
+                    <button type="submit" class=" btn tambah  btn-sm"> <i class="far fa-paper-plane"></i> Save</button>
+                    <button type="button" class="btn cancel btn-sm text-light" data-dismiss="modal"><i
+                            class="fas fa-arrow-circle-left"></i> Cancel</button>
                     </form>
                 </div>
             </div>
@@ -286,63 +322,140 @@
     </div>
     {{-- //modalbox persetujuan --}}
     <div class="modal fade" id="approve" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-header bg-primary">
-                    <h5 class="modal-title" id="exampleModalLabel">Form Tambah Alternatif sanki</h5>
+                <div class="modal-header bg-dark">
+                    <h5 class="modal-title" id="exampleModalLabel">Form Persetujuan Sanki</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <form action="{{ '/sanksi' }}" method="post">
-                        @csrf
-                        <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Nama Sanksi</label>
-                            <input type="text" class="form-control  @error('nama_sanksi') is-invalid @enderror"
-                                id="nama_sanksi" name="nama_sanksi">
-                            @error('nama_sanksi')
-
-                                <div class="invalid-feedback">
-                                    {{ $message }}
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body box-profile">
+                                <div class="text-center">
+                                    <img id="img" class="profile-user-img img-fluid" style="width:200px; height:200px;"
+                                        src="" alt="User profile picture">
                                 </div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Nilai Ketentuan</label>
-                            <input type="text" class="form-control  @error('nilai_ketentuan') is-invalid @enderror"
-                                id="nilai_ketentuan" name="nilai_ketentuan">
-                            @error('nilai_ketentuan')
+                                <strong>
 
-                                <div class="invalid-feedback">
-                                    {{ $message }}
+                                    <p class="text-center mt-2" id="nik"></p>
+                                </strong>
+
+                            </div>
+
+                        </div>
+                        <ul class="list-group">
+
+                            <li class="list-group-item mt-0">
+
+                                <p id="nma"></p>
+                            </li>
+                            <li class="list-group-item mt-0">
+                                <p id="sa"></p>
+                            </li>
+                            <li class="list-group-item mt-0">
+                                <p id="hasi"></p>
+                            </li>
+                            <li class="list-group-item mt-0">
+                                <p id="jaba"></p>
+                            </li>
+                    </div>
+                    <div class="col-md-6">
+
+                        <div class="modal-body">
+                            <form action="{{ '/sanksi' }}" method="post">
+                                @csrf
+                                @method('patch')
+                                <input type="hidden" id="id_detail" name="id_detail">
+                                <div class="form-group">
+
+                                    <label for="recipient-name" class="col-form-label">Persetujuan</label>
+                                    <hr class="border-primary">
+                                    <div class="custom-control custom-radio mt-3">
+                                        <input class="custom-control-input" type="radio" id="customRadio1" name="approve"
+                                            value="Disetujui">
+                                        <label for="customRadio1" class="custom-control-label">Disetujui</label>
+                                    </div>
+                                    <div class="custom-control custom-radio mt-3">
+                                        <input class="custom-control-input" type="radio" id="customRadio2" name="approve"
+                                            checked="" value="tidak Disetujui">
+                                        <label for="customRadio2" class="custom-control-label">Tidak disetujui</label>
+                                    </div>
+
+                                    @error('id_sanksi')
+
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
-                            @enderror
-                        </div>
 
+
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Tanggal Persetujuan</label>
+                                    <input type="date" class="form-control  @error('tgl_approve') is-invalid @enderror"
+                                        id="tgl_approve" name="tgl_approve">
+                                    @error('tgl_approve')
+
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn cancel btn-sm text-light" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary btn-sm">Save</button>
+                    <button type="submit" class=" btn tambah  btn-sm"> <i class="far fa-paper-plane"></i> Save</button>
+                    <button type="button" class="btn cancel btn-sm text-light" data-dismiss="modal"><i
+                            class="fas fa-arrow-circle-left"></i> Cancel</button>
                     </form>
                 </div>
             </div>
         </div>
+
     </div>
     <script>
         $(document).ready(function() {
             $(document).on('click', '#sanksi', function() {
+                const id = $(this).data('iddetail');
                 const nik = $(this).data('nik');
                 const nama = $(this).data('nama_l');
                 const hasil = $(this).data('h');
                 const jabatan = $(this).data('jaba');
                 const gamb = $(this).data('foto');
 
+                $('#id_detail').val(id);
                 $('#nik_k').text(nik);
                 $('#has').text(hasil);
                 $('#ja').text(jabatan);
                 $('#nm').text(nama);
                 $('#gam').attr('src', '{{ asset('foto') }}/' + gamb);
+
+
+            })
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', '#persetujuan', function() {
+                const iddet = $(this).data('iddetail');
+                const nik = $(this).data('nik');
+                const nm_sank = $(this).data('sanksi');
+                const nama = $(this).data('nama_l');
+                const hasil = $(this).data('h');
+                const jabatan = $(this).data('jaba');
+                const gamb = $(this).data('foto');
+
+                $('#id_detail').val(iddet);
+                $('#nik').text(nik);
+                $('#hasi').text(hasil);
+                $('#sa').text(nm_sank);
+                $('#jaba').text(jabatan);
+                $('#nma').text(nama);
+                $('#img').attr('src', '{{ asset('foto') }}/' + gamb);
 
 
             })
