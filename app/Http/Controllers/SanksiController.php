@@ -78,26 +78,40 @@ class SanksiController extends Controller
     public function update(Request $request)
     {
         // dd($request->approve);
-        $id_detail = $request->id_detail;
+        // dd($id_detail = $request->id_deta);
+        $cek1 = DB::table('hasil')
+            ->where('hasil.id_detail', $request->id_detail)
+            ->first();
+        $cek2 = DB::table('hasil')
+            ->where('hasil.id_detail', $request->id_deta)
+            ->first();
 
         if (session('jabatan') == 'Spv') {
 
-            DB::table('hasil')
-                ->where('hasil.id_detail', $id_detail)
-                ->update([
-                    "sanksi_id" => $request->id_sanksi,
-                    "tgl_pengajuan" => $request->tgl_pengajuan
-                ]);
-            return redirect('/hasil')->with('success', 'sanki telah ditentukan');
+            if (empty($cek1)) {
+                DB::table('hasil')
+                    ->where('hasil.id_detail', $request->id_detail)
+                    ->update([
+                        "sanksi_id" => $request->id_sanksi,
+                        "tgl_pengajuan" => $request->tgl_pengajuan
+                    ]);
+                return redirect('/hasil')->with('success', 'sanki telah ditentukan');
+            } else {
+                return redirect('/hasil')->with('warning', 'sanki sudah  ditentukan!');
+            }
         } elseif (session('jabatan') == 'Manager') {
+            if (empty($cek2)) {
 
-            DB::table('hasil')
-                ->where('hasil.id', $id_detail)
-                ->update([
-                    "status_pengajuan" => $request->approve,
-                    "tgl_approve" => $request->tgl_approve
-                ]);
-            return redirect('/hasil')->with('success', 'sanki telah disetujui');
+                DB::table('hasil')
+                    ->where('hasil.id_detail', $request->id_deta)
+                    ->update([
+                        "status_pengajuan" => $request->approve,
+                        "tgl_approve" => $request->tgl_approve
+                    ]);
+                return redirect('/hasil')->with('success', 'sanki telah disetujui');
+            } else {
+                return redirect('/hasil')->with('warning', 'sanki Sudah disetujui!');
+            }
         }
     }
 

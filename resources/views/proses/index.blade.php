@@ -29,7 +29,7 @@
                                                     <th>#</th>
                                                     <th>Nik karyawan</th>
                                                     <th>Nama Karyawan</th>
-                                                    <th>bobot C2</th>
+                                                    <th>bobot C1</th>
                                                     <th>bobot C2</th>
                                                     <th>bobot C3</th>
 

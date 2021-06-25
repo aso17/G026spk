@@ -64,8 +64,8 @@ class ProsesController extends Controller
         $cek = DB::table('hasil')
             ->where('id_detail', '=', $iddetail)
             ->first();
-
-        if ($cek->hasil == null) {
+        // var_dump($cek);
+        if (empty($cek)) {
 
 
 
@@ -145,9 +145,9 @@ class ProsesController extends Controller
 
             ]);
 
-            return redirect('/proses')->with('success', 'proses karyawan berhasil');
+            return redirect('/proses')->with('success', 'proses perhitungan karyawan berhasil');
         } else {
-            return redirect('/proses')->with('warning', 'sudah dilakukan proses');
+            return redirect('/proses')->with('warning', 'sudah dilakukan proses perhitungan!');
         }
     }
 

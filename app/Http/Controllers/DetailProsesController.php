@@ -194,26 +194,28 @@ class DetailProsesController extends Controller
         $datasubkriteria = DB::table('subkriteria')->where('id', $request->idsubkriteria)->first();
         $bobot_sub = $datasubkriteria->bobot_subkriteria;
 
-        $idnor = DB::table('detail_normalisasi')
-            ->where('id_karyawan', $request->id_karyawan)
-            ->first();
-        $idkaryawan = $idnor->id_karyawan;
+        // $idnor = DB::table('detail_normalisasi')
+        //     ->where('id_karyawan', $request->id_karyawan)
+        //     ->first();
+        // var_dump($idnor->id_karyawan);
+        // die;
+        // $idkaryawan = $idnor->id_karyawan;
 
         if ($kriteria == "C1") {
             DB::table('detail_normalisasi')
-                ->where('id_karyawan', $idkaryawan)
+                ->where('id_karyawan', $request->id_karyawan)
                 ->update([
                     "bobot_c1" => $bobot_sub
                 ]);
         } elseif ($kriteria == "C2") {
             DB::table('detail_normalisasi')
-                ->where('id_karyawan', $idkaryawan)
+                ->where('id_karyawan', $request->id_karyawan)
                 ->update([
                     "bobot_c2" => $bobot_sub
                 ]);
         } elseif ($kriteria == "C3") {
             DB::table('detail_normalisasi')
-                ->where('id_karyawan', $idkaryawan)
+                ->where('id_karyawan', $request->id_karyawan)
                 ->update([
                     "bobot_c3" => $bobot_sub
                 ]);

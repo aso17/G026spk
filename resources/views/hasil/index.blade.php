@@ -104,6 +104,7 @@
                                                         <td>{{ $h->nama_lengkap }}</td>
                                                         <td>{{ $h->hasil }}</td>
                                                         <td>
+
                                                             @if ($h->sanksi_id == null)
                                                                 <span class="badge bg-danger text-dark">Belum ada
                                                                     sanksi</span>
@@ -118,8 +119,13 @@
                                                                 <span class="badge bg-warning text-dark">Pending</span>
 
                                                             @endif
-                                                            @if ($h->status_pengajuan == 'Disetujui')
+                                                            @if ($h->status_pengajuan == 'approved')
                                                                 <span class="badge bg-success text-dark">Di setujui</span>
+
+                                                            @endif
+                                                            @if ($h->status_pengajuan == 'not')
+                                                                <span class="badge bg-danger text-dark">Tidak
+                                                                    disetujui</span>
 
                                                             @endif
                                                         </td>
@@ -128,13 +134,19 @@
                                                                 <span class="badge bg-warning text-dark">Pending</span>
 
                                                             @endif
-                                                            @if ($h->tgl_approve !== null)
+                                                            @if ($h->status_pengajuan == 'approved')
                                                                 <span
                                                                     class="badge bg-success text-dark">{{ $h->tgl_approve }}</span>
 
                                                             @endif
+                                                            @if ($h->status_pengajuan == 'not')
+                                                                <span
+                                                                    class="badge bg-danger text-dark">{{ $h->tgl_approve }}</span>
+
+                                                            @endif
                                                         </td>
                                                         <td>
+
                                                             @if (session('jabatan') === 'Manager')
 
                                                                 <button
@@ -150,6 +162,7 @@
                                                                     <i class="fas fa-arrow-circle-right text-danger"></i>
                                                                     Persetujuan</button>
                                                             @endif
+
                                                             @if (session('jabatan') === 'Spv')
 
                                                                 <button
@@ -163,6 +176,7 @@
                                                                     data-h="{{ $h->hasil }}" id="sanksi"> <i
                                                                         class="fas fa-arrow-circle-right text-danger"></i>
                                                                     Sanksi</button>
+
                                                             @endif
                                                         </td>
                                                     </tr>
@@ -368,19 +382,19 @@
                             <form action="{{ '/sanksi' }}" method="post">
                                 @csrf
                                 @method('patch')
-                                <input type="hidden" id="id_detail" name="id_detail">
+                                <input type="hidden" id="id_deta" name="id_deta">
                                 <div class="form-group">
 
                                     <label for="recipient-name" class="col-form-label">Persetujuan</label>
                                     <hr class="border-primary">
                                     <div class="custom-control custom-radio mt-3">
                                         <input class="custom-control-input" type="radio" id="customRadio1" name="approve"
-                                            value="Disetujui">
+                                            value="approved">
                                         <label for="customRadio1" class="custom-control-label">Disetujui</label>
                                     </div>
                                     <div class="custom-control custom-radio mt-3">
                                         <input class="custom-control-input" type="radio" id="customRadio2" name="approve"
-                                            checked="" value="tidak Disetujui">
+                                            value="not">
                                         <label for="customRadio2" class="custom-control-label">Tidak disetujui</label>
                                     </div>
 
@@ -449,7 +463,7 @@
                 const jabatan = $(this).data('jaba');
                 const gamb = $(this).data('foto');
 
-                $('#id_detail').val(iddet);
+                $('#id_deta').val(iddet);
                 $('#nik').text(nik);
                 $('#hasi').text(hasil);
                 $('#sa').text(nm_sank);
