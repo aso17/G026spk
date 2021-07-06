@@ -29,9 +29,9 @@
                                                     <th>#</th>
                                                     <th>Nik karyawan</th>
                                                     <th>Nama Karyawan</th>
-                                                    <th>bobot C1</th>
-                                                    <th>bobot C2</th>
-                                                    <th>bobot C3</th>
+                                                    <th>Bobot C1</th>
+                                                    <th>Bobot C2</th>
+                                                    <th>Bobot C3</th>
 
 
 
@@ -68,8 +68,8 @@
 
                                                             </a>
 
-                                                            <a href="{{ 'proses/hitung/' . $d->id }}"
-                                                                class="btn detail btn btn-sm mr-2  float-right text-light"
+                                                            <a href="{{ 'proses/hitung/' . $d->id_karyawan }}"
+                                                                class="btn-dark btn btn-sm mr-2  float-right text-light"
                                                                 id="proses"><i class="fas fa-ey">Proses</i>
 
                                                             </a>
