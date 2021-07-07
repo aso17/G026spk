@@ -9,7 +9,7 @@ class hasil extends Model
     protected $table = 'hasil';
     protected $primarykey = 'id';
     protected $fillable = [
-        'id_detail',
+        'karyawan_id',
         'id_sanksi',
         'hasil',
         'status_pengajuan',

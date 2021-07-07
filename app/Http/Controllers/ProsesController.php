@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\karyawan;
 use App\kriteria;
 use App\sanksi;
 use App\detail;
@@ -42,10 +43,13 @@ class ProsesController extends Controller
     }
     public function index()
     {
-        $data['detail'] = DB::table('detail_normalisasi')
-            ->join('karyawan', 'karyawan.id', '=', 'detail_normalisasi.id_karyawan')
-            // ->join('karyawan', 'karyawan.id', '=', 'normalisasi.id_karyawan')
-            ->orderBy('detail_normalisasi.id', 'DESC')
+        $data['detailKaryawan'] = DB::table('karyawan')
+
+            ->whereIn('id', function ($query) {
+                $query->select('id_karyawan')
+                    ->from('normalisasi');
+            })
+            ->orderBy('karyawan.id', 'DESC')
             ->get();
         return view('proses.index', $data);
     }
@@ -98,7 +102,7 @@ class ProsesController extends Controller
             }
             $kode_kriteria++;
             $id_kriteria++;
-            // var_dump($type);
+            var_dump($bobot);
         }
 
         $W = DB::table('kriteria')->get();
@@ -115,7 +119,14 @@ class ProsesController extends Controller
         var_dump($hasil);
 
 
+        hasil::create([
+            'karyawan_id' => $id_karya,
+            'hasil' => $hasil,
+            'status_pengajuan' => 'pending'
 
+        ]);
+
+        return redirect('/proses')->with('success', 'proses perhitungan karyawan berhasil');
 
 
 

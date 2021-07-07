@@ -15,9 +15,9 @@ class CreatHasilTable extends Migration
     {
         Schema::create('hasil', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_detail')->constrained('detail_normalisasi');
+            $table->foreignId('karyawan_id')->nullable()->constrained('karyawan');
             $table->foreignId('sanksi_id')->nullable()->constrained('ketentuan_sanksi');
-            $table->decimal('hasil', 2, 2)->nullable();
+            $table->decimal('hasil', 1, 1)->nullable();
             $table->char('status_pengajuan', 10)->nullable();
             $table->date('tgl_pengajuan')->nullable();
             $table->date('tgl_approve')->nullable();

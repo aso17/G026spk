@@ -29,9 +29,10 @@
                                                     <th>#</th>
                                                     <th>Nik karyawan</th>
                                                     <th>Nama Karyawan</th>
-                                                    <th>Bobot C1</th>
-                                                    <th>Bobot C2</th>
-                                                    <th>Bobot C3</th>
+                                                    <th>Departemen</th>
+                                                    <th>jabatan</th>
+                                                    <th>Status Karyawan</th>
+
 
 
 
@@ -39,7 +40,8 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($detail as $d)
+
+                                                @foreach ($detailKaryawan as $d)
 
 
 
@@ -47,9 +49,10 @@
                                                         <td>{{ $loop->iteration }}</td>
                                                         <td>{{ $d->nik_karyawan }}</td>
                                                         <td>{{ $d->nama_lengkap }}</td>
-                                                        <td>{{ $d->bobot_c1 }} </td>
-                                                        <td>{{ $d->bobot_c2 }} </td>
-                                                        <td> {{ $d->bobot_c3 }}</td>
+                                                        <td>{{ $d->departemen }} </td>
+                                                        <td>{{ $d->jabatan }} </td>
+                                                        <td>{{ $d->status_karyawan }} </td>
+
 
 
 
@@ -68,10 +71,9 @@
 
                                                             </a>
 
-                                                            <a href="{{ 'proses/hitung/' . $d->id_karyawan }}"
-                                                                class="btn-dark btn btn-sm mr-2  float-right text-light"
-                                                                id="proses"><i class="fas fa-ey">Proses</i>
-
+                                                            <a href="{{ 'proses/hitung/' . $d->id }}"> <button
+                                                                    class="btn-dark btn btn-sm mr-2  float-right text-light"><i
+                                                                        class="fas fa-ey" id="proses"></i>Proses</button>
                                                             </a>
 
 

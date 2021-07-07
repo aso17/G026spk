@@ -11,9 +11,9 @@
                 "responsive": true,
                 "autoWidth": true,
                 "info": false,
-                "lengthChange": false,
+                "lengthChange": true,
                 "scrollY": 150,
-                "paging": false,
+                "paging": true,
                 dom: 'Bfrtip',
                 buttons: [{
                     text: 'Proses karyawan',

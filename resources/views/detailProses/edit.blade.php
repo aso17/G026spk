@@ -31,8 +31,9 @@
                                                     @csrf
 
                                                     <div class="card-body">
-                                                        <input type="hidden" id="id_karyawan" name="id_karyawan">
-                                                        <input type="hidden" id="id_alternatif" name="id_alternatif">
+                                                        <input type="hidden" id="id_karyawan" name="id_karyawan"
+                                                            value="{{ $karyawan->id }}">
+
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="">
@@ -46,14 +47,8 @@
                                                                             <input type="text"
                                                                                 class="form-control @error('nik_karyawan') is-invalid @enderror "
                                                                                 id="nik_karyawan" name="nik_karyawan"
-                                                                                value="{{ old('nik_karyawan') }}"
-                                                                                onkeyup="ketik()">
-
-                                                                            @error('nik_karyawan')
-                                                                                <div class="invalid-feedback">
-                                                                                    {{ $message }}
-                                                                                </div>
-                                                                            @enderror
+                                                                                value="{{ $karyawan->nik_karyawan }}"
+                                                                                readonly>
                                                                         </div>
                                                                     </div>
 
@@ -99,8 +94,8 @@
                                                                     <label class="ml-3" for="nama_karyawan">nama karyawan
                                                                     </label>
                                                                     <input type="text" class="form-control  "
-                                                                        id="nama_karyawan" name="nama_karyawan" value=""
-                                                                        readonly>
+                                                                        id="nama_karyawan" name="nama_karyawan"
+                                                                        value="{{ $karyawan->nama_lengkap }}" readonly>
 
                                                                 </div>
                                                             </div>
@@ -137,8 +132,8 @@
                                                                     <label class="ml-3" for="status_karyawan">Status
                                                                         karyawan</label>
                                                                     <input type="text" class="form-control  "
-                                                                        id="status_karyawan" name="status_karyawan" value=""
-                                                                        readonly>
+                                                                        id="status_karyawan" name="status_karyawan"
+                                                                        value="{{ $karyawan->status_karyawan }}" readonly>
 
                                                                 </div>
                                                             </div>
@@ -153,7 +148,8 @@
                                                                 <div class="form-group">
                                                                     <label class="ml-3" for="departemen">Departemen</label>
                                                                     <input type="text" class="form-control  "
-                                                                        id="departemen" name="departemen" value="" readonly>
+                                                                        id="departemen" name="departemen"
+                                                                        value="{{ $karyawan->departemen }}" readonly>
 
                                                                 </div>
                                                             </div>
@@ -186,48 +182,32 @@
 
 
                             <div class="col-md-4">
-                                <ul class="list-group">
+                                @foreach ($hasil as $h)
 
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Nik Karyawan
-
-                                        <span
-                                            class="badge badge-primary badge-pill">{{ $normalisasi->nik_karyawan }}</span>
+                                    <ul class="list-group">
 
 
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Nama Karyawan
 
-                                        <span
-                                            class="badge badge-primary badge-pill">{{ $normalisasi->nama_lengkap }}</span>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            {{ $h->nama_kriteria }}
+                                            <span class="badge badge-primary badge-pill">
 
 
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Absensi
 
-                                        <span class="badge badge-primary badge-pill">{{ $normalisasi->bobot_c1 }}</span>
+                                                {{ $h->bobot_subkriteria }}
 
 
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Kooperatif
+                                            </span>
 
-                                        <span class="badge badge-primary badge-pill">{{ $normalisasi->bobot_c2 }}</span>
+                                        </li>
 
 
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Produktifitas
+                                    </ul>
 
-                                        <span class="badge badge-primary badge-pill">{{ $normalisasi->bobot_c3 }}</span>
-
-
-                                    </li>
-
-
-                                </ul>
+                                @endforeach
+                                <span class="badge badge-danger ">
+                                    {{ session('pesan') }}
+                                </span>
                             </div>
 
                         </div>
@@ -291,28 +271,27 @@
 
 
 
-        function ketik() {
-            var nik_karyawan = $("#nik_karyawan").val();
-            $.ajax({
+        // function ketik() {
+        //     var nik_karyawan = $("#nik_karyawan").val();
+        //     $.ajax({
 
-                url: "{{ url('') }}/cari",
-                data: "nik_karyawan=" + nik_karyawan,
-                success: function(data) {
-                    var json = data;
-                    obj = JSON.parse(json);
-                    $('#id_karyawan').val(obj.id_karyawan);
-                    $('#nik_karyawan').val(obj.nik_karyawan);
-                    $('#nama_karyawan').val(obj.nama_lengkap);
-                    $('#status_karyawan').val(obj.status_karyawan);
-                    $('#departemen').val(obj.departemen);
-                    $('#jabatan').val(obj.jabatan);
+        //         url: "{{ url('') }}/cari",
+        //         data: "nik_karyawan=" + nik_karyawan,
+        //         success: function(data) {
+        //             var json = data;
+        //             obj = JSON.parse(json);
+        //             $('#id_karyawan').val(obj.id_karyawan);
+        //             $('#nik_karyawan').val(obj.nik_karyawan);
+        //             $('#nama_karyawan').val(obj.nama_lengkap);
+        //             $('#status_karyawan').val(obj.status_karyawan);
+        //             $('#departemen').val(obj.departemen);
+        //             $('#jabatan').val(obj.jabatan);
 
 
-                }
+        //         }
 
-            });
-        }
-
+        //     });
+        // }
     </script>
     <script>
 

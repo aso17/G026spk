@@ -6,6 +6,7 @@ use App\Proses;
 use App\detail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use PHPUnit\Framework\Constraint\Count;
 
 class DetailProsesController extends Controller
 {
@@ -40,6 +41,7 @@ class DetailProsesController extends Controller
     }
     public function index()
     {
+
         $data['kriteria'] = DB::table('kriteria')->get();
         return view('detailProses.index', $data);
     }
@@ -65,7 +67,6 @@ class DetailProsesController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->id_kriteria);
 
         $request->validate([
             'nik_karyawan' => 'required',
@@ -82,61 +83,25 @@ class DetailProsesController extends Controller
 
         ]);
 
-        $kriteria = DB::table('kriteria')
-            ->where('id', $request->id_kriteria)
-            ->first();
-        $kri = $kriteria->kode_kriteria;
-
-        $subkriteria = DB::table('subkriteria')
-            ->where('id', $request->idsubkriteria)
-            ->first();
-        $bobot = $subkriteria->bobot_subkriteria;
-        // var_dump($bobot);
-        // die;
-        if ($kri == "C1") {
-            detail::create([
-                "id_karyawan" => $request->id_karyawan,
-                "bobot_c1" => $bobot
-            ]);
-        } elseif ($kri == "C2") {
-            detail::create([
-                "id_karyawan" => $request->id_karyawan,
-                "bobot_c2" => $bobot
-            ]);
-        } elseif ($kri == "C3") {
-            detail::create([
-                "id_karyawan" => $request->id_karyawan,
-                "bobot_c3" => $bobot
-            ]);
-        } else {
-            detail::create([
-                "id_karyawan" => $request->id_karyawan,
-                "bobot_c4" => $bobot
-            ]);
-        }
-
-
-
-        // die;
-        //ambil data  normalisasi join
-
-        // $idnor = DB::table('normalisasi')->max('id');
-        // $data['normalisasi'] = DB::table('normalisasi')
-        //    
-        //     ->where('normalisasi.id', $idnor)
-        //     ->first();
-        $data['kri'] = DB::table('kriteria')->get();
-
-        $data['normalisasi'] = DB::table('detail_normalisasi')
-            ->join('karyawan', 'karyawan.id', '=', 'detail_normalisasi.id_karyawan')
+        $data['normalisasi'] = DB::table('normalisasi')
+            ->join('karyawan', 'karyawan.id', '=', 'normalisasi.id_karyawan')
+            ->join('kriteria', 'kriteria.id', '=', 'normalisasi.id_kriteria')
+            ->join('subkriteria', 'subkriteria.id', '=', 'normalisasi.id_subkriteria')
             ->where('id_karyawan', $request->id_karyawan)
             ->first();
-        // var_dump($data['normalisasi']);
-        // die;
-        // $data['subkriteria'] = DB::table('subkriteria')
-        //     ->where('id', $request->idsubkriteria)
-        //     ->get();
 
+        $data['karyawan'] = DB::table('karyawan')
+            ->where('id', $request->id_karyawan)
+            ->first();
+        $data['hasil'] = DB::table('normalisasi')
+            ->join('karyawan', 'karyawan.id', '=', 'normalisasi.id_karyawan')
+            ->join('kriteria', 'kriteria.id', '=', 'normalisasi.id_kriteria')
+            ->join('subkriteria', 'subkriteria.id', '=', 'normalisasi.id_subkriteria')
+            ->where('id_karyawan', $request->id_karyawan)
+
+            ->get();
+        $data['kri'] = DB::table('kriteria')
+            ->get();
         return view('detailProses.edit', $data);
     }
 
@@ -170,6 +135,7 @@ class DetailProsesController extends Controller
      */
     public function update(Request $request)
     {
+
         $request->validate([
             'nik_karyawan' => 'required',
             'idkriteria' => 'required',
@@ -178,56 +144,47 @@ class DetailProsesController extends Controller
         ]);
 
 
-        Proses::create([
-            "id_karyawan" => $request->id_karyawan,
-            "id_kriteria" => $request->id_kriteria,
-            "id_subkriteria" => $request->idsubkriteria,
 
-        ]);
 
-        // ambil data kriteria
-        $id_kriteria = $request->id_kriteria;
-        $datakriteria = DB::table('kriteria')->where('id', $id_kriteria)->first();
-        $kriteria = $datakriteria->kode_kriteria;
-
-        // ambil data subkriteria
-        $datasubkriteria = DB::table('subkriteria')->where('id', $request->idsubkriteria)->first();
-        $bobot_sub = $datasubkriteria->bobot_subkriteria;
-
-        // $idnor = DB::table('detail_normalisasi')
-        //     ->where('id_karyawan', $request->id_karyawan)
-        //     ->first();
-        // var_dump($idnor->id_karyawan);
-        // die;
-        // $idkaryawan = $idnor->id_karyawan;
-
-        if ($kriteria == "C1") {
-            DB::table('detail_normalisasi')
-                ->where('id_karyawan', $request->id_karyawan)
-                ->update([
-                    "bobot_c1" => $bobot_sub
-                ]);
-        } elseif ($kriteria == "C2") {
-            DB::table('detail_normalisasi')
-                ->where('id_karyawan', $request->id_karyawan)
-                ->update([
-                    "bobot_c2" => $bobot_sub
-                ]);
-        } elseif ($kriteria == "C3") {
-            DB::table('detail_normalisasi')
-                ->where('id_karyawan', $request->id_karyawan)
-                ->update([
-                    "bobot_c3" => $bobot_sub
-                ]);
-        }
-
-        $data['kri'] = DB::table('kriteria')->get();
-        $data['normalisasi'] = DB::table('detail_normalisasi')
-            ->join('karyawan', 'karyawan.id', '=', 'detail_normalisasi.id_karyawan')
+        $id_kr = DB::table('normalisasi')
+            ->orWhere('id_kriteria', $request->id_kriteria)
             ->where('id_karyawan', $request->id_karyawan)
             ->first();
+        // var_dump($id_kr);
+        // die;
+        if ($id_kr == null) {
 
-        return view('detailProses.edit', $data);
+
+            Proses::create([
+                "id_karyawan" => $request->id_karyawan,
+                "id_kriteria" => $request->id_kriteria,
+                "id_subkriteria" => $request->idsubkriteria,
+
+            ]);
+
+            $data['normalisasi'] = DB::table('normalisasi')
+                ->join('karyawan', 'karyawan.id', '=', 'normalisasi.id_karyawan')
+                ->join('kriteria', 'kriteria.id', '=', 'normalisasi.id_kriteria')
+                ->join('subkriteria', 'subkriteria.id', '=', 'normalisasi.id_subkriteria')
+                ->where('id_karyawan', $request->id_karyawan)
+                ->first();
+
+            $data['karyawan'] = DB::table('karyawan')
+                ->where('id', $request->id_karyawan)
+                ->first();
+            $data['kri'] = DB::table('kriteria')
+                ->get();
+            $data['hasil'] = DB::table('normalisasi')
+                ->join('karyawan', 'karyawan.id', '=', 'normalisasi.id_karyawan')
+                ->join('kriteria', 'kriteria.id', '=', 'normalisasi.id_kriteria')
+                ->join('subkriteria', 'subkriteria.id', '=', 'normalisasi.id_subkriteria')
+                ->where('id_karyawan', $request->id_karyawan)
+                ->get();
+            return view('detailProses.edit', $data);
+        } else {
+
+            return redirect('/proses')->with('warning', 'Kriteria tidak boleh sama!!');
+        }
     }
 
 
