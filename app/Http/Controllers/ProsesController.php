@@ -72,38 +72,88 @@ class ProsesController extends Controller
 
 
 
+
+
+        $normalisasi = DB::table('karyawan')
+            ->whereIn('id', function ($query) {
+                $query->select('id_karyawan')
+                    ->from('normalisasi');
+            })
+            ->get();
+        foreach ($normalisasi as $n) {
+            $id_k[] = $n->id;
+        }
+        $jml = count($id_k);
+
         $row = [];
-        $kode_kriteria = 0;
-        $id_kriteria = 0;
+        $alter = [];
+        $kriteria = [];
+        // $kode_kriteria = 0;
         foreach ($karyawan as $karya) {
             $bobot[] = $karya->bobot_subkriteria;
             $type[] = $karya->type;
-            $kriteria[] = $karya->kode_kriteria;
+
+
+            // $kriteria[] = $karya->kode_kriteria;
             $jml_bobot = count($bobot);
-            $jml_kriteria = count($kriteria);
-            for ($index_bobot = 0; $index_bobot < $jml_bobot; $index_bobot++) {
-                for ($index_kriteria = 0; $index_kriteria < $jml_kriteria; $index_kriteria++) {
-                    if ($type[$id_kriteria] == 'cost') {
-                        $min = DB::table('normalisasi')
-                            ->join('kriteria', 'kriteria.id', '=', 'normalisasi.id_kriteria', 'left')
-                            ->join('subkriteria', 'subkriteria.id', '=', 'normalisasi.id_subkriteria', 'left')
-                            ->where('kode_kriteria', $kriteria[$kode_kriteria])
-                            ->min('bobot_subkriteria');
-                        $row[$id_kriteria] = round($min / $bobot[$index_bobot], 2);
-                    } elseif ($type[$id_kriteria] == 'Banefit') {
-                        $max = DB::table('normalisasi')
-                            ->join('kriteria', 'kriteria.id', '=', 'normalisasi.id_kriteria', 'left')
-                            ->join('subkriteria', 'subkriteria.id', '=', 'normalisasi.id_subkriteria', 'left')
-                            ->where('kode_kriteria', $kriteria[$kode_kriteria])
-                            ->max('bobot_subkriteria');
-                        $row[$id_kriteria] = round($bobot[$index_bobot] / $max, 2);
-                    }
-                }
-            }
-            $kode_kriteria++;
-            $id_kriteria++;
-            var_dump($bobot);
+            // $jml_kriteria = count($kriteria);
+            // for ($index_bobot = 0; $index_bobot < $jml_bobot; $index_bobot++) {
+            //     for ($index_kriteria = 0; $index_kriteria < $jml_kriteria; $index_kriteria++) {
+            //         if ($type[$id_kriteria] == 'cost') {
+            //             $min = DB::table('normalisasi')
+            //                 ->join('kriteria', 'kriteria.id', '=', 'normalisasi.id_kriteria', 'left')
+            //                 ->join('subkriteria', 'subkriteria.id', '=', 'normalisasi.id_subkriteria', 'left')
+            //                 ->where('kode_kriteria', $kriteria[$kode_kriteria])
+            //                 ->min('bobot_subkriteria');
+            //             $row[$index_kriteria] = round($min / $bobot[$index_bobot], 2);
+            //         } elseif ($type[$id_kriteria] == 'Banefit') {
+            //             $max = DB::table('normalisasi')
+            //                 ->join('kriteria', 'kriteria.id', '=', 'normalisasi.id_kriteria', 'left')
+            //                 ->join('subkriteria', 'subkriteria.id', '=', 'normalisasi.id_subkriteria', 'left')
+            //                 ->where('id_karyawan', $id_karya)
+            //                 ->max('bobot_subkriteria');
+            //             $row[$index_kriteria] = round($bobot[$index_bobot] / $max, 2);
+            //         }
+            //         $kode_kriteria++;
+            //     }
+            // }
+            // $id_kriteria++;
+
         }
+        $kriteria = DB::table('kriteria')
+            ->get();
+        $index_al = 0;
+        for ($index_karayawan = 0; $index_karayawan < $jml; $index_karayawan++) {
+            $alter['data'] = DB::table('normalisasi')
+                ->join('kriteria', 'kriteria.id', '=', 'normalisasi.id_kriteria', 'left')
+                ->join('subkriteria', 'subkriteria.id', '=', 'normalisasi.id_subkriteria', 'left')
+                ->where('id_karyawan', $id_k[$index_karayawan])
+                ->groupBy('normalisasi.id_kriteria')
+                ->orderBy('normalisasi.id_kriteria')
+                ->get()->toArray();
+            $alternatif[] = array_column($alter['data'], 'bobot_subkriteria');
+            // $id_kr = 0;
+        }
+        $index_alternatif = 0;
+        foreach ($alternatif as $al) {
+            $index_kriteria = 0;
+            foreach ($type as $kr) {
+
+                $max[] = max(array_column($alternatif, $index_kriteria));
+                $min[] = min(array_column($alternatif, $index_kriteria));
+                $index_kriteria++;
+            }
+        }
+        for ($index_bobot = 0; $index_bobot < $jml_bobot; $index_bobot++) {
+            if ($type[$index_bobot] == 'cost') {
+                $row[$index_bobot] = round($min[$index_bobot] / $bobot[$index_bobot], 2);
+            } else {
+
+                $row[$index_bobot] = round($bobot[$index_bobot] / $max[$index_bobot], 2);
+            }
+        }
+
+
 
         $W = DB::table('kriteria')->get();
         $v = 0;
@@ -115,10 +165,10 @@ class ProsesController extends Controller
             $v +=  $bobot_w[$index_w] * $r;
             $index_w++;
         }
-        $hasil = $v;
-        var_dump($hasil);
+        $hasil = round($v, 2);
 
-
+        // var_dump($hasil);
+        // die;
         hasil::create([
             'karyawan_id' => $id_karya,
             'hasil' => $hasil,

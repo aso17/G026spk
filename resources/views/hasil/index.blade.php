@@ -32,7 +32,7 @@
                                             <thead>
                                                 <th>#</th>
                                                 <th>nama sanksi</th>
-                                                <th>Niali Ketentuan sanksi</th>
+                                                <th>Jenis ketentuan</th>
                                                 <th></th>
                                             </thead>
                                             <tbody>
