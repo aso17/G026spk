@@ -32,6 +32,7 @@
                 "paging": false,
                 
             });
+            
             $("#karyawan").DataTable({
 
                 "responsive": true,

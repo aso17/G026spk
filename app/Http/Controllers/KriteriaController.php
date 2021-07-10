@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\kriteria;
-use App\alternatif;
+use App\subkriteria;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use mysqli;
 
 class KriteriaController extends Controller
 {
@@ -56,7 +58,6 @@ class KriteriaController extends Controller
      */
     public function show(kriteria $kriteria)
     {
-        //
     }
 
     /**
@@ -67,7 +68,9 @@ class KriteriaController extends Controller
      */
     public function edit(kriteria $kriteria)
     {
-        //
+        $kriteria = kriteria::find(1);
+
+        return view('kriteria.edit', ['kriteria' => $kriteria]);
     }
 
     /**
@@ -79,7 +82,15 @@ class KriteriaController extends Controller
      */
     public function update(Request $request, kriteria $kriteria)
     {
-        //
+        kriteria::where('id', $kriteria->id)
+            ->update([
+                'kode_kriteria' => $request->kode_kriteria,
+                'nama_kriteria' => $request->nama_kriteria,
+                'bobot' => $request->bobot,
+                'type' => $request->type
+            ]);
+
+        return redirect('/kriteria')->with('success', 'data kriteria berhasil di ubah');
     }
 
     /**
@@ -88,8 +99,11 @@ class KriteriaController extends Controller
      * @param  \App\kriteria  $kriteria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(kriteria $kriteria)
+    public function destroy(Request $request)
     {
-        //
+        $id_kriteria = $request->id;
+        kriteria::destroy($id_kriteria);
+        subkriteria::destroy($id_kriteria);
+        return redirect('/kriteria')->with('success', 'data kriteria berhasil di delete');
     }
 }

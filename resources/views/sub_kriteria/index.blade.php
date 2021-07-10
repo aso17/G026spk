@@ -57,7 +57,7 @@
 
                                                 <tr class="text">
                                                     <th>#</th>
-                                                    <th>kode Kriteria</th>
+
                                                     <th>Sub Kriteria</th>
                                                     <th>Bobot sub kriteria</th>
 
@@ -74,7 +74,7 @@
 
                                                     <tr>
                                                         <td>{{ $loop->iteration }}.</td>
-                                                        <td>{{ $sub->kode_kriteria }}</td>
+
                                                         <td>{{ $sub->sub_kriteria }} </td>
                                                         <td>{{ $sub->bobot_subkriteria }}</td>
 
@@ -82,12 +82,15 @@
                                                         <td class="justify-content-center">
                                                             <button class="btn hapus btn btn-sm mr-3 float-right text-light"
                                                                 id="hapus" data-toggle="modal" data-target="#deletemodal"
-                                                                data-nik-karyawan=""><i class=" fas fa-trash-alt"></i>
+                                                                data-id-subkriteria="{{ $sub->id }}"
+                                                                data-id-kriteria="{{ $sub->id_kriteria }}"><i
+                                                                    class=" fas fa-trash-alt"></i>
                                                                 Delete</button>
-                                                            <a href="/kriteria/"
-                                                                class="btn edit btn-sm mr-3 float-right text-light"
-                                                                id="ubah"><i class="fas fa-edit"></i>
-                                                                Edit</a>
+                                                            <a href="/subkriteria/{{ $sub->id }}">
+                                                                <button class="btn edit btn-sm mr-3 float-right text-light"
+                                                                    id="ubah">
+                                                                    <i class="fas fa-edit"></i> Edit</button>
+                                                            </a>
 
                                                         </td>
                                                     </tr>
@@ -108,7 +111,53 @@
         </div>
     </div>
 
+    {{-- modal hapus --}}
+    <form action="/subkriteriadelete" method="post">
+        @csrf
+        @method('delete')
+        <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body bg-dark">
+                        <div class="row">
+                            <div class="col-3 d-flex justify-content-center">
+                                <i class="fa  fa-exclamation-triangle" style="font-size: 70px; color:red;"></i>
+                            </div>
+                            <div class="col-9 pt-2">
+                                <h5>Apakah anda yakin?</h5>
+                                <span>Data yang dihapus tidak akan bisa dikembalikan.</span>
+                            </div>
+                        </div>
+                        <input type="hidden" name="id_k" id="id_k">
+                        <input type="hidden" name="id_sub" id="id_sub">
 
+                    </div>
+                    <div class="modal-footer border-warning">
+                        <button class="btn cancel btn btn-sm float-left text-light" type="button" data-dismiss="modal"><i
+                                class="fas fa-times"></i> Cancel</button>
+                        <button id=" btn-delete" type="submit" class="btn edit btn  btn-sm text-light"><i
+                                class="fas fa-check">
+                            </i> Ok</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', '#hapus', function() {
+                const id_kriteria = $(this).data('id-kriteria');
+                const idsubkriteria = $(this).data('id-subkriteria');
+
+                $('#id_k').val(id_kriteria);
+                $('#id_sub').val(idsubkriteria);
+
+
+            })
+        })
+    </script>
     <script>
         $("#subkriteria").DataTable({
 
@@ -126,6 +175,5 @@
                 }
             }]
         });
-
     </script>
 @endsection

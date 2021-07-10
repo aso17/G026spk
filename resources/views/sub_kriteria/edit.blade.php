@@ -13,42 +13,24 @@
                         <!-- general form elements -->
                         <div class="card card-">
                             <div class="card-header">
-                                <h5 class="bg-danger"><i class="fas fa-edit ml-2">Form Tambah Sub Kriteria</i></h5>
+                                <h5 class="bg-danger"><i class="fas fa-edit ml-2">Form ubah Sub Kriteria</i></h5>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form method="post" action="/subkriteria" enctype="">
+                            <form method="post" action="/subkriteria/{{ $subkriteria->id }}" enctype="">
                                 @csrf
+                                @method('patch')
                                 <div class="card-body">
-
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="hidden" name="id_kriteria" value="{{ $kriteria->id }}">
-                                            <label for="kode_kriteria">Kode kriteria
-                                                {{ $kriteria->nama_kriteria }}</label>
-                                            <input type="text"
-                                                class="form-control @error('kode_kriteria') is-invalid @enderror "
-                                                id="kode_kriteria" name="kode_kriteria"
-                                                value="{{ $kriteria->kode_kriteria }}" disabled>
-
-
-                                        </div>
-
-                                    </div>
+                                    <input type="hidden" name="id_krteria" value="{{ $subkriteria->id_kriteria }}">
                                     <div class="col-md-6">
 
                                         <div class="form-group">
                                             <label for="sub_kriteria">Nama sub Kriteria</label>
                                             <input type="text"
                                                 class="form-control @error('sub_kriteria') is-invalid @enderror "
-                                                id="sub_kriteria" name="sub_kriteria" value="{{ old('sub_kriteria') }}">
-                                            @error('sub_kriteria')
+                                                id="sub_kriteria" name="sub_kriteria"
+                                                value="{{ $subkriteria->sub_kriteria }}">
 
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -58,13 +40,8 @@
                                             <input type="text"
                                                 class="form-control @error('bobot_subkriteria') is-invalid @enderror "
                                                 id="bobot_subkriteria" name="bobot_subkriteria"
-                                                value="{{ old('bobot_subkriteria') }}">
-                                            @error('bobot_subkriteria')
+                                                value="{{ $subkriteria->bobot_subkriteria }}">
 
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
                                         </div>
                                     </div>
 
@@ -76,12 +53,12 @@
 
                                 <div class="card-footer mt-3">
                                     <div class="card-footer mt-3">
-                                        <a href="{{ url('/Sub_kriteria/' . $kriteria->id) }}"><button
+                                        <a href="{{ url('/Sub_kriteria/' . $subkriteria->id_kriteria) }}"><button
                                                 class="btn cancel btn btn-sm float-right text-light" type="button"><i
                                                     class="fas fa-arrow-circle-left"></i>
                                                 Cancel</button></a>
                                         <button class=" btn tambah btn btn-sm float-right mr-3 " type="submit"
-                                            name="submit"><i class="far fa-paper-plane"></i> Create</button>
+                                            name="submit"><i class="far fa-paper-plane"></i> Update</button>
 
                                     </div>
                             </form>

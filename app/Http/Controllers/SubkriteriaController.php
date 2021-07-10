@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\subkriteria;
+use App\kriteria;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -18,8 +19,7 @@ class SubkriteriaController extends Controller
     {
         $data['kriteria'] = DB::table('kriteria')->where('id', $kode)->first();
         $data['subkriteria'] = DB::table('subkriteria')
-            ->Join('kriteria', 'kriteria.id', '=', 'subkriteria.id_kriteria')
-            ->where('id_kriteria', $kode)->get();
+            ->get();
 
 
         return view('sub_kriteria.index', $data);
@@ -81,7 +81,8 @@ class SubkriteriaController extends Controller
      */
     public function edit(subkriteria $subkriteria)
     {
-        //
+
+        return view('sub_kriteria.edit', ['subkriteria' => $subkriteria]);
     }
 
     /**
@@ -93,7 +94,13 @@ class SubkriteriaController extends Controller
      */
     public function update(Request $request, subkriteria $subkriteria)
     {
-        //
+        subkriteria::where('id', $subkriteria->id)
+            ->update([
+                'sub_kriteria' => $request->sub_kriteria,
+                'bobot_subkriteria' => $request->bobot_subkriteria,
+            ]);
+
+        return redirect('/Sub_kriteria/' . $subkriteria->id_kriteria)->with('success', 'data kriteria berhasil di ubah');
     }
 
     /**
@@ -102,8 +109,12 @@ class SubkriteriaController extends Controller
      * @param  \App\subkriteria  $subkriteria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(subkriteria $subkriteria)
+    public function destroy(Request $request)
     {
-        //
+        $id_subkriteria = $request->id_sub;
+        $id_kriteria = $request->id_k;
+
+        subkriteria::destroy($id_subkriteria);
+        return redirect('/Sub_kriteria/' . $id_kriteria)->with('success', 'data Subkriteria berhasil di delete');
     }
 }

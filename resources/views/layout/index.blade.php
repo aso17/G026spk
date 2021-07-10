@@ -107,7 +107,7 @@
                     <ul class="nav nav-pills nav-sidebar flex-column  " data-widget="treeview" role="menu"
                         data-accordion="false">
                         <li class="nav-item  mx-4">
-                            <a href="{{ url('/') }}" class="nav-link ">
+                            <a href="{{ url('/Dashboard') }}" class="nav-link ">
                                 <h6 class="text-light ">
                                     <i class="fas fa-tachometer-alt"></i>
                                     Dashboard
