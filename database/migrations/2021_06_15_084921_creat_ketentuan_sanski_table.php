@@ -16,7 +16,7 @@ class CreatKetentuanSanskiTable extends Migration
         Schema::create('ketentuan_sanksi', function (Blueprint $table) {
             $table->id();
             $table->char('nama_sanksi', 50);
-            $table->char('nilai_ketentuan', 10);
+            $table->char('nilai_ketentuan', 20);
             $table->timestamps();
         });
     }

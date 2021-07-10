@@ -17,6 +17,7 @@ class CreatLogUsersTable extends Migration
             $table->id('id_user');
             $table->foreignId('karyawan_id')->constrained('karyawan')->onDelete('cascade')->OnUpdate('cascade');;
             $table->string('password', 100);
+            $table->char('role', 2);
             $table->rememberToken();
             $table->timestamps();
         });

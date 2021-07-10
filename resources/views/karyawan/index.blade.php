@@ -26,6 +26,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+
                                 @foreach ($karyawan as $kar)
 
                                     <tr>

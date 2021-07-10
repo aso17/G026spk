@@ -55,8 +55,51 @@
 
                                                                 </div>
                                                             </div>
-
                                                             <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="role">Role</label>
+                                                                    <select name="role"
+                                                                        class="form-control @error('role') is-invalid @enderror "
+                                                                        id="role" name="role" value="<">
+                                                                        <option value="{{ old('role') }}" hidden>--
+                                                                            pilih--
+                                                                        </option>
+                                                                        <option value="1"
+                                                                            {{ @old('role') == '1' ? 'selected' : '' }}>
+                                                                            Manager
+                                                                        </option>
+                                                                        <option value="2"
+                                                                            {{ @old('role') == '2' ? 'selected' : '' }}>
+                                                                            Supervisor
+                                                                        </option>
+                                                                        <option value="3"
+                                                                            {{ @old('role') == '3' ? 'selected' : '' }}>
+                                                                            Admimistrator
+                                                                        </option>
+                                                                    </select>
+                                                                    @error('role')
+
+                                                                        <div class="invalid-feedback">
+                                                                            {{ $message }}
+                                                                        </div>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="row ">
+                                                            <div class="col-md-6 mt-2">
+                                                                <div class="form-group">
+                                                                    <label class="ml-3" for="nama_karyawan">nama Lengkap
+                                                                    </label>
+                                                                    <input type="text" class="form-control  "
+                                                                        id="nama_karyawan" name="nama_karyawan" value=""
+                                                                        readonly>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6 mt-3">
                                                                 <div class="form-group">
                                                                     <div class="form-group">
                                                                         <label>Password
@@ -75,20 +118,6 @@
 
                                                                 </div>
                                                             </div>
-                                                        </div>
-
-                                                        <div class="row ">
-                                                            <div class="col-md-6 mt-2">
-                                                                <div class="form-group">
-                                                                    <label class="ml-3" for="nama_karyawan">nama Lengkap
-                                                                    </label>
-                                                                    <input type="text" class="form-control  "
-                                                                        id="nama_karyawan" name="nama_karyawan" value=""
-                                                                        readonly>
-
-                                                                </div>
-                                                            </div>
-
 
                                                         </div>
 

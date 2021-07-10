@@ -17,7 +17,7 @@ class CreatHasilTable extends Migration
             $table->id();
             $table->foreignId('karyawan_id')->nullable()->constrained('karyawan');
             $table->foreignId('sanksi_id')->nullable()->constrained('ketentuan_sanksi');
-            $table->decimal('hasil', 1, 1)->nullable();
+            $table->decimal('hasil', 2, 2)->nullable();
             $table->char('status_pengajuan', 10)->nullable();
             $table->date('tgl_pengajuan')->nullable();
             $table->date('tgl_approve')->nullable();

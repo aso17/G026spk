@@ -77,9 +77,9 @@
                                                 <option value="{{ old('type') }}" hidden>-- pilih--
                                                 </option>
                                                 <option value="cost" {{ @old('type') == 'cost' ? 'selected' : '' }}>
-                                                    cost
+                                                    Cost
                                                 </option>
-                                                <option value="Banefit" {{ @old('type') == 'Banefit' ? 'selected' : '' }}>
+                                                <option value="banefit" {{ @old('type') == 'Banefit' ? 'selected' : '' }}>
                                                     Banefit
                                                 </option>
                                             </select>

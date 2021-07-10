@@ -48,7 +48,8 @@ class UserController extends Controller
 
         $rules = [
             'nik_karyawan' => 'required|min:12|numeric',
-            'password' => 'required|min:4'
+            'password' => 'required|min:4',
+            'role' => 'required',
         ];
 
         $messages = [
@@ -78,7 +79,7 @@ class UserController extends Controller
             return redirect('/user');
         } else {
             Session::flash('errors', ['' => 'Register gagal! Silahkan ulangi beberapa saat lagi']);
-            return redirec('/user/tambah');
+            return redirect('/user/tambah');
         }
     }
 

@@ -43,7 +43,7 @@ class SanksiController extends Controller
 
         ]);
         sanksi::create($request->all());
-        return redirect('/proses')->with('success', 'data Sanksi berhasil di tambah');
+        return redirect('/hasil')->with('success', 'data Sanksi berhasil di tambah');
     }
 
     /**

@@ -29,7 +29,7 @@
                                                 <input type="text"
                                                     class="form-control @error('nik_karyawan') is-invalid @enderror "
                                                     id="nik_karyawan" name="nik_karyawan"
-                                                    value="{{ old('nik_karyawan') }}">
+                                                    value="{{ old('nik_karyawan') }}" autocomplete="off">
 
                                                 @error('nik_karyawan')
                                                     <div class="invalid-feedback">
@@ -46,7 +46,7 @@
                                                 <input type="text"
                                                     class="form-control @error('tempat_lahir') is-invalid @enderror "
                                                     id="tempat_lahir" name="tempat_lahir"
-                                                    value="{{ old('tempat_lahir') }}">
+                                                    value="{{ old('tempat_lahir') }}" autocomplete="off">
                                                 @error('tempat_lahir')
 
                                                     <div class="invalid-feedback">
@@ -65,7 +65,7 @@
                                                 <input type="text"
                                                     class="form-control @error('nama_lengkap') is-invalid @enderror "
                                                     id="nama_lengkap" name="nama_lengkap"
-                                                    value="{{ old('nama_lengkap') }}">
+                                                    value="{{ old('nama_lengkap') }}" autocomplete="off">
                                                 @error('nama_lengkap')
 
                                                     <div class="invalid-feedback">
@@ -84,7 +84,7 @@
                                                 <input type="date"
                                                     class="form-control @error('tanggal_lahir') is-invalid @enderror "
                                                     id="tanggal_lahir" name="tanggal_lahir"
-                                                    value="{{ old('tanggal_lahir') }}">
+                                                    value="{{ old('tanggal_lahir') }}" autocomplete="off">
                                                 @error('tanggal_lahir')
 
                                                     <div class="invalid-feedback">
@@ -196,7 +196,8 @@
                                                 <label for="departemen">Departemen</label>
                                                 <input type="text"
                                                     class="form-control @error('departemen') is-invalid @enderror "
-                                                    id="departemen" name="departemen" value="{{ old('departemen') }}">
+                                                    id="departemen" name="departemen" value="{{ old('departemen') }}"
+                                                    autocomplete="off">
                                                 @error('departemen')
 
                                                     <div class="invalid-feedback">
@@ -217,7 +218,11 @@
                                                     id="jabatan" value="">
                                                     <option value="{{ old('jabatan') }}" hidden>-- Pilih --
                                                     </option>
-                                                    <option value="spv" {{ @old('jabatan') == 'spv' ? 'selected' : '' }}>
+                                                    <option value="manager"
+                                                        {{ @old('jabatan') == 'spv' ? 'selected' : '' }}>
+                                                        Manager</option>
+                                                    <option value="spv"
+                                                        {{ @old('jabatan') == 'manager' ? 'selected' : '' }}>
                                                         Supervisor</option>
                                                     <option value="officer"
                                                         {{ @old('jabatan') == 'officer' ? 'selected' : '' }}>
@@ -227,6 +232,10 @@
                                                     <option value="checker"
                                                         {{ @old('jabatan') == 'checker' ? 'selected' : '' }}>
                                                         Checker
+                                                    </option>
+                                                    <option value="admin"
+                                                        {{ @old('jabatan') == 'admin' ? 'selected' : '' }}>
+                                                        Admin
                                                     </option>
                                                     <option value="helper"
                                                         {{ @old('jabatan') == 'helper' ? 'selected' : '' }}>
@@ -247,7 +256,7 @@
                                             <div class="form-group">
                                                 <label for="npwp">NPWP</label>
                                                 <input type="text" class="form-control @error('npwp') is-invalid @enderror "
-                                                    id="npwp" name="npwp" value="{{ old('npwp') }}">
+                                                    id="npwp" name="npwp" value="{{ old('npwp') }}" autocomplete="off">
                                                 @error('npwp')
 
                                                     <div class="invalid-feedback">
@@ -281,7 +290,8 @@
                                                 <label for="no_telepon">Telepon</label>
                                                 <input type="text"
                                                     class="form-control @error('no_telepon') is-invalid @enderror "
-                                                    id="no_telepon" name="no_telepon" value="{{ old('no_telepon') }}">
+                                                    id="no_telepon" name="no_telepon" value="{{ old('no_telepon') }}"
+                                                    autocomplete="off">
                                                 @error('no_telepon')
 
                                                     <div class="invalid-feedback">
@@ -314,7 +324,7 @@
                                                 <label for="email">Email</label>
                                                 <input type="text"
                                                     class="form-control @error('email') is-invalid @enderror " id="email"
-                                                    name="email" value="{{ old('email') }}">
+                                                    name="email" value="{{ old('email') }}" autocomplete="off">
                                                 @error('email')
 
                                                     <div class="invalid-feedback">

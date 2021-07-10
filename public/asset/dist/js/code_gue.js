@@ -38,8 +38,8 @@
                 "autoWidth": true,
                 "info": false,
                 "lengthChange": false,
-                "scrollY": 300,
-                "paging": false,
+                "scrollY": 350,
+                "paging": true,
                 dom: 'Bfrtip',
                 buttons: [{
                     text: 'Tambah Data',

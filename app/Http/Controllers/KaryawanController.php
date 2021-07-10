@@ -48,7 +48,7 @@ class KaryawanController extends Controller
             'tanggal_mulaikerja' => 'required',
             'jenis_kelamin' => 'required',
             'jabatan' => 'required',
-            'npwp' => 'required|numeric',
+            'npwp' => 'required|numeric|unique:Karyawan',
             'agama' => 'required',
             'departemen' => 'required',
             'foto' => 'required',
