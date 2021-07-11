@@ -102,8 +102,10 @@ class KriteriaController extends Controller
     public function destroy(Request $request)
     {
         $id_kriteria = $request->id;
+
         kriteria::destroy($id_kriteria);
         subkriteria::destroy($id_kriteria);
+
         return redirect('/kriteria')->with('success', 'data kriteria berhasil di delete');
     }
 }

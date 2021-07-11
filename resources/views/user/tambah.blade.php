@@ -64,16 +64,13 @@
                                                                         <option value="{{ old('role') }}" hidden>--
                                                                             pilih--
                                                                         </option>
-                                                                        <option value="1"
-                                                                            {{ @old('role') == '1' ? 'selected' : '' }}>
+                                                                        <option value="1" {{ @old('role') }}>
                                                                             Manager
                                                                         </option>
-                                                                        <option value="2"
-                                                                            {{ @old('role') == '2' ? 'selected' : '' }}>
+                                                                        <option value="2" {{ @old('role') }}>
                                                                             Supervisor
                                                                         </option>
-                                                                        <option value="3"
-                                                                            {{ @old('role') == '3' ? 'selected' : '' }}>
+                                                                        <option value="3" {{ @old('role') }}>
                                                                             Admimistrator
                                                                         </option>
                                                                     </select>

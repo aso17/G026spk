@@ -49,7 +49,7 @@ class UserController extends Controller
         $rules = [
             'nik_karyawan' => 'required|min:12|numeric',
             'password' => 'required|min:4',
-            'role' => 'required',
+            'role' => 'required'
         ];
 
         $messages = [
@@ -58,6 +58,7 @@ class UserController extends Controller
             'nik_karyawan.min:12' => 'harus 12 angka !',
             'password.min:4' => 'harus lebih 4 karakter!',
             'password.required' => 'tidak boleh kosong!',
+            'role.required' => 'tidak boleh kosong!',
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -72,6 +73,7 @@ class UserController extends Controller
         $user = new User;
         $user->karyawan_id = $id_karyawan;
         $user->password = Hash::make($request->password);
+        $user->role = $request->role;
         $simpan = $user->save();
 
         if ($simpan) {

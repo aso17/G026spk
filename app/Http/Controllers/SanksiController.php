@@ -80,17 +80,16 @@ class SanksiController extends Controller
         // dd($request->approve);
         // dd($id_detail = $request->id_deta);
         $cek1 = DB::table('hasil')
-            ->where('hasil.id_detail', $request->id_detail)
+            ->where('hasil.karyawan_id', $request->id_kar)
             ->first();
         $cek2 = DB::table('hasil')
-            ->where('hasil.id_detail', $request->id_deta)
+            ->where('hasil.karyawan_id', $request->idkar)
             ->first();
 
-        if (session('jabatan') == 'Spv') {
-
-            if (empty($cek1)) {
+        if (session('role') == 2) {
+            if ($cek1->sanksi_id == null) {
                 DB::table('hasil')
-                    ->where('hasil.id_detail', $request->id_detail)
+                    ->where('hasil.karyawan_id', $request->id_kar)
                     ->update([
                         "sanksi_id" => $request->id_sanksi,
                         "tgl_pengajuan" => $request->tgl_pengajuan
@@ -99,11 +98,10 @@ class SanksiController extends Controller
             } else {
                 return redirect('/hasil')->with('warning', 'sanki sudah  ditentukan!');
             }
-        } elseif (session('jabatan') == 'Manager') {
-            if (empty($cek2)) {
-
+        } elseif (session('role') == 1) {
+            if ($cek2->tgl_approve == null) {
                 DB::table('hasil')
-                    ->where('hasil.id_detail', $request->id_deta)
+                    ->where('hasil.karyawan_id', $request->idkar)
                     ->update([
                         "status_pengajuan" => $request->approve,
                         "tgl_approve" => $request->tgl_approve

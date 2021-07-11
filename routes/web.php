@@ -33,7 +33,7 @@ Route::group(['middleware' => 'CekLogin'], function () {
     Route::patch('/kriteria/{kriteria}', 'KriteriaController@update');
     Route::delete('/kriteria/', 'KriteriaController@destroy');
     //subkriteria
-    Route::get('/Sub_kriteria/{sub_kriteria}', 'SubkriteriaController@index');
+    Route::get('/Sub_kriteria/{subkriteria}', 'SubkriteriaController@index');
     Route::get('/sub_kriteria/tambah/{sub_kriteria}', 'SubkriteriaController@create');
     Route::post('/subkriteria', 'SubkriteriaController@store');
     Route::get('/subkriteria/{subkriteria}', 'SubkriteriaController@edit');

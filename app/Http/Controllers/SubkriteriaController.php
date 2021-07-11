@@ -19,6 +19,7 @@ class SubkriteriaController extends Controller
     {
         $data['kriteria'] = DB::table('kriteria')->where('id', $kode)->first();
         $data['subkriteria'] = DB::table('subkriteria')
+            ->where('id_kriteria', $kode)
             ->get();
 
 

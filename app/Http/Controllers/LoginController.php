@@ -43,7 +43,8 @@ class LoginController extends Controller
 
         $rules = [
             'nik_karyawan' => 'required|min:12|numeric',
-            'password' => 'required|min:4'
+            'password' => 'required|min:4',
+
         ];
 
         $messages = [
@@ -75,6 +76,7 @@ class LoginController extends Controller
                     "login" => true,
                     "Username" => $user->nama_lengkap,
                     "nik_karyawan" => $user->nik_karyawan,
+                    "role" => $user->role,
                     "jabatan" => $user->jabatan
                 ]);
                 return redirect('/Dashboard');

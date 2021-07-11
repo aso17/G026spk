@@ -147,12 +147,12 @@
                                                         </td>
                                                         <td>
 
-                                                            @if (session('jabatan') === 'Manager')
+                                                            @if (session('role') == 1)
 
                                                                 <button
                                                                     class="btn detail btn bg-gradient-info btn-sm text-dark ml-2 float-right"
                                                                     data-toggle="modal" data-target="#approve"
-                                                                    data-iddetail="{{ $h->id_detail }}"
+                                                                    data-karyawanid="{{ $h->karyawan_id }}"
                                                                     data-nik="{{ $h->nik_karyawan }}"
                                                                     data-sanksi="{{ $h->nama_sanksi }}"
                                                                     data-nama_l="{{ $h->nama_lengkap }}"
@@ -163,12 +163,12 @@
                                                                     Persetujuan</button>
                                                             @endif
 
-                                                            @if (session('jabatan') === 'Spv')
+                                                            @if (session('role') == 2)
 
                                                                 <button
                                                                     class="btn detail btn bg-gradient-info btn-sm text-dark float-right ml-2 "
                                                                     data-toggle="modal" data-target="#sanksi-detail"
-                                                                    data-iddetail="{{ $h->id_detail }}"
+                                                                    data-karyawanid="{{ $h->karyawan_id }}"
                                                                     data-nik="{{ $h->nik_karyawan }}"
                                                                     data-nama_l="{{ $h->nama_lengkap }}"
                                                                     data-jaba="{{ $h->jabatan }}"
@@ -176,6 +176,33 @@
                                                                     data-h="{{ $h->hasil }}" id="sanksi"> <i
                                                                         class="fas fa-arrow-circle-right text-danger"></i>
                                                                     Sanksi</button>
+
+                                                            @endif
+                                                            @if (session('role') == 3)
+                                                                <button
+                                                                    class="btn detail btn bg-gradient-info btn-sm text-dark float-right ml-2 "
+                                                                    data-toggle="modal" data-target="#sanksi-detail"
+                                                                    data-karyawanid="{{ $h->karyawan_id }}"
+                                                                    data-nik="{{ $h->nik_karyawan }}"
+                                                                    data-nama_l="{{ $h->nama_lengkap }}"
+                                                                    data-jaba="{{ $h->jabatan }}"
+                                                                    data-foto="{{ $h->foto }}"
+                                                                    data-h="{{ $h->hasil }}" id="sanksi"> <i
+                                                                        class="fas fa-arrow-circle-right text-danger"></i>
+                                                                    Sanksi</button>
+                                                                <button
+                                                                    class="btn detail btn bg-gradient-info btn-sm text-dark ml-2 float-right"
+                                                                    data-toggle="modal" data-target="#approve"
+                                                                    data-karyawanid="{{ $h->karyawan_id }}"
+                                                                    data-nik="{{ $h->nik_karyawan }}"
+                                                                    data-sanksi="{{ $h->nama_sanksi }}"
+                                                                    data-nama_l="{{ $h->nama_lengkap }}"
+                                                                    data-jaba="{{ $h->jabatan }}"
+                                                                    data-foto="{{ $h->foto }}"
+                                                                    data-h="{{ $h->hasil }}" id="persetujuan">
+                                                                    <i class="fas fa-arrow-circle-right text-danger"></i>
+                                                                    Persetujuan</button>
+
 
                                                             @endif
                                                         </td>
@@ -242,7 +269,7 @@
                             <form action="{{ '/sanksi' }}" method="post">
                                 @csrf
                                 @method('patch')
-                                <input type="hidden" id="id_detail" name="id_detail">
+                                <input type="hidden" id="id_kar" name="id_kar">
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">Pilih sanksi</label>
                                     <select class="form-control" name="id_sanksi">
@@ -382,7 +409,7 @@
                             <form action="{{ '/sanksi' }}" method="post">
                                 @csrf
                                 @method('patch')
-                                <input type="hidden" id="id_deta" name="id_deta">
+                                <input type="hidden" id="idkar" name="idkar">
                                 <div class="form-group">
 
                                     <label for="recipient-name" class="col-form-label">Persetujuan</label>
@@ -434,14 +461,14 @@
     <script>
         $(document).ready(function() {
             $(document).on('click', '#sanksi', function() {
-                const id = $(this).data('iddetail');
+                const id = $(this).data('karyawanid');
                 const nik = $(this).data('nik');
                 const nama = $(this).data('nama_l');
                 const hasil = $(this).data('h');
                 const jabatan = $(this).data('jaba');
                 const gamb = $(this).data('foto');
 
-                $('#id_detail').val(id);
+                $('#id_kar').val(id);
                 $('#nik_k').text(nik);
                 $('#has').text(hasil);
                 $('#ja').text(jabatan);
@@ -455,7 +482,7 @@
     <script>
         $(document).ready(function() {
             $(document).on('click', '#persetujuan', function() {
-                const iddet = $(this).data('iddetail');
+                const idkar = $(this).data('karyawanid');
                 const nik = $(this).data('nik');
                 const nm_sank = $(this).data('sanksi');
                 const nama = $(this).data('nama_l');
@@ -463,7 +490,7 @@
                 const jabatan = $(this).data('jaba');
                 const gamb = $(this).data('foto');
 
-                $('#id_deta').val(iddet);
+                $('#idkar').val(idkar);
                 $('#nik').text(nik);
                 $('#hasi').text(hasil);
                 $('#sa').text(nm_sank);
