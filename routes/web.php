@@ -42,10 +42,13 @@ Route::group(['middleware' => 'CekLogin'], function () {
     //Route::post('/proses/tambah', 'ProsesController@store');
     Route::get('/proses', 'ProsesController@index');
     Route::get('/cari', 'ProsesController@cari');
+    Route::get('/prosesShow/{karyawan}', 'ProsesController@show');
+    Route::get('/prosesEdit/{karyawan}', 'ProsesController@edit');
+    Route::patch('/proses', 'ProsesController@update');
+    //detail proses
     Route::get('/proses/{kriteria}', 'DetailProsesController@create');
     Route::post('/proses/tambah', 'DetailProsesController@store');
     Route::get('/proses/hitung/{id_karyawan}', 'ProsesController@create');
-    //detail proses
     Route::get('/detailproses', 'DetailProsesController@index');
     Route::get('/pilih', 'DetailProsesController@pilih');
     Route::get('/type', 'DetailProsesController@type');
@@ -58,7 +61,9 @@ Route::group(['middleware' => 'CekLogin'], function () {
     Route::patch('/sanksi', 'SanksiController@update');
     //hasil
     Route::get('/hasil', 'HasilController@index');
-    // Route::post('/sanksi', 'HasilController@store');
+    //report
+    Route::get('/report', 'reportController@index');
+    Route::post('/report', 'reportController@sort');
     //user
     Route::get('/user', 'UserController@index');
     Route::get('/user/tambah', 'UserController@create');

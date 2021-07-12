@@ -72,9 +72,14 @@
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
                             class="fas fa-bars bg-warning"></i></a>
-                </li>
-            </ul>
 
+                </li>
+
+                <h6 class="text">DC Tangerang 1<br>Jalan Gatot Subroto, <br>Kadu, Curug, Kadu, Kec. Curug, Kota
+                    Tangerang, Banten
+                    15810
+                </h6>
+            </ul>
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto ">
@@ -154,7 +159,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="" class="nav-link">
+                                <a href="{{ url('/report') }}" class="nav-link">
                                     <h6 class="ml- text-light mr-4">
                                         <i class="fas fa-file-invoice mr-1"></i>
                                         Laporan

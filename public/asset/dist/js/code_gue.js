@@ -43,7 +43,7 @@
                 "paging": true,
                 dom: 'Bfrtip',
                 buttons: [{
-                    text: 'Tambah Data',
+                    text: 'Creat Karyawan',
                     action: function() {
                         window.location.href = "/karyawan/tambah"
                     }

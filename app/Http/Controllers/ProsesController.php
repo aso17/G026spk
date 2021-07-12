@@ -169,9 +169,18 @@ class ProsesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_karyawan)
     {
-        //
+        $data['normalisasi'] = DB::table('normalisasi')
+            ->join('karyawan', 'karyawan.id', '=', 'normalisasi.id_karyawan', 'left')
+            ->join('kriteria', 'kriteria.id', '=', 'normalisasi.id_kriteria', 'left')
+            ->join('subkriteria', 'subkriteria.id', '=', 'normalisasi.id_subkriteria', 'left')
+            ->where('normalisasi.id_karyawan', $id_karyawan)->get();
+
+        $data['karyawan'] = DB::table('karyawan')->where('karyawan.id', $id_karyawan)->first();
+
+
+        return view('proses.detail', $data);
     }
 
     /**
@@ -180,9 +189,27 @@ class ProsesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_karyawan)
     {
-        //
+        $data['normalisasi'] = DB::table('normalisasi')
+            ->join('karyawan', 'karyawan.id', '=', 'normalisasi.id_karyawan')
+            ->join('kriteria', 'kriteria.id', '=', 'normalisasi.id_kriteria')
+            ->join('subkriteria', 'subkriteria.id', '=', 'normalisasi.id_subkriteria')
+            ->where('id_karyawan', $id_karyawan)
+            ->first();
+
+        $data['karyawan'] = DB::table('karyawan')
+            ->where('id', $id_karyawan)
+            ->first();
+        $data['kri'] = DB::table('kriteria')
+            ->get();
+        $data['hasil'] = DB::table('normalisasi')
+            ->join('karyawan', 'karyawan.id', '=', 'normalisasi.id_karyawan')
+            ->join('kriteria', 'kriteria.id', '=', 'normalisasi.id_kriteria')
+            ->join('subkriteria', 'subkriteria.id', '=', 'normalisasi.id_subkriteria')
+            ->where('id_karyawan', $id_karyawan)
+            ->get();
+        return view('proses.edit', $data);
     }
 
     /**
@@ -192,9 +219,35 @@ class ProsesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $id_karyawan = $request->id_karyawan;
+        Proses::orWhere('id_karyawan', $id_karyawan)
+            ->where('id_kriteria', $request->id_kriteria)
+            ->update([
+                "id_subkriteria" => $request->idsubkriteria
+            ]);
+
+
+        $data['normalisasi'] = DB::table('normalisasi')
+            ->join('karyawan', 'karyawan.id', '=', 'normalisasi.id_karyawan')
+            ->join('kriteria', 'kriteria.id', '=', 'normalisasi.id_kriteria')
+            ->join('subkriteria', 'subkriteria.id', '=', 'normalisasi.id_subkriteria')
+            ->where('id_karyawan', $id_karyawan)
+            ->first();
+
+        $data['karyawan'] = DB::table('karyawan')
+            ->where('id', $id_karyawan)
+            ->first();
+        $data['kri'] = DB::table('kriteria')
+            ->get();
+        $data['hasil'] = DB::table('normalisasi')
+            ->join('karyawan', 'karyawan.id', '=', 'normalisasi.id_karyawan')
+            ->join('kriteria', 'kriteria.id', '=', 'normalisasi.id_kriteria')
+            ->join('subkriteria', 'subkriteria.id', '=', 'normalisasi.id_subkriteria')
+            ->where('id_karyawan', $id_karyawan)
+            ->get();
+        return view('proses.edit', $data);
     }
 
     /**

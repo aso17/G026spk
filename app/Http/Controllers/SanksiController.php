@@ -110,6 +110,21 @@ class SanksiController extends Controller
             } else {
                 return redirect('/hasil')->with('warning', 'sanki Sudah disetujui!');
             }
+        } elseif (session('role') == 3) {
+
+            DB::table('hasil')
+                ->where('hasil.karyawan_id', $request->id_kar)
+                ->update([
+                    "sanksi_id" => $request->id_sanksi,
+                    "tgl_pengajuan" => $request->tgl_pengajuan
+                ]);
+            DB::table('hasil')
+                ->where('hasil.karyawan_id', $request->idkar)
+                ->update([
+                    "status_pengajuan" => $request->approve,
+                    "tgl_approve" => $request->tgl_approve
+                ]);
+            return redirect('/hasil')->with('success', 'perubahan data berhasil');
         }
     }
 

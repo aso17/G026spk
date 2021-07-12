@@ -1,7 +1,7 @@
 @extends('layout.index')
 @section('content')
 
-    <div class="container-fluid bg-primary">
+    <div class="container-fluid ">
 
         <div class="row">
             <div class="col-lg-12">
@@ -52,29 +52,23 @@
                                                         <td>{{ $d->departemen }} </td>
                                                         <td>{{ $d->jabatan }} </td>
                                                         <td>{{ $d->status_karyawan }} </td>
-
-
-
-
-
                                                         <td class="justify-content-center">
-                                                            <button class="btn hapus btn btn-sm mr-1 float-right text-light"
-                                                                id="hapus" data-toggle="modal" data-target="#deletemodal"
-                                                                data-nik-karyawan=""><i class=" fas fa-trash-alt"></i>
-                                                            </button>
-                                                            <a href="" class="btn edit btn-sm mr-2 float-right text-light"
-                                                                id="ubah"><i class="fas fa-edit"></i>
-                                                            </a>
-                                                            <a href=""
-                                                                class="btn detail btn btn-sm mr-2  float-right text-light"
-                                                                id="sub_kriteria"><i class="fas fa-eye"></i>
-
-                                                            </a>
-
                                                             <a href="{{ 'proses/hitung/' . $d->id }}"> <button
                                                                     class="btn-dark btn btn-sm mr-2  float-right text-light"><i
-                                                                        class="fas fa-ey" id="proses"></i>Proses</button>
+                                                                        class="fas fa-ey" id="proses"></i> Proses</button>
                                                             </a>
+                                                            <a href="{{ '/prosesEdit/' . $d->id }}">
+                                                                <button
+                                                                    class="btn detail btn btn-sm mr-2  float-right text-light"
+                                                                    id="edit"><i class="fas fa-edit"></i>
+                                                                    Edit</button>
+                                                            </a>
+                                                            <a href="{{ '/prosesShow/' . $d->id }}" id="view">
+                                                                <button
+                                                                    class="btn edit btn-sm mr-2 float-right text-light"><i
+                                                                        class="fas fa-eye"></i> View</button>
+                                                            </a>
+
 
 
                                                         </td>

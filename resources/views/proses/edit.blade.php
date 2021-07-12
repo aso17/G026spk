@@ -19,16 +19,15 @@
 
                                     <div class="info-box-content">
                                         <h5 class="bg-primary"><i class="fas fa-tag"></i> Form
-                                            proses Kriteria</h5>
+                                            Edit proses Kriteria</h5>
 
                                         {{-- {{ dd($normalisasi) }} --}}
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <span class="info-box-text text-right font-weight-bold  mr-3">Alternatif
-                                                    Sanksi : </span>
-                                                <form method="post" action="/detailProses/ubah" enctype="" name="form1"
-                                                    id="form1">
+
+                                                <form method="post" action="/proses" enctype="" name="form1" id="form1">
                                                     @csrf
+                                                    @method('patch')
 
                                                     <div class="card-body">
                                                         <input type="hidden" id="id_karyawan" name="id_karyawan"
@@ -159,7 +158,7 @@
                                                             class="btn cancel btn btn-sm float-right text-light"
                                                             type="button">Back</button></a>
                                                     <button class=" btn tambah btn btn-sm float-right mr-2   " type="submit"
-                                                        name="submit" value="submit">Save</button>
+                                                        name="submit" value="submit">Update</button>
 
                                             </div>
                                         </div>
@@ -180,8 +179,10 @@
                             </div>
                             <!-- /.info-box-content -->
 
+
                             <div class="col-md-4">
                                 @foreach ($hasil as $h)
+
                                     <li
                                         class="list-group-item bg-warning d-flex justify-content-between align-items-center">
                                         <h6 class=" font-weight-bold text- "> Kriteria</h6>
@@ -199,10 +200,12 @@
                                     </span>
 
                                     </li>
+
+
+
+
                                 @endforeach
-                                <span class="badge badge-danger ">
-                                    {{ session('pesan') }}
-                                </span>
+
                             </div>
 
                         </div>
