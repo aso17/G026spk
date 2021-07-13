@@ -106,6 +106,8 @@ class SanksiController extends Controller
                         "status_pengajuan" => $request->approve,
                         "tgl_approve" => $request->tgl_approve
                     ]);
+                // hapus tabel normalisasi
+                DB::table('normalisasi')->where('id_karyawan', '=', $request->idkar)->delete();
                 return redirect('/hasil')->with('success', 'sanki telah disetujui');
             } else {
                 return redirect('/hasil')->with('warning', 'sanki Sudah disetujui!');
@@ -124,6 +126,7 @@ class SanksiController extends Controller
                     "status_pengajuan" => $request->approve,
                     "tgl_approve" => $request->tgl_approve
                 ]);
+
             return redirect('/hasil')->with('success', 'perubahan data berhasil');
         }
     }

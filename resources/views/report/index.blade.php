@@ -27,28 +27,53 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="id_sanksi">Kategori sanksi</label>
-                                                            <select name="id_sanksi"
-                                                                class="form-control @error('id_sanksi') is-invalid @enderror "
-                                                                id="id_sanksi" name="id_sanksi" value="<">
-                                                                <option value="{{ old('id_sanksi') }}" hidden>-- pilih--
+                                                            <label for="sanksi">Kategori sanksi</label>
+                                                            <select name="sanksi"
+                                                                class="form-control @error('sanksi') is-invalid @enderror "
+                                                                id="sanksi" name="sanksi" value="<">
+                                                                <option value="{{ old('sanksi') }}" hidden>-- pilih--
                                                                 </option>
                                                                 @foreach ($sanksi as $sank)
 
                                                                     <option value="{{ $sank->id }}"
-                                                                        {{ @old('id_sanksi') }}>
+                                                                        {{ @old('sanksi') }}>
                                                                         {{ $sank->nama_sanksi }}
                                                                     </option>
                                                                 @endforeach
 
                                                             </select>
-                                                            @error('id_sanksi')
+                                                            @error('sanksi')
 
                                                                 <div class="invalid-feedback">
                                                                     {{ $message }}
                                                                 </div>
                                                             @enderror
                                                         </div>
+                                                        {{-- <div class="row">
+                                                            <div class="col-md-3">
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" name="disetujui"
+                                                                        type="checkbox" value="disetujui"
+                                                                        id="defaultCheck1">
+                                                                    <label class="form-check-label" for="defaultCheck1">
+                                                                        Disetujui
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" name="tidak_disetujui"
+                                                                        type="checkbox" value="tidak disetujui"
+                                                                        id="defaultCheck1">
+                                                                    <label class="form-check-label" for="defaultCheck1">
+                                                                        Tidak Disetujui
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div> --}}
+
+
+
                                                     </div>
                                                 </div>
                                                 <div class="row">
