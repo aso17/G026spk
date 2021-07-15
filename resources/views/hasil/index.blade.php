@@ -1,7 +1,7 @@
 @extends('layout.index')
 @section('content')
 
-    <div class="container-fluid bg-primary">
+    <div class="container-fluid">
 
         <div class="row">
             <div class="col-lg-12">
