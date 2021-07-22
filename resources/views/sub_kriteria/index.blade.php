@@ -6,14 +6,12 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h5 class="bg-danger"><i class="fas fa-tag"></i> Detail Kriteria</h5>
 
-                    </div>
 
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <a href="/kriteria" class="text-right float-right"><i class="fas fa-arrow-circle-left"></i> back</a>
+                        <a href="/Kriteria" class="text-left float-right  mr-3 mt-3" style="color:#2F4F4F"><i
+                                class="fas fa-arrow-circle-left"></i> back</a>
 
                         <div class="col-md-7">
                             <!-- Info Boxes Style 2 -->
@@ -21,10 +19,9 @@
 
 
                                 <div class="info-box-content">
-                                    <h5 class="bg-primary mt-3"><i class="fas fa-tag "></i> Kriteria</h5>
-
-                                    <span class="info-box-text"></span>
-                                    <span class="info-box-number"></span>
+                                    <div class="card-header" style="border-block-color: #2F4F4F">
+                                        <h5 class=""><i class="fas fa-bars"></i> Kriteria</h5>
+                                    </div>
 
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item">{{ $kriteria->kode_kriteria }}</li>
@@ -46,7 +43,7 @@
 
                         <div class="card card-outline">
                             <div class="card-header  ">
-                                <h5 class="bg-warning"><i class="fas fa-tag"></i>Sub kriteria</h5>
+                                <h5 class=""><i class="fas fa-bars"></i> Sub kriteria</h5>
                             </div>
                             <div class="card-body">
                                 <div class="row">

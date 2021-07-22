@@ -56,7 +56,16 @@ class SanksiController extends Controller
     {
         //
     }
-
+    public function ubah(Request $request)
+    {
+        DB::table('ketentuan_sanksi')
+            ->where('id', $request->id_sanksi)
+            ->update([
+                "nama_sanksi" => $request->namasanksi,
+                "nilai_ketentuan" => $request->nilaiketentuan
+            ]);
+        return redirect('/hasil')->with('success', 'data Sanksi berhasil diUbah');
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -94,6 +103,9 @@ class SanksiController extends Controller
                         "sanksi_id" => $request->id_sanksi,
                         "tgl_pengajuan" => $request->tgl_pengajuan
                     ]);
+                //menghapus data normalisasi
+                DB::table('normalisasi')->where('id_karyawan', $request->id_kar)->delete();
+
                 return redirect('/hasil')->with('success', 'sanki telah ditentukan');
             } else {
                 return redirect('/hasil')->with('warning', 'sanki sudah  ditentukan!');
@@ -120,6 +132,9 @@ class SanksiController extends Controller
                     "sanksi_id" => $request->id_sanksi,
                     "tgl_pengajuan" => $request->tgl_pengajuan
                 ]);
+            // DB::table('normalisasi')->where('id_karyawan', $request->id_kar)->delete();
+
+
             DB::table('hasil')
                 ->where('hasil.karyawan_id', $request->idkar)
                 ->update([
@@ -137,8 +152,9 @@ class SanksiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        DB::table('ketentuan_sanksi')->where('id', $request->idsanksi)->delete();
+        return redirect('/hasil')->with('success', 'data berhasil dihapus');
     }
 }

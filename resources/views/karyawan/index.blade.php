@@ -6,8 +6,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card mt-2">
-                    <div class="card-header  border-5 border border-primary">
-                        <h5 class="bg-danger"> <i class="fas fa-tag ml-2"></i> Daftar Karyawan</h5>
+                    <div class="card-header" style="border-block-color: #2F4F4F">
+                        <h5 class=""><i class="fas fa-bars"></i> Daftar Karyawan</h5>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body ">
@@ -40,8 +40,8 @@
                                         <td class="">
 
                                             <a href="/karyawan/{{ $kar->id }}"
-                                                class="btn detail btn bg-gradient-info btn-sm text-dark ml-3" id="detail"
-                                                style="height: 300%"><i class="fas fa-arrow-circle-right text-danger"></i>
+                                                class="btn detail btn  btn-sm text-light ml-3" id="detail"
+                                                style="height: 300%"><i class="fas fa-arrow-circle-right text-light"></i>
                                                 View</a>
 
                                         </td>

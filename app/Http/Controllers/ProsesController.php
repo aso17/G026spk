@@ -43,13 +43,10 @@ class ProsesController extends Controller
     }
     public function index()
     {
-        $data['detailKaryawan'] = DB::table('karyawan')
+        $data['detailKaryawan'] = DB::table('normalisasi')
 
-            ->whereIn('id', function ($query) {
-                $query->select('id_karyawan')
-                    ->from('normalisasi');
-            })
-            ->orderBy('karyawan.id', 'DESC')
+            ->join('karyawan', 'karyawan.id', '=', 'normalisasi.id_karyawan')
+            ->groupBy('karyawan.id')
             ->get();
         return view('proses.index', $data);
     }
@@ -138,7 +135,8 @@ class ProsesController extends Controller
                 $index_w++;
             }
             $hasil = round($v, 2);
-
+            // var_dump($hasil);
+            // die;
             hasil::create([
                 'karyawan_id' => $id_karya,
                 'hasil' => $hasil,

@@ -68,7 +68,7 @@ class KriteriaController extends Controller
      */
     public function edit(kriteria $kriteria)
     {
-        $kriteria = kriteria::find(1);
+        // $kriteria = kriteria::find(1);
 
         return view('kriteria.edit', ['kriteria' => $kriteria]);
     }

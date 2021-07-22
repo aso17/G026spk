@@ -5,8 +5,8 @@
 }
 
 .tambah {
-  background: rgb(9, 31, 97);
-  border-color: #0d12b1;
+  background: #2F4F4F;
+  border-color: #2F4F4F;
   border-radius: ;
   color: #e4ebe5;
   position: relative;
@@ -25,7 +25,7 @@
   transform: translateX(-50%);
   width: 0;
   height: 100%;
-  background: #0f29d1;
+  background: #252731;
   z-index: -1;
   transition: width 150ms ease-in-out;
 }
@@ -41,8 +41,8 @@
 
 /* button cancel */
 .cancel {
-  background: rgb(9, 31, 97);
-  border-color: #d11313;
+  background: #2F4F4F;
+  border-color: #2F4F4F;
   border-radius: ;
   color: #d11313;
   position: relative;
@@ -78,10 +78,10 @@
 
 /* button edit */
 .edit {
-  background: rgb(9, 31, 97);
-  border-color: #0d12b1;
+  background: #2F4F4F;
+  border-color: #2F4F4F;
   border-radius: ;
-  color: #10d44e;
+  color: #acbdb1;
   position: relative;
   overflow: hidden;
   z-index: 1;
@@ -98,7 +98,7 @@
   transform: translateX(-50%);
   width: 0;
   height: 100%;
-  background: #0bd83b;
+  background: #101d13;
   z-index: -1;
   transition: width 150ms ease-in-out;
 }
@@ -119,10 +119,10 @@
 /* detail edit */
 
 .detail {
-  background: rgb(9, 31, 97);
-  border-color: #2c6d81;
+  background: #2F4F4F;
+  border-color: #2F4F4F;
   border-radius: ;
-  color: #df9814;
+  color: #e1e9e9;
   position: relative;
   overflow: hidden;
   z-index: 1;
@@ -139,13 +139,13 @@
   transform: translateX(-50%);
   width: 0;
   height: 100%;
-  background: hsl(39, 90%, 52%);
+  background: #141815;
   z-index: -1;
   transition: width 150ms ease-in-out;
 }
 
 .detail:hover {
-  color: rgb(173, 201, 50);
+  color: #c7cfc9;
   transform: scaleX(0);
   transition: all .4s;
   transition-delay: .4s;
@@ -159,10 +159,12 @@
 
 
 .nilai {
-  background: rgb(9, 31, 97);
-  border-color: #1349d1;
+  background: #2F4F4F;
+  border-color: #2F4F4F;
+  ;
   border-radius: ;
-  color: #1352d1;
+  color: #2F4F4F;
+  ;
   position: relative;
   overflow: hidden;
   z-index: 1;
@@ -199,10 +201,13 @@
 /* hapus button */
 
 .hapus {
-  background: rgb(9, 31, 97);
-  border-color: #d11313;
+  background: #2F4F4F;
+  ;
+  border-color: #2F4F4F;
+  ;
   border-radius: ;
-  color: #d11313;
+  color: #2F4F4F;
+  ;
   position: relative;
   overflow: hidden;
   z-index: 1;

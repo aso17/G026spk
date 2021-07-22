@@ -16,7 +16,7 @@
                 "paging": true,
                 dom: 'Bfrtip',
                 buttons: [{
-                    text: 'Proses karyawan',
+                    text: 'Process karyawan',
                     action: function() {
                         window.location.href = "/detailproses"
                     }
@@ -39,7 +39,7 @@
                 "autoWidth": true,
                 "info": false,
                 "lengthChange": false,
-                "scrollY": 350,
+                "scrollY": 500,
                 "paging": true,
                 dom: 'Bfrtip',
                 buttons: [{

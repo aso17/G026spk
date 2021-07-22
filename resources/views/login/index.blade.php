@@ -39,12 +39,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 </head>
 
-<body class="hold-transition login-page bg-secondary">
+<body class="hold-transition login-page" style="background:#2F4F4F ">
     <div class="login-box ">
 
 
         <!-- /.login-logo -->
-        <div class="card bg-dark shadow bg-danger rounded justify-content-center">
+        <div class="card shadow rounded justify-content-center text-light" style="background:#2F4F4F ">
 
 
 
@@ -54,7 +54,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </h5>
             <span class=" font text-left ml-4 "><strong>S</strong>istem <strong>P</strong>endukung
                 <strong>K</strong>eputusan</span>
-            <div class="card-body login-card-body bg-dark ">
+            <div class="card-body login-card-body" style="background:#2F4F4F ">
                 <div class=" login-logo mx-auto">
                     <img src="{{ asset('asset/images/logo.jpg') }} " alt="Logo"
                         class="  elevation-3 mb-3  float-left" style="opacity: 17" width="313px" height="100px"
@@ -96,7 +96,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         <!-- /.col -->
                         <div class="col">
-                            <button type="submit" class="btn btn-info btn-block">Sig IN</button>
+                            <button type="submit" class="btn btn-info btn-block" style="background:#2F4F4F ">Sig
+                                IN</button>
                         </div>
                         <!-- /.col -->
                     </div>

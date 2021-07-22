@@ -7,7 +7,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="bg-danger"><i class="fas fa-tag"></i> Hasil</h5>
+                        <h5 class=""><i class="fas fa-square-root-alt"></i> Hasil Penilaian Karyawan</h5>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -18,7 +18,7 @@
 
 
                                     <div class="info-box-content">
-                                        <h5 class="bg-primary"><i class="fas fa-tag"></i>Nilai Ketentuan Sanksi</h5>
+                                        <h5 class=""><i class="fas fa-bars"></i> Nilai Ketentuan Sanksi</h5>
                                         <span class="info-box-text"></span>
                                         <span class="info-box-number"></span>
                                         <div class="row">
@@ -47,12 +47,17 @@
                                                         <td class="justify-content-center">
                                                             <button class="btn hapus btn btn-sm float-right text-light"
                                                                 id="hapus" data-toggle="modal" data-target="#deletemodal"
-                                                                data-nik-karyawan=""><i class=" fas fa-trash-alt"></i>
+                                                                data-id_sank="{{ $kte->id }}"><i
+                                                                    class=" fas fa-trash-alt"></i>
                                                             </button>
-                                                            <a href="/sanksi/"
-                                                                class="btn edit btn-sm mr-2 float-right text-light"
-                                                                id="ubah"><i class="fas fa-edit"></i>
-                                                            </a>
+
+                                                            <button class="btn edit btn-sm mr-2 float-right text-light"
+                                                                data-toggle="modal" data-target="#ubahModal"
+                                                                data-id="{{ $kte->id }}"
+                                                                data-nm="{{ $kte->nama_sanksi }}"
+                                                                data-nilai="{{ $kte->nilai_ketentuan }}" id="ubah"><i
+                                                                    class="fas fa-edit"></i></button>
+
 
 
                                                         </td>
@@ -74,7 +79,7 @@
 
                         <div class="card card-outline">
                             <div class="card-header  ">
-                                <h5 class="bg-warning"><i class="fas fa-tag"></i>Daftar hasil</h5>
+                                <h5 class=""><i class="fas fa-bars"></i> Daftar hasil</h5>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -110,7 +115,8 @@
                                                                     sanksi</span>
                                                             @endif
                                                             @if ($h->sanksi_id !== null)
-                                                                <span class="badge text-dark">{{ $h->nama_sanksi }}</span>
+                                                                <span
+                                                                    class="badge text-dark">{{ $h->nama_sanksi }}</span>
                                                             @endif
 
                                                         </td>
@@ -224,6 +230,37 @@
             </div>
         </div>
     </div>
+    {{-- modal hapus --}}
+    <form action="/sanksi" method="post">
+        @csrf
+        @method('delete')
+        <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body bg-light">
+                        <div class="row">
+                            <div class="col-3 d-flex justify-content-center">
+                                <i class="fa  fa-exclamation-triangle" style="font-size: 70px; color:red;"></i>
+                            </div>
+                            <div class="col-9 pt-2">
+                                <h5>Apakah yakin akan di hapus?</h5>
+
+                            </div>
+                        </div>
+                        <input type="hidden" name="idsanksi" id="idsanksi">
+
+                    </div>
+                    <div class="modal-footer border-warning">
+                        <button class="btn cancel btn btn-sm float-left text-light" type="button" data-dismiss="modal">
+                            Cancel</button>
+                        <button id=" btn-delete" type="submit" class="btn edit btn  btn-sm text-light">OK</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
     {{-- //modalbox sanksi --}}
     <div class="modal fade" id="sanksi-detail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -356,6 +393,43 @@
                 <div class="modal-footer">
                     <button type="button" class="btn cancel btn-sm text-light" data-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-primary btn-sm">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- //modalbox --}}
+    {{-- modalubah ketentuan sanksi --}}
+    <div class="modal fade" id="ubahModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-dark">
+                    <h5 class="modal-title" id="exampleModalLabel">Form Ubah Alternatif sanki</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ '/sanksi' }}" method="post">
+                        @csrf
+                        @method('put')
+                        <input type="hidden" name="id_sanksi" id="id_sanksi">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Nama Sanksi</label>
+                            <input type="text" class="form-control " id="namasanksi" name="namasanksi">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Nilai Ketentuan</label>
+                            <input type="text" class="form-control " id="nilaiketentuan" name="nilaiketentuan">
+
+                        </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn cancel btn-sm text-light" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Update</button>
                     </form>
                 </div>
             </div>
@@ -497,6 +571,30 @@
                 $('#jaba').text(jabatan);
                 $('#nma').text(nama);
                 $('#img').attr('src', '{{ asset('foto') }}/' + gamb);
+
+
+            })
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', '#ubah', function() {
+                const id_s = $(this).data('id');
+                const nama = $(this).data('nm');
+                const nilai_i = $(this).data('nilai');
+
+                $('#id_sanksi').val(id_s);
+                $('#namasanksi').val(nama);
+                $('#nilaiketentuan').val(nilai_i);
+
+            })
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', '#hapus', function() {
+                const id_sa = $(this).data('id_sank');
+                $('#idsanksi').val(id_sa);
 
 
             })

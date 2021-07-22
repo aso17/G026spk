@@ -7,7 +7,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="bg-danger"><i class="fas fa-tag"></i>Proses</h5>
+                        <h5 class=""><i class="fas fa-square-root-alt"></i> Proses Penilaian Karyawan</h5>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -18,8 +18,7 @@
 
 
                                     <div class="info-box-content">
-                                        <h5 class="bg-primary"><i class="fas fa-tag"></i> Form
-                                            proses Kriteria</h5>
+
 
 
                                         <div class="row">
@@ -39,7 +38,7 @@
 
                                                                         <div class="form-group">
 
-                                                                            <label for="nik_karyawan">Ketikan Nik
+                                                                            <label for="nik_karyawan">Ketiaknan Nik
                                                                                 karyawan</label>
                                                                             <input type="text"
                                                                                 class="form-control @error('nik_karyawan') is-invalid @enderror "

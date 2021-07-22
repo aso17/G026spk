@@ -7,7 +7,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="bg-danger"><i class="fas fa-tag"></i> Laporan</h5>
+                        <h5 class=""><i class="fas fa-bars"></i> Laporan</h5>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -30,7 +30,7 @@
                                                             <label for="sanksi">Kategori sanksi</label>
                                                             <select name="sanksi"
                                                                 class="form-control @error('sanksi') is-invalid @enderror "
-                                                                id="sanksi" name="sanksi" value="<">
+                                                                id="sanksi" name="sanksi">
                                                                 <option value="{{ old('sanksi') }}" hidden>-- pilih--
                                                                 </option>
                                                                 @foreach ($sanksi as $sank)
@@ -40,6 +40,7 @@
                                                                         {{ $sank->nama_sanksi }}
                                                                     </option>
                                                                 @endforeach
+                                                                <option value="semua">Semua kategori</option>
 
                                                             </select>
                                                             @error('sanksi')

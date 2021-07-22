@@ -7,7 +7,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="bg-danger"><i class="fas fa-tag"></i>Proses</h5>
+                        <h5 class=""><i class="fas fa-square-root-alt"></i> Proses Penilaian Karyawan</h5>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -18,8 +18,6 @@
 
 
                                     <div class="info-box-content">
-                                        <h5 class="bg-primary"><i class="fas fa-tag"></i> Form
-                                            Edit proses Kriteria</h5>
 
                                         {{-- {{ dd($normalisasi) }} --}}
                                         <div class="row">
@@ -183,8 +181,7 @@
                             <div class="col-md-4">
                                 @foreach ($hasil as $h)
 
-                                    <li
-                                        class="list-group-item bg-warning d-flex justify-content-between align-items-center">
+                                    <li class="list-group-item bg-light d-flex justify-content-between align-items-center">
                                         <h6 class=" font-weight-bold text- "> Kriteria</h6>
                                         {{ $h->nama_kriteria }}
 

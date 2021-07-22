@@ -17,9 +17,10 @@
         <div class="container-fluid ">
             <div class="row">
                 <div class="col-lg-6">
-                    <h5 class="bg-danger"><i class="fas fa-tag"> </i> Profile karyawan</h5>
-                    <div class="card card-warning card-outline ">
-                        <a href="/Karyawan" class="text-right mr-3 mt-3"><i class="fas fa-arrow-circle-left"></i> back</a>
+                    <h5 style="background: #2F4F4F" class="text-light"><i class=" fas fa-tag"> </i> Profile karyawan</h5>
+                    <div class="card  ">
+                        <a href="/Karyawan" class="text-right  mr-3 mt-3" style="color:#2F4F4F"><i
+                                class="fas fa-arrow-circle-left"></i> back</a>
                         <div class="card-body box-profile">
 
                             <div class="col-lg-5 d-flex py-3">
@@ -36,7 +37,8 @@
                                     data-toggle="modal" data-target="#deletemodal"
                                     data-nik-karyawan="{{ $karyawan->nik_karyawan }}"><i class=" fas fa-trash-alt"></i>
                                     Delete</button>
-                                <a href=" #" class="btn edit btn-sm mr-2 float-right text-light" id="ubah"><i
+                                <a href="{{ '/karyawanedit/' . $karyawan->id }}"
+                                    class="btn edit btn-sm mr-2 float-right text-light" id="ubah"><i
                                         class="fas fa-edit"></i>
                                     Edit</a>
 
@@ -137,6 +139,5 @@
 
             })
         })
-
     </script>
 @endsection

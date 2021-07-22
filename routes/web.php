@@ -24,6 +24,8 @@ Route::group(['middleware' => 'CekLogin'], function () {
     Route::get('/karyawan/tambah', 'KaryawanController@create');
     Route::post('/karyawan', 'KaryawanController@store');
     Route::get('/karyawan/{karyawan}', 'KaryawanController@show');
+    Route::get('/karyawanedit/{karyawan}', 'KaryawanController@edit');
+    Route::patch('/karyawan', 'KaryawanController@update');
     Route::delete('/karyawanhapus', 'KaryawanController@destroy');
     //kriteria
     Route::get('/kriteria', 'KriteriaController@index');
@@ -59,11 +61,14 @@ Route::group(['middleware' => 'CekLogin'], function () {
     //sanksi
     Route::post('/sanksi', 'SanksiController@store');
     Route::patch('/sanksi', 'SanksiController@update');
+    Route::put('/sanksi', 'SanksiController@ubah');
+    Route::delete('/sanksi', 'SanksiController@destroy');
     //hasil
     Route::get('/hasil', 'HasilController@index');
     //report
     Route::get('/report', 'reportController@index');
     Route::post('/report', 'reportController@sort');
+    Route::get('/cetak/{tgl_awal}/{tgl_ahir}/{sanksi}', 'reportController@cetak');
     //user
     Route::get('/user', 'UserController@index');
     Route::get('/user/tambah', 'UserController@create');

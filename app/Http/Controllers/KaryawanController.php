@@ -91,6 +91,7 @@ class KaryawanController extends Controller
     public function show(karyawan $karyawan)
     {
         $data['karyawan'] = $karyawan;
+        // dd($karyawan);
         return view('karyawan.detail', $data);
     }
 
@@ -102,7 +103,9 @@ class KaryawanController extends Controller
      */
     public function edit(karyawan $karyawan)
     {
-        //
+        $data['karyawan'] = $karyawan;
+        // dd($karyawan);
+        return view('karyawan.edit', $data);
     }
 
     /**
@@ -112,9 +115,48 @@ class KaryawanController extends Controller
      * @param  \App\karyawan  $karyawan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, karyawan $karyawan)
+    public function update(Request $request)
     {
-        //
+        if ($request->hasFile('foto')) {
+            $request->file('foto')->move('foto/', $request->file('foto')->getClientOriginalName());
+            $karyawan = $request->file('foto')->getClientOriginalName();
+            Karyawan::where('id', $request->id)
+                ->update([
+                    'nik_karyawan' => $request->nik_karyawan,
+                    'nama_lengkap' => $request->nama_lengkap,
+                    'tempat_lahir' => $request->tempat_lahir,
+                    'tanggal_lahir' => $request->tanggal_lahir,
+                    'tanggal_mulaikerja' => $request->tanggal_mulaikerja,
+                    'jenis_kelamin' => $request->jenis_kelamin,
+                    'agama' => $request->agama,
+                    'jabatan' => $request->jabatan,
+                    'npwp' => $request->npwp,
+                    'departemen' => $request->departemen,
+                    'status_karyawan' => $request->status_karyawan,
+                    'foto' => $karyawan,
+                    'no_telepon' => $request->no_telepon,
+                    'email' => $request->email
+                ]);
+        } else {
+            Karyawan::where('id', $request->id)
+                ->update([
+                    'nik_karyawan' => $request->nik_karyawan,
+                    'nama_lengkap' => $request->nama_lengkap,
+                    'tempat_lahir' => $request->tempat_lahir,
+                    'tanggal_lahir' => $request->tanggal_lahir,
+                    'tanggal_mulaikerja' => $request->tanggal_mulaikerja,
+                    'jenis_kelamin' => $request->jenis_kelamin,
+                    'agama' => $request->agama,
+                    'jabatan' => $request->jabatan,
+                    'npwp' => $request->npwp,
+                    'departemen' => $request->departemen,
+                    'status_karyawan' => $request->status_karyawan,
+                    'no_telepon' => $request->no_telepon,
+                    'email' => $request->email
+                ]);
+            // return redirect('/Karyawan')->with('success', 'data karyawan berhasil diUbah');
+        }
+        return redirect('/Karyawan')->with('success', 'data karyawan berhasil diUbah');
     }
 
     /**
@@ -126,8 +168,6 @@ class KaryawanController extends Controller
     public function destroy(Request $request)
     {
         $nik = $request->id;
-
-
         DB::table('karyawan')->where('nik_karyawan', $nik)->delete();
         return redirect('/Karyawan')->with('success', 'data berhasil di hapus');
     }

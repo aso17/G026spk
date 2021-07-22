@@ -7,7 +7,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="bg-danger"><i class="fas fa-tag"></i> Proses</h5>
+                        <h5 class=""><i class="fas fa-square-root-alt"></i> Proses Penilaian Karyawan</h5>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -15,9 +15,7 @@
 
 
                         <div class="card card-outline">
-                            <div class="card-header  ">
-                                <h5 class="bg-warning"><i class="fas fa-tag"></i>Daftar Proses</h5>
-                            </div>
+
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md">
@@ -54,8 +52,9 @@
                                                         <td>{{ $d->status_karyawan }} </td>
                                                         <td class="justify-content-center">
                                                             <a href="{{ 'proses/hitung/' . $d->id }}"> <button
-                                                                    class="btn-dark btn btn-sm mr-2  float-right text-light"><i
-                                                                        class="fas fa-ey" id="proses"></i> Proses</button>
+                                                                    class="btn detail btn btn-sm mr-2  float-right text-light"><i
+                                                                        class="fas fa-square-root-alt"></i>
+                                                                    Process</button>
                                                             </a>
                                                             <a href="{{ '/prosesEdit/' . $d->id }}">
                                                                 <button

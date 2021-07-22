@@ -7,7 +7,7 @@
             <div class="col-lg-12">
                 <div class="card mt-2">
                     <div class="card-header  border-5 border border-primary">
-                        <h5 class="bg-danger"> <i class="fas fa-tag ml-2"></i> Data User</h5>
+                        <h5 class=""><i class="fas fa-bars"></i> Data User</h5>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body ">

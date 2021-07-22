@@ -13,7 +13,7 @@
                         <!-- general form elements -->
                         <div class="card card-">
                             <div class="card-header">
-                                <h5 class="bg-danger"><i class="fas fa-edit ml-2">Form ubah Sub Kriteria</i></h5>
+                                <h5 class=""><i class="fas fa-edit ml-2">Form ubah Sub Kriteria</i></h5>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->

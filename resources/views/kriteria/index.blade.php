@@ -6,16 +6,13 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h5 class="bg-danger"><i class="fas fa-tag"></i> Daftar Kriteria</h5>
-                    </div>
-                    <!-- /.card-header -->
+
                     <div class="card-body">
 
 
                         <div class="card card-outline">
-                            <div class="card-header  ">
-                                <h5 class="bg-warning"><i class="fas fa-tag"></i> Kriteria perhitungan</h5>
+                            <div class="card-header" style="border-block-color: #2F4F4F">
+                                <h5 class=""><i class="fas fa-bars"></i> Kriteria Perhitungan</h5>
                             </div>
                             <div class="card-body">
                                 <div class="row">

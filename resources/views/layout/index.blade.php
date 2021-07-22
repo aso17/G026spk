@@ -66,7 +66,7 @@
     <div class="wrapper">
 
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light bg-dark">
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light text-light " style="background:#2F4F4F ">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -82,22 +82,22 @@
             </ul>
 
             <!-- Right navbar links -->
-            <ul class="navbar-nav ml-auto ">
+            <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <button onclick="logConfirm('')" class="btn btn btn-sm text-light" class="nav-link "
                         id=" logoutmodal" data-toggle="modal" data-target="#logoutmodal"
-                        style="background-color:#e01d1d"><i class="fas fa-sign-out-alt"></i> Keluar</button>
+                        style="background-color:#e01d1d"><i class="fas fa-sign-out-alt"></i>Exit</button>
                 </li>
             </ul>
         </nav>
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4 text-center bg-primary">
+        <aside class="main-sidebar sidebar-dark-primary elevation-4 text-center" style="background:#2F4F4F ">
             <!-- Brand Logo -->
             <a href="" class="brand-link">
                 <img src="{{ asset('asset/images/logo.jpg') }} " alt="AdminLTE Logo" class="" style=" " width="220px"
-                    height="70px" class="img-thumbnail"><br>
+                    height="70px" class="img-thumbnail" style="background: transparent"><br>
                 <span class=" brand-text  font-weight-light font-weight-bold shadow">G026spk</span> <br>
                 <small>PT.Indomarco Prismatama</small>
 
@@ -199,7 +199,7 @@
 
 
         <!-- Main Footer -->
-        <footer class="main-footer bg-dark">
+        <footer class="main-footer text-light " style="background:#2F4F4F ">
             <!-- To the right -->
             <div class="float-right d-none d-sm-inline">
                 Powered by <a href="https://gisaka.net/">A_so17</a>
@@ -230,8 +230,8 @@
                 </div>
                 <div class="modal-footer">
 
-                    <button id="btn-log" class="btn btn-danger" type="submit" name="submit"> keluar</button>
-                    <button type="button" class="btn btn-info" data-dismiss="modal">Batal</button>
+                    <button id="btn-log" class="btn btn tambah btn-danger" type="submit" name="submit">Exit</button>
+                    <button type="button" class="btn btn cancel text-light" data-dismiss="modal">Cancel</button>
                 </div>
                 </form>
             </div>

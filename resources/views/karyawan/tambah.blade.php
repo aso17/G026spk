@@ -5,21 +5,21 @@
     <div class="content-header">
 
         <!-- Main content -->
-        <section class="content">
+        <section class="content" style="background:#F8F8FF">
             <div class="container-fluid">
                 <div class="row">
                     <!-- left column -->
                     <div class="col-md-12" style="overflow: initial">
                         <!-- general form elements -->
                         <div class="card card-">
-                            <div class="card-header">
-                                <h5 class="bg-danger"><i class="fas fa-edit ml-2"></i> Form Tambah Data Karyawan</h5>
+                            <div class="card-header" style="background:#F8F8FF">
+                                <h4 class=""><i class="fas fa-edit ml-2"></i> Form Tambah Data Karyawan</h4>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
                             <form method="post" action="/karyawan" enctype="multipart/form-data">
                                 @csrf
-                                <div class="card-body">
+                                <div class="card-body" style="background: #F8F8FF">
                                     <div class="row">
 
                                         <div class="col-md-6">
@@ -339,14 +339,14 @@
                                 <!-- /.card-body -->
 
                                 <div class="card-footer">
-                                    <a href="/Karyawan" class="btn btn-warning btn-icon-split btn-sm float-right"
-                                        style="margin-bottom: 5px;"><span class="icon text-white-5">
-                                            <i class="fas fa-arrow-circle-left"></i></span>
-                                        <span class="font-weight-bold text-danger">Cancel</span></a>
+                                    <a href="/Karyawan" class="btn  btn-icon-split btn-sm float-right"
+                                        style="background: #2F4F4F"><span class="icon text-white-5">
+                                            <i class="fas fa-arrow-circle-left text-light"></i></span>
+                                        <span class="font-weight-bold text-light">Cancel</span></a>
 
                                     <div class="button-container ">
-                                        <button type="submit" class="button " id="submit" onclick="validation()"><span
-                                                class="icon text-white-5 "><i class="far fa-paper-plane"></i>
+                                        <button type="submit" class="button " id="submit" style="background: #2F4F4F"><span
+                                                class="text-light "><i class="far fa-paper-plane"></i>
                                                 Save </span></button>
                                     </div>
 

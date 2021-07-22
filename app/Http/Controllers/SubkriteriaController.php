@@ -101,7 +101,7 @@ class SubkriteriaController extends Controller
                 'bobot_subkriteria' => $request->bobot_subkriteria,
             ]);
 
-        return redirect('/Sub_kriteria/' . $subkriteria->id_kriteria)->with('success', 'data kriteria berhasil di ubah');
+        return redirect('/Sub_kriteria/' . $subkriteria->id_kriteria)->with('success', 'data Subkriteria berhasil di ubah');
     }
 
     /**

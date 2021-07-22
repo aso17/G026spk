@@ -7,7 +7,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="bg-danger"><i class="fas fa-tag"></i>Proses</h5>
+                        <h5 class=""><i class="fas fa-square-root-alt"></i> From Edit Penilaian Karyawan</h5>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
