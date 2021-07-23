@@ -13,15 +13,13 @@
                         <!-- general form elements -->
                         <div class="card card-">
                             <div class="card-header">
-                                <h5 class="bg-danger"><i class="fas fa-edit ml-2">Form Tambah Data Kriteria</i></h5>
+                                <h5 class=""><i class="fas fa-edit ml-2">Form Tambah Data Kriteria</i></h5>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
                             <form method="post" action="/kriteria" enctype="">
                                 @csrf
                                 <div class="card-body">
-
-
                                     <div class="col-md-6">
                                         <div class="form-group">
 

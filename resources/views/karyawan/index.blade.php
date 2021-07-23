@@ -55,4 +55,24 @@
             </div>
         </div>
     </div>
+    <script>
+        $("#karyawan").DataTable({
+
+            "responsive": true,
+            "autoWidth": true,
+            "info": false,
+            "lengthChange": true,
+            "scrollY": 400,
+            "paging": true,
+            <?php if(session('role')==3){?>
+            dom: 'Bfrtip',
+            buttons: [{
+                text: 'Creat Karyawan',
+                action: function() {
+                    window.location.href = "/karyawan/tambah"
+                }
+            }]
+            <?php }?>
+        });
+    </script>
 @endsection

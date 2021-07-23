@@ -21,7 +21,7 @@ class HasilController extends Controller
 
             ->Join('karyawan', 'karyawan.id', '=', 'hasil.karyawan_id', 'left')
             ->Join('ketentuan_sanksi', 'ketentuan_sanksi.id', '=', 'hasil.sanksi_id', 'left')
-            ->orderBy('hasil', 'DESC')
+            ->orderBy('hasil', 'ASC')
             ->get();
         $data['sanksi'] = DB::table('ketentuan_sanksi')
             ->get();

@@ -22,41 +22,17 @@
                     }
                 }]
             });
-            $("#hasil").DataTable({
-
-                "responsive": true,
-                "autoWidth": true,
-                "info": false,
-                "lengthChange": false,
-                "scrollY": 150,
-                "paging": false,
-                
-            });
+           
             
-            $("#karyawan").DataTable({
-
-                "responsive": true,
-                "autoWidth": true,
-                "info": false,
-                "lengthChange": false,
-                "scrollY": 500,
-                "paging": true,
-                dom: 'Bfrtip',
-                buttons: [{
-                    text: 'Creat Karyawan',
-                    action: function() {
-                        window.location.href = "/karyawan/tambah"
-                    }
-                }]
-            });
+           
             $("#user").DataTable({
 
                 "responsive": true,
                 "autoWidth": true,
                 "info": false,
-                "lengthChange": false,
+                "lengthChange": true,
                 "scrollY": 300,
-                "paging": false,
+                "paging": true,
                 dom: 'Bfrtip',
                 buttons: [{
                     text: 'Create User',
@@ -65,22 +41,7 @@
                     }
                 }]
             });
-            $("#kriteria").DataTable({
-
-                "responsive": false,
-                "autoWidth": true,
-                "info": false,
-                "lengthChange": false,
-                "paging": false,
-                dom: 'Bfrtip',
-                buttons: [{
-                    text: 'Creat kriteria',
-                    position: 'top-end',
-                    action: function() {
-                        window.location.href = "/kriteria/tambah"
-                    }
-                }]
-            });
+           
             
            
         });

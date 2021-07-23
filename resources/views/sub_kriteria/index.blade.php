@@ -10,7 +10,7 @@
 
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <a href="/Kriteria" class="text-left float-right  mr-3 mt-3" style="color:#2F4F4F"><i
+                        <a href="{{ '/kriteria' }}" class="text-left float-right  mr-3 mt-3" style="color:#2F4F4F"><i
                                 class="fas fa-arrow-circle-left"></i> back</a>
 
                         <div class="col-md-7">
@@ -56,10 +56,12 @@
                                                     <th>#</th>
 
                                                     <th>Sub Kriteria</th>
-                                                    <th>Bobot sub kriteria</th>
+                                                    <th class="text-center">Bobot sub kriteria</th>
+                                                    @if (session('role') == 3)
+                                                        <th style="width: 20%" class="text-center text-primary">Option
 
+                                                    @endif
 
-                                                    <th style="width: 20%" class="text-center text-primary">Option
                                                     </th>
                                                 </tr>
                                             </thead>
@@ -73,23 +75,28 @@
                                                         <td>{{ $loop->iteration }}.</td>
 
                                                         <td>{{ $sub->sub_kriteria }} </td>
-                                                        <td>{{ $sub->bobot_subkriteria }}</td>
+                                                        <td class="text-center">{{ $sub->bobot_subkriteria }}</td>
 
+                                                        @if (session('role') == 3)
 
-                                                        <td class="justify-content-center">
-                                                            <button class="btn hapus btn btn-sm mr-3 float-right text-light"
-                                                                id="hapus" data-toggle="modal" data-target="#deletemodal"
-                                                                data-id-subkriteria="{{ $sub->id }}"
-                                                                data-id-kriteria="{{ $sub->id_kriteria }}"><i
-                                                                    class=" fas fa-trash-alt"></i>
-                                                                Delete</button>
-                                                            <a href="/subkriteria/{{ $sub->id }}">
-                                                                <button class="btn edit btn-sm mr-3 float-right text-light"
-                                                                    id="ubah">
-                                                                    <i class="fas fa-edit"></i> Edit</button>
-                                                            </a>
+                                                            <td class="justify-content-center">
+                                                                <button
+                                                                    class="btn hapus btn btn-sm mr-3 float-right text-light"
+                                                                    id="hapus" data-toggle="modal"
+                                                                    data-target="#deletemodal"
+                                                                    data-id-subkriteria="{{ $sub->id }}"
+                                                                    data-id-kriteria="{{ $sub->id_kriteria }}"><i
+                                                                        class=" fas fa-trash-alt"></i>
+                                                                    Delete</button>
+                                                                <a href="/subkriteria/{{ $sub->id }}">
+                                                                    <button
+                                                                        class="btn edit btn-sm mr-3 float-right text-light"
+                                                                        id="ubah">
+                                                                        <i class="fas fa-edit"></i> Edit</button>
+                                                                </a>
 
-                                                        </td>
+                                                            </td>
+                                                        @endif
                                                     </tr>
                                                 @endforeach
 
@@ -116,7 +123,7 @@
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-body bg-dark">
+                    <div class="modal-body">
                         <div class="row">
                             <div class="col-3 d-flex justify-content-center">
                                 <i class="fa  fa-exclamation-triangle" style="font-size: 70px; color:red;"></i>
@@ -131,11 +138,9 @@
 
                     </div>
                     <div class="modal-footer border-warning">
-                        <button class="btn cancel btn btn-sm float-left text-light" type="button" data-dismiss="modal"><i
-                                class="fas fa-times"></i> Cancel</button>
-                        <button id=" btn-delete" type="submit" class="btn edit btn  btn-sm text-light"><i
-                                class="fas fa-check">
-                            </i> Ok</button>
+                        <button class="btn cancel btn btn-sm float-left text-light" type="button" data-dismiss="modal">
+                            Cancel</button>
+                        <button id=" btn-delete" type="submit" class="btn edit btn  btn-sm text-light"> Ok</button>
 
                     </div>
                 </div>
@@ -163,14 +168,16 @@
             "info": false,
             "lengthChange": false,
             "paging": false,
+            <?php if (session('role')==3) {?>
             dom: 'Bfrtip',
             buttons: [{
-                text: 'Tambah sub kriteria',
+                text: 'Create subkriteria',
                 position: 'top-end',
                 action: function() {
                     window.location.href = "{{ url('/sub_kriteria/tambah/' . $kriteria->id) }}"
                 }
             }]
+            <?php }?>
         });
     </script>
 @endsection

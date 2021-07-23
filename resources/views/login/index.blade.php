@@ -118,8 +118,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         $(function() {
             const Toast = Swal.mixin({
                 toast: true,
-                position: 'top-end',
-                showConfirmButton: true,
+                position: 'top-center',
+                showConfirmButton: false,
                 timer: 10000
             });
             Toast.fire({
@@ -138,7 +138,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
-                showConfirmButton: true,
+                showConfirmButton: false,
                 timer: 10000
             });
             Toast.fire({

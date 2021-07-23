@@ -22,11 +22,14 @@
                                         <span class="info-box-text"></span>
                                         <span class="info-box-number"></span>
                                         <div class="row">
-                                            <div class="col">
+                                            @if (session('role') == 3)
+                                                <div class="col">
 
-                                                <button class="btn btn-default btn-sm" data-toggle="modal"
-                                                    data-target="#exampleModal"><i class="fas fa-plus-circle"></i></button>
-                                            </div>
+                                                    <button class="btn btn-default btn-sm" data-toggle="modal"
+                                                        data-target="#exampleModal"><i
+                                                            class="fas fa-plus-circle"></i></button>
+                                                </div>
+                                            @endif
                                         </div>
                                         <table class="table  table table-hover table-responsive-sm text-dark">
                                             <thead>
@@ -43,24 +46,27 @@
                                                         <td>{{ $loop->iteration }}</td>
                                                         <td>{{ $kte->nama_sanksi }}</td>
                                                         <td style="widht">{{ $kte->nilai_ketentuan }}</td>
+                                                        @if (session('role') == 3)
 
-                                                        <td class="justify-content-center">
-                                                            <button class="btn hapus btn btn-sm float-right text-light"
-                                                                id="hapus" data-toggle="modal" data-target="#deletemodal"
-                                                                data-id_sank="{{ $kte->id }}"><i
-                                                                    class=" fas fa-trash-alt"></i>
-                                                            </button>
+                                                            <td class="justify-content-center">
+                                                                <button class="btn hapus btn btn-sm float-right text-light"
+                                                                    id="hapus" data-toggle="modal"
+                                                                    data-target="#deletemodal"
+                                                                    data-id_sank="{{ $kte->id }}"><i
+                                                                        class=" fas fa-trash-alt"></i>
+                                                                </button>
 
-                                                            <button class="btn edit btn-sm mr-2 float-right text-light"
-                                                                data-toggle="modal" data-target="#ubahModal"
-                                                                data-id="{{ $kte->id }}"
-                                                                data-nm="{{ $kte->nama_sanksi }}"
-                                                                data-nilai="{{ $kte->nilai_ketentuan }}" id="ubah"><i
-                                                                    class="fas fa-edit"></i></button>
+                                                                <button class="btn edit btn-sm mr-2 float-right text-light"
+                                                                    data-toggle="modal" data-target="#ubahModal"
+                                                                    data-id="{{ $kte->id }}"
+                                                                    data-nm="{{ $kte->nama_sanksi }}"
+                                                                    data-nilai="{{ $kte->nilai_ketentuan }}" id="ubah"><i
+                                                                        class="fas fa-edit"></i></button>
 
 
 
-                                                        </td>
+                                                            </td>
+                                                        @endif
                                                     </tr>
                                                 @endforeach
                                             </tbody>
@@ -111,7 +117,7 @@
                                                         <td>
 
                                                             @if ($h->sanksi_id == null)
-                                                                <span class="badge bg-danger text-dark">Belum ada
+                                                                <span class="badge bg-warning text-dark">Belum ada
                                                                     sanksi</span>
                                                             @endif
                                                             @if ($h->sanksi_id !== null)
@@ -130,7 +136,7 @@
 
                                                             @endif
                                                             @if ($h->status_pengajuan == 'not')
-                                                                <span class="badge bg-danger text-dark">Tidak
+                                                                <span class="badge bg-dark text-light">Tidak
                                                                     disetujui</span>
 
                                                             @endif
@@ -147,7 +153,7 @@
                                                             @endif
                                                             @if ($h->status_pengajuan == 'not')
                                                                 <span
-                                                                    class="badge bg-danger text-dark">{{ $h->tgl_approve }}</span>
+                                                                    class="badge bg-dark text-light">{{ $h->tgl_approve }}</span>
 
                                                             @endif
                                                         </td>
@@ -185,8 +191,7 @@
 
                                                             @endif
                                                             @if (session('role') == 3)
-                                                                <button
-                                                                    class="btn detail btn bg-gradient-info btn-sm text-dark float-right ml-2 "
+                                                                <button class="btn detail btn  btn-sm text-light  "
                                                                     data-toggle="modal" data-target="#sanksi-detail"
                                                                     data-karyawanid="{{ $h->karyawan_id }}"
                                                                     data-nik="{{ $h->nik_karyawan }}"
@@ -196,8 +201,7 @@
                                                                     data-h="{{ $h->hasil }}" id="sanksi"> <i
                                                                         class="fas fa-arrow-circle-right text-danger"></i>
                                                                     Sanksi</button>
-                                                                <button
-                                                                    class="btn detail btn bg-gradient-info btn-sm text-dark ml-2 float-right"
+                                                                <button class="btn detail btn  btn-sm text-light "
                                                                     data-toggle="modal" data-target="#approve"
                                                                     data-karyawanid="{{ $h->karyawan_id }}"
                                                                     data-nik="{{ $h->nik_karyawan }}"
@@ -599,5 +603,17 @@
 
             })
         })
+    </script>
+    <script>
+        $("#hasil").DataTable({
+
+            "responsive": true,
+            "autoWidth": true,
+            "info": false,
+            "lengthChange": true,
+            "scrollY": 200,
+            "paging": true,
+
+        });
     </script>
 @endsection

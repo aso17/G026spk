@@ -31,18 +31,22 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-12 mb-2">
+                            @if (session('role') == 3)
 
-                                <button class="btn hapus btn btn-sm mr-3 float-right text-light" id="hapus"
-                                    data-toggle="modal" data-target="#deletemodal"
-                                    data-nik-karyawan="{{ $karyawan->nik_karyawan }}"><i class=" fas fa-trash-alt"></i>
-                                    Delete</button>
-                                <a href="{{ '/karyawanedit/' . $karyawan->id }}"
-                                    class="btn edit btn-sm mr-2 float-right text-light" id="ubah"><i
-                                        class="fas fa-edit"></i>
-                                    Edit</a>
+                                <div class="col-md-12 mb-2">
 
-                            </div>
+                                    <button class="btn hapus btn btn-sm mr-3 float-right text-light" id="hapus"
+                                        data-toggle="modal" data-target="#deletemodal"
+                                        data-nik-karyawan="{{ $karyawan->nik_karyawan }}"><i
+                                            class=" fas fa-trash-alt"></i>
+                                        Delete</button>
+                                    <a href="{{ '/karyawanedit/' . $karyawan->id }}"
+                                        class="btn edit btn-sm mr-2 float-right text-light" id="ubah"><i
+                                            class="fas fa-edit"></i>
+                                        Edit</a>
+
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div><!-- /.card -->
@@ -104,7 +108,7 @@
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-body bg-primary">
+                    <div class="modal-body">
                         <div class="row">
                             <div class="col-3 d-flex justify-content-center">
                                 <i class="fa  fa-exclamation-triangle" style="font-size: 70px; color:red;"></i>
@@ -118,11 +122,10 @@
 
                     </div>
                     <div class="modal-footer border-warning">
-                        <button class="btn cancel btn btn-sm float-left text-light" type="button" data-dismiss="modal"><i
-                                class="fas fa-times"> Cancel</i></button>
-                        <button id=" btn-delete" type="submit" class="btn edit btn  btn-sm text-light"><i
-                                class="fas fa-check">
-                                Ok</i></button>
+                        <button class="btn cancel btn btn-sm float-left text-light" type="button" data-dismiss="modal">
+                            Cancel</button>
+                        <button id=" btn-delete" type="submit" class="btn edit btn  btn-sm text-light">
+                            Ok</button>
 
                     </div>
                 </div>

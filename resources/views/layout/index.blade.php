@@ -122,34 +122,59 @@
                         </li>
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                             data-accordion="false">
-                            <li class="nav-item  text-dark">
-                                <a href="{{ url('/Karyawan') }}" class="nav-link ">
-                                    <h6 class="text-light ">
-                                        <i class="fas fa-address-card pr-1 ml-4"></i>Data karyawan
-                                    </h6>
-                                </a>
-                            </li>
+                            @if (session('role') == 3)
 
-                            <li class="nav-item mr-1">
-                                <a href="{{ url('/kriteria') }}" class="nav-link ">
-                                    <h6 class="ml-2 text-light ">
-                                        <i class="fas fa-columns mr-1"></i>Data Kriteria
+                                <li class="nav-item  text-dark">
+                                    <a href="{{ url('/Karyawan') }}" class="nav-link ">
+                                        <h6 class="text-light ">
+                                            <i class="fas fa-address-card pr-1 ml-4"></i>Data karyawan
+                                        </h6>
+                                    </a>
+                                </li>
+                                <li class="nav-item mr-1">
+                                    <a href="{{ url('/kriteria') }}" class="nav-link ">
+                                        <h6 class="ml-2 text-light ">
+                                            <i class="fas fa-columns mr-1"></i>Data Kriteria
+                                        </h6>
+                                    </a>
+                                </li>
+                            @elseif(session('role')==2)
 
-                                    </h6>
-                                </a>
+                                <li class="nav-item  text-dark">
+                                    <a href="{{ url('/Karyawan') }}" class="nav-link ">
+                                        <h6 class="text-light ">
+                                            <i class="fas fa-address-card pr-1 ml-4"></i>Data karyawan
+                                        </h6>
+                                    </a>
+                                </li>
+                                <li class="nav-item mr-1">
+                                    <a href="{{ url('/kriteria') }}" class="nav-link ">
+                                        <h6 class="ml-2 text-light ">
+                                            <i class="fas fa-columns mr-1"></i>Data Kriteria
+                                        </h6>
+                                    </a>
+                                </li>
+                            @endif
+                            @if (session('role') == 3)
 
-
-                            </li>
-
-
-                            <li class="nav-item ml-2">
-                                <a href="{{ url('/proses') }}" class="nav-link">
-                                    <h6 class="mr-2 text-light">
-                                        <i class="fab fa-accusoft"></i>
-                                        Proses/ Nilai
-                                    </h6>
-                                </a>
-                            </li>
+                                <li class="nav-item ml-2">
+                                    <a href="{{ url('/proses') }}" class="nav-link">
+                                        <h6 class="mr-2 text-light">
+                                            <i class="fab fa-accusoft"></i>
+                                            Proses/ Nilai
+                                        </h6>
+                                    </a>
+                                </li>
+                            @elseif(session('role')==2)
+                                <li class="nav-item ml-2">
+                                    <a href="{{ url('/proses') }}" class="nav-link">
+                                        <h6 class="mr-2 text-light">
+                                            <i class="fab fa-accusoft"></i>
+                                            Proses/ Nilai
+                                        </h6>
+                                    </a>
+                                </li>
+                            @endif
                             <li class="nav-item ml-2">
                                 <a href="{{ url('/hasil') }}" class="nav-link">
                                     <h6 class="mr-2 text-light">
@@ -158,29 +183,39 @@
                                     </h6>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="{{ url('/report') }}" class="nav-link">
-                                    <h6 class="ml- text-light mr-4">
-                                        <i class="fas fa-file-invoice mr-1"></i>
-                                        Laporan
-                                    </h6>
-                                </a>
-                            </li>
+                            @if (session('role') == 3)
+                                <li class="nav-item">
+                                    <a href="{{ url('/report') }}" class="nav-link">
+                                        <h6 class="ml- text-light mr-4">
+                                            <i class="fas fa-file-invoice mr-1"></i>
+                                            Laporan
+                                        </h6>
+                                    </a>
+                                </li>
+                            @elseif(session('role')==2)
+
+                                <li class="nav-item">
+                                    <a href="{{ url('/report') }}" class="nav-link">
+                                        <h6 class="ml- text-light mr-4">
+                                            <i class="fas fa-file-invoice mr-1"></i>
+                                            Laporan
+                                        </h6>
+                                    </a>
+                                </li>
+                            @endif
 
 
+                            @if (session('role') == 3)
 
-
-
-                            <li class="nav-item ">
-                                <a href="{{ '/user' }}" class="nav-link" class="nav-link mr-2">
-                                    <h6 class="ml-1 text-light mr-4">
-                                        <i class="fas fa-user-cog"></i>
-                                        All User
-                                    </h6>
-                                </a>
-                            </li>
-
-
+                                <li class="nav-item ">
+                                    <a href="{{ '/user' }}" class="nav-link" class="nav-link mr-2">
+                                        <h6 class="ml-1 text-light mr-4">
+                                            <i class="fas fa-user-cog"></i>
+                                            All User
+                                        </h6>
+                                    </a>
+                                </li>
+                            @endif
 
 
                         </ul>
@@ -254,7 +289,7 @@
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
-                showConfirmButton: true,
+                showConfirmButton: false,
                 timer: 10000
             });
             Toast.fire({
@@ -272,8 +307,8 @@
         $(function() {
             const Toast = Swal.mixin({
                 toast: true,
-                position: 'top-end',
-                showConfirmButton: true,
+                position: 'top-button',
+                showConfirmButton: false,
                 timer: 10000
             });
             Toast.fire({

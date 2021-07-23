@@ -114,6 +114,7 @@ class ProsesController extends Controller
                     $min[] = min(array_column($alternatif, $index_kriteria));
                     $index_kriteria++;
                 }
+                // var_dump($min);
             }
             for ($index_bobot = 0; $index_bobot < $jml_bobot; $index_bobot++) {
                 if ($type[$index_bobot] == 'cost') {
@@ -134,9 +135,12 @@ class ProsesController extends Controller
                 $v +=  $bobot_w[$index_w] * $r;
                 $index_w++;
             }
-            $hasil = round($v, 2);
-            // var_dump($hasil);
+            // var_dump($bobot_w);
+            // var_dump($bobot_w);
+            // var_dump($row);
+            // var_dump($v);
             // die;
+            $hasil = round($v, 2);
             hasil::create([
                 'karyawan_id' => $id_karya,
                 'hasil' => $hasil,
