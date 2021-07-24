@@ -140,7 +140,7 @@
                     <div class="modal-footer border-warning">
                         <button class="btn cancel btn btn-sm float-left text-light" type="button" data-dismiss="modal">
                             Cancel</button>
-                        <button id=" btn-delete" type="submit" class="btn edit btn  btn-sm text-light"> Ok</button>
+                        <button id=" btn-delete" type="submit" class="btn edit btn  btn-sm text-light">Ok</button>
 
                     </div>
                 </div>

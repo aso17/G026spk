@@ -64,29 +64,33 @@ class LoginController extends Controller
 
 
         $karyawan = DB::table('karyawan')->where('nik_karyawan', $request->nik_karyawan)->first();
-        $id_karyawan = $karyawan->id;
-        $user = DB::table('log_users')
-            ->join('karyawan', 'karyawan.id', '=', 'log_users.karyawan_id')
-            ->where('karyawan_id', $id_karyawan)
-            ->first();
-        // dd($user);
-        if ($user !== null) {
-            if (Hash::check($request->password, $user->password)) {
-                session([
-                    "login" => true,
-                    "Username" => $user->nama_lengkap,
-                    "nik_karyawan" => $user->nik_karyawan,
-                    "role" => $user->role,
-                    "jabatan" => $user->jabatan
-                ]);
-                return redirect('/Dashboard');
-            } else {
+        if (!empty($karyawan)) {
+            $id_karyawan = $karyawan->id;
 
-                return redirect('/')->with('warning', 'password wrong!');
+            $user = DB::table('log_users')
+                ->join('karyawan', 'karyawan.id', '=', 'log_users.karyawan_id')
+                ->where('karyawan_id', $id_karyawan)
+                ->first();
+            // dd($user);
+            if ($user !== null) {
+                if (Hash::check($request->password, $user->password)) {
+                    session([
+                        "login" => true,
+                        "Username" => $user->nama_lengkap,
+                        "nik_karyawan" => $user->nik_karyawan,
+                        "role" => $user->role,
+                        "jabatan" => $user->jabatan
+                    ]);
+                    return redirect('/Dashboard');
+                } else {
+
+                    return redirect('/')->with('error', 'password wrong!');
+                }
+            } else {
+                return redirect('/')->with('error', 'user not found!');
             }
-        } else {
-            return redirect('/')->with('warning', 'user not found!');
         }
+        return redirect('/')->with('error', 'Nik Not Valid!');
     }
 
     /**

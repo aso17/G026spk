@@ -23,6 +23,8 @@
         href="{{ asset('asset/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('asset/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('asset/plugins/datatables-buttons/css/buttons.dataTables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/plugins/datatables-buttons/css/buttons.dataTables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/toastr/toastr.min.css') }}">
     <!-- Sweetalert -->
     <link rel="stylesheet" href="{{ asset('asset/plugins/sweetalert2/sweetalert2.min.css') }}">
     <!-- Toastr -->
@@ -53,6 +55,8 @@
         src="{{ asset('asset/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
     <script language="JavaScript" type="text/javascript"
         src="{{ asset('asset/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('asset/toastr/toastr.min.js') }}"></script>
+
     <!-- Sweetalert -->
     <script language="JavaScript" type="text/javascript"
         src="{{ asset('asset/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
@@ -96,8 +100,8 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4 text-center" style="background:#2F4F4F ">
             <!-- Brand Logo -->
             <a href="" class="brand-link">
-                <img src="{{ asset('asset/images/logo.jpg') }} " alt="AdminLTE Logo" class="" style=" " width="220px"
-                    height="70px" class="img-thumbnail" style="background: transparent"><br>
+                <img src="{{ asset('asset/images/logo.jpg') }} " alt="AdminLTE Logo" class="img-thumbnail"
+                    width="220px" height="70px" class="img-thumbnail" style="background: #2F4F4F"><br>
                 <span class=" brand-text  font-weight-light font-weight-bold shadow">G026spk</span> <br>
                 <small>PT.Indomarco Prismatama</small>
 
@@ -279,51 +283,58 @@
 
 
 
+
+
+    <script language="JavaScript" type="text/javascript">
+        toastr.options = {
+            "closeButton": false,
+            "debug": true,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-center mt-3",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "10000",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+    </script>
+    @if (session('success'))
+        <script language="JavaScript" type="text/javascript">
+            toastr.success("{{ session('success') }}");
+        </script>
+
+    @endif
+
+    @if (session('info'))
+        <script>
+            toastr.info("{{ session('info') }}");
+        </script>
+
+    @endif
+    @if (session('warning'))
+        <script>
+            toastr.warning("{{ session('warning') }}");
+        </script>
+
+    @endif
+    @if (session('error'))
+        <script>
+            toastr.error("{{ session('error') }}");
+        </script>
+
+    @endif
+    <script>
+        $('.custom-file-input').on('change', function() {
+            let filename = $(this).val().split('\\').pop();
+            $(this).next('.custom-file-label').addClass("selected").html(filename);
+        });
+    </script>
 </body>
 
 </html>
-
-@if (session('success'))
-    <script language="JavaScript" type="text/javascript">
-        $(function() {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 10000
-            });
-            Toast.fire({
-                icon: 'success',
-                class: '',
-                title: "{{ session('success') }}"
-            });
-        });
-    </script>
-
-
-@endif
-@if (session('warning'))
-    <script language="JavaScript" type="text/javascript">
-        $(function() {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-button',
-                showConfirmButton: false,
-                timer: 10000
-            });
-            Toast.fire({
-                icon: 'warning',
-                class: '',
-                title: "{{ session('warning') }}"
-            });
-        });
-    </script>
-
-
-@endif
-<script>
-    $('.custom-file-input').on('change', function() {
-        let filename = $(this).val().split('\\').pop();
-        $(this).next('.custom-file-label').addClass("selected").html(filename);
-    });
-</script>

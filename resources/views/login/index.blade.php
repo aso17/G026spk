@@ -20,13 +20,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Toastr -->
     <link rel="stylesheet" href="{{ asset('asset/plugins/toastr/toastr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('asset/dist/css/code_css_gue.css') }} ">
-
+    <link rel="stylesheet" href="{{ asset('asset/toastr/toastr.min.css') }}">
 
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <!-- REQUIRED SCRIPTS -->
 
     <!-- jQuery -->
+    <script src="{{ asset('asset/toastr/toastr.min.js') }}"></script>
     <script src="{{ asset('asset/plugins/jquery/jquery.min.js') }}"></script>
     <!-- Bootstrap 4 -->
     <script src="{{ asset('asset/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -108,47 +109,50 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </div>
     <!-- /.login-box -->
 
+    <script language="JavaScript" type="text/javascript">
+        toastr.options = {
+            "closeButton": false,
+            "debug": true,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-center mt-3",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "10000",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+    </script>
+    @if (session('success'))
+        <script language="JavaScript" type="text/javascript">
+            toastr.success("{{ session('success') }}");
+        </script>
 
+    @endif
+
+    @if (session('info'))
+        <script>
+            toastr.info("{{ session('info') }}");
+        </script>
+
+    @endif
+    @if (session('warning'))
+        <script>
+            toastr.warning("{{ session('warning') }}");
+        </script>
+
+    @endif
+    @if (session('error'))
+        <script>
+            toastr.error("{{ session('error') }}");
+        </script>
+
+    @endif
 </body>
 
 </html>
-
-@if (session('success'))
-    <script language="JavaScript" type="text/javascript">
-        $(function() {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-center',
-                showConfirmButton: false,
-                timer: 10000
-            });
-            Toast.fire({
-                icon: 'success',
-                class: '',
-                title: "{{ session('success') }}"
-            });
-        });
-    </script>
-
-
-@endif
-@if (session('warning'))
-    <script language="JavaScript" type="text/javascript">
-        $(function() {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 10000
-            });
-            Toast.fire({
-                icon: 'warning',
-                class: '',
-                title: "{{ session('warning') }}"
-            });
-        });
-    </script>
-
-
-@endif
-<script>

@@ -86,8 +86,13 @@ class SanksiController extends Controller
      */
     public function update(Request $request)
     {
-        // dd($request->approve);
-        // dd($id_detail = $request->id_deta);
+        $request->validate([
+            'tgl_pengajuan' => 'required',
+            'tgl_approve' => 'required',
+
+
+        ]);
+
         $cek1 = DB::table('hasil')
             ->where('hasil.karyawan_id', $request->id_kar)
             ->first();

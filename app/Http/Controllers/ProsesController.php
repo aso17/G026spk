@@ -150,7 +150,7 @@ class ProsesController extends Controller
 
             return redirect('/proses')->with('success', 'proses perhitungan karyawan berhasil');
         } else {
-            return redirect('/proses')->with('warning', 'proses perhitungan karyawan sudah dilakukan!!');
+            return redirect('/proses')->with('error', 'proses perhitungan karyawan sudah dilakukan!!');
         }
     }
 

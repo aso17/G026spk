@@ -59,4 +59,35 @@
             </div>
         </div>
     </div>
+    <form action="/Userhapus" method="post">
+        @csrf
+        @method('delete')
+        <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-3 d-flex justify-content-center">
+                                <i class="fa  fa-exclamation-triangle" style="font-size: 70px; color:red;"></i>
+                            </div>
+                            <div class="col-9 pt-2">
+                                <h5>Apakah anda yakin?</h5>
+                                <span>Data yang dihapus tidak akan bisa dikembalikan.</span>
+                            </div>
+                        </div>
+                        <input type="hidden" name="id" id="id">
+
+                    </div>
+                    <div class="modal-footer border-warning">
+                        <button class="btn cancel btn btn-sm float-left text-light" type="button" data-dismiss="modal">
+                            Cancel</button>
+                        <button id=" btn-delete" type="submit" class="btn edit btn  btn-sm text-light">
+                            Ok</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 @endsection
