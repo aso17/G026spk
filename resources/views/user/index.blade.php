@@ -33,7 +33,17 @@
                                         <td>{{ $loop->iteration }} </td>
                                         <td>{{ $us->nik_karyawan }}</td>
                                         <td>{{ $us->nama_lengkap }} </td>
-                                        <td>{{ $us->jabatan }} </td>
+                                        @if ($us->role == 3)
+                                            <td>Admimistrator</td>
+                                        @elseif($us->role == 2)
+                                            <td>Supervisor</td>
+
+                                        @elseif($us->role == 1)
+                                            <td>Manager</td>
+
+                                        @endif
+
+
                                         <td> {{ $us->departemen }}</td>
 
 
@@ -43,8 +53,9 @@
                                                 data-toggle="modal" data-target="#deletemodal" data-nik-karyawan=""><i
                                                     class=" fas fa-trash-alt"></i>
                                                 Delete</button>
-                                            <a href="/kriteria/" class="btn edit btn-sm mr-3 float-right text-light"
-                                                id="ubah"><i class="fas fa-edit"></i>
+                                            <a href="/user/{{ $us->karyawan_id }}"
+                                                class="btn edit btn-sm mr-3 float-right text-light" id="ubah"><i
+                                                    class="fas fa-edit"></i>
                                                 Edit</a>
 
                                         </td>

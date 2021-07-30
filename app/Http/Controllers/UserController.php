@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\karyawan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -102,9 +102,14 @@ class UserController extends Controller
      * @param  \App\user  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(user $user)
+    public function edit($karyawan_id)
     {
-        //
+        $data['user'] = DB::table('log_users')
+            ->join('karyawan', 'karyawan.id', '=', 'log_users.karyawan_id')
+            ->where('log_users.karyawan_id', $karyawan_id)
+            ->first();
+
+        return view('user.edit', $data);
     }
 
     /**
@@ -114,9 +119,25 @@ class UserController extends Controller
      * @param  \App\user  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, user $user)
+    public function update(Request $request)
     {
-        //
+
+        $data = [
+            "password" => Hash::make($request->password),
+            "role" => $request->role
+        ];
+
+        $update = DB::table('log_users')
+            ->where('karyawan_id', $request->id)
+            ->update($data);
+
+        if ($update) {
+            Session::flash('success', 'Update User berhasil');
+            return redirect('/user');
+        } else {
+            Session::flash('errors', ['' => 'Update User!']);
+            return redirect('/user');
+        }
     }
 
     /**

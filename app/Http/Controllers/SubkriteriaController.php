@@ -115,6 +115,7 @@ class SubkriteriaController extends Controller
         $id_subkriteria = $request->id_sub;
         $id_kriteria = $request->id_k;
 
+        DB::table('normalisasi')->where('id_subkriteria', '=', $id_subkriteria)->delete();
         subkriteria::destroy($id_subkriteria);
         return redirect('/Sub_kriteria/' . $id_kriteria)->with('success', 'data Subkriteria berhasil di delete');
     }

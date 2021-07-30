@@ -102,7 +102,7 @@ class KriteriaController extends Controller
     public function destroy(Request $request)
     {
         $id_kriteria = $request->id;
-
+        DB::table('normalisasi')->where('id_subkriteria', '=', $id_kriteria)->delete();
         kriteria::destroy($id_kriteria);
         subkriteria::destroy($id_kriteria);
 
