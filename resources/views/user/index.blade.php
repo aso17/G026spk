@@ -50,8 +50,8 @@
                                         <td class="">
 
                                             <button class="btn hapus btn btn-sm mr-3 float-right text-light" id="hapus"
-                                                data-toggle="modal" data-target="#deletemodal" data-nik-karyawan=""><i
-                                                    class=" fas fa-trash-alt"></i>
+                                                data-toggle="modal" data-target="#deletemodal"
+                                                data-user="{{ $us->id }}"><i class=" fas fa-trash-alt"></i>
                                                 Delete</button>
                                             <a href="/user/{{ $us->karyawan_id }}"
                                                 class="btn edit btn-sm mr-3 float-right text-light" id="ubah"><i
@@ -70,7 +70,7 @@
             </div>
         </div>
     </div>
-    <form action="/Userhapus" method="post">
+    <form action="/user" method="post">
         @csrf
         @method('delete')
         <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -101,4 +101,14 @@
             </div>
         </div>
     </form>
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', '#hapus', function() {
+                const idUser = $(this).data('user');
+
+                $('#id').val(idUser);
+            })
+
+        })
+    </script>
 @endsection

@@ -75,6 +75,7 @@ Route::group(['middleware' => 'CekLogin'], function () {
     Route::post('/user/tambah', 'UserController@store');
     Route::get('/user/{karywan_id}', 'UserController@edit');
     Route::patch('/user', 'UserController@update');
+    Route::delete('/user', 'UserController@destroy');
     //logout
     Route::post('/logout', 'LoginController@logout');
 });

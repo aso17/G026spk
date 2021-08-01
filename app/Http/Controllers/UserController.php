@@ -77,10 +77,10 @@ class UserController extends Controller
         $simpan = $user->save();
 
         if ($simpan) {
-            Session::flash('success', 'Register berhasil! Silahkan login untuk mengakses data');
+            Session::flash('success', 'User telah ditambahkan');
             return redirect('/user');
         } else {
-            Session::flash('errors', ['' => 'Register gagal! Silahkan ulangi beberapa saat lagi']);
+            Session::flash('errors', ['' => ' gagal! ']);
             return redirect('/user/tambah');
         }
     }
@@ -146,8 +146,10 @@ class UserController extends Controller
      * @param  \App\user  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(user $user)
+    public function destroy(Request $request)
     {
-        //
+        DB::table('log_users')->where('karyawan_id', '=', $request->id)->delete();
+
+        return redirect('/user')->with('info', 'User telah dihapus');
     }
 }

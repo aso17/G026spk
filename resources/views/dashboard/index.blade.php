@@ -33,22 +33,22 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <h5>Aturan Penggunaan </h5>
                     <ul class="list-unstyled">
-                        <li>Lorem ipsum dolor sit amet</li>
-                        <li>Consectetur adipiscing elit</li>
-                        <li>Integer molestie lorem at massa</li>
-                        <li>Facilisis in pretium nisl aliquet</li>
-                        <li>Nulla volutpat aliquam velit
+                        <li>Penentuan Sanksi dilakukan berdasarkan pelanggaran yang sifatnya terstruktur
+                        </li>
+                        <li>Penilaian yang dilakukan atas pelanggaran yang dilakukan</li>
+                        <li>Pemberian sanksi diberikan dari nilai terkecil</li>
+                        <li>Semakin kecil Penilaian semakin berat sanksi yang diberikan</li>
+                        <li> <strong> Kriterian Penilaian</strong>
                             <ul>
-                                <li>Phasellus iaculis neque</li>
-                                <li>Purus sodales ultricies</li>
-                                <li>Vestibulum laoreet porttitor sem</li>
-                                <li>Ac tristique libero volutpat at</li>
+                                <li>Karyawan tidak masuk kerja satu hari tanpa Keternagan</li>
+                                <li>izin telat masuk kerja lebih dari tiga kali dalam satu bulan</li>
+                                <li>izin cuti mendadak lebih dari dua kali dalam satu bulan.</li>
+
                             </ul>
                         </li>
-                        <li>Faucibus porta lacus fringilla vel</li>
-                        <li>Aenean sit amet erat nunc</li>
-                        <li>Eget porttitor lorem</li>
+
                     </ul>
                 </div>
                 <div class="modal-footer">
