@@ -164,7 +164,7 @@
                                 <li class="nav-item ml-2">
                                     <a href="{{ url('/proses') }}" class="nav-link">
                                         <h6 class="mr-2 text-light">
-                                            <i class="fab fa-accusoft"></i>
+                                            <i class="fas fa-square-root-alt"></i>
                                             Proses/ Nilai
                                         </h6>
                                     </a>
@@ -173,7 +173,7 @@
                                 <li class="nav-item ml-2">
                                     <a href="{{ url('/proses') }}" class="nav-link">
                                         <h6 class="mr-2 text-light">
-                                            <i class="fab fa-accusoft"></i>
+                                            <i class="fas fa-square-root-alt"></i>
                                             Proses/ Nilai
                                         </h6>
                                     </a>
