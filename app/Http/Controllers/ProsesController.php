@@ -193,25 +193,32 @@ class ProsesController extends Controller
      */
     public function edit($id_karyawan)
     {
-        $data['normalisasi'] = DB::table('normalisasi')
-            ->join('karyawan', 'karyawan.id', '=', 'normalisasi.id_karyawan')
-            ->join('kriteria', 'kriteria.id', '=', 'normalisasi.id_kriteria')
-            ->join('subkriteria', 'subkriteria.id', '=', 'normalisasi.id_subkriteria')
-            ->where('id_karyawan', $id_karyawan)
-            ->first();
+        $karyawan = DB::table('hasil')->where('karyawan_id', '=', $id_karyawan)->first();
+        if (empty($karyawan)) {
 
-        $data['karyawan'] = DB::table('karyawan')
-            ->where('id', $id_karyawan)
-            ->first();
-        $data['kri'] = DB::table('kriteria')
-            ->get();
-        $data['hasil'] = DB::table('normalisasi')
-            ->join('karyawan', 'karyawan.id', '=', 'normalisasi.id_karyawan')
-            ->join('kriteria', 'kriteria.id', '=', 'normalisasi.id_kriteria')
-            ->join('subkriteria', 'subkriteria.id', '=', 'normalisasi.id_subkriteria')
-            ->where('id_karyawan', $id_karyawan)
-            ->get();
-        return view('proses.edit', $data);
+
+            $data['normalisasi'] = DB::table('normalisasi')
+                ->join('karyawan', 'karyawan.id', '=', 'normalisasi.id_karyawan')
+                ->join('kriteria', 'kriteria.id', '=', 'normalisasi.id_kriteria')
+                ->join('subkriteria', 'subkriteria.id', '=', 'normalisasi.id_subkriteria')
+                ->where('id_karyawan', $id_karyawan)
+                ->first();
+
+            $data['karyawan'] = DB::table('karyawan')
+                ->where('id', $id_karyawan)
+                ->first();
+            $data['kri'] = DB::table('kriteria')
+                ->get();
+            $data['hasil'] = DB::table('normalisasi')
+                ->join('karyawan', 'karyawan.id', '=', 'normalisasi.id_karyawan')
+                ->join('kriteria', 'kriteria.id', '=', 'normalisasi.id_kriteria')
+                ->join('subkriteria', 'subkriteria.id', '=', 'normalisasi.id_subkriteria')
+                ->where('id_karyawan', $id_karyawan)
+                ->get();
+            return view('proses.edit', $data);
+        } else {
+            return redirect('/proses')->with('error', 'tidak bisa mengubah proses perhitungan karyawan sudah dilakukan!!');
+        }
     }
 
     /**

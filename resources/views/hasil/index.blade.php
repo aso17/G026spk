@@ -170,7 +170,7 @@
                                                                     data-nama_l="{{ $h->nama_lengkap }}"
                                                                     data-jaba="{{ $h->jabatan }}"
                                                                     data-foto="{{ $h->foto }}"
-                                                                    data-h="{{ $h->hasil }}" id="persetujuan">
+                                                                    data-h="{{ $h->hasil }}" id="persetujuan" @if ($h->sanksi_id == null) disabled @endif>
                                                                     <i class="fas fa-arrow-circle-right text-danger"></i>
                                                                     Persetujuan</button>
                                                             @endif

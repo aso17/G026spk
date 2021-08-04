@@ -86,12 +86,6 @@ class SanksiController extends Controller
      */
     public function update(Request $request)
     {
-        $request->validate([
-            'tgl_pengajuan' => 'required',
-            'tgl_approve' => 'required',
-
-
-        ]);
 
         $cek1 = DB::table('hasil')
             ->where('hasil.karyawan_id', $request->id_kar)
@@ -101,21 +95,30 @@ class SanksiController extends Controller
             ->first();
 
         if (session('role') == 2) {
+
+            $request->validate([
+                'tgl_pengajuan' => 'required',
+            ]);
+
             if ($cek1->sanksi_id == null) {
+
+                DB::table('normalisasi')->where('id_karyawan', $request->id_kar)->delete();
                 DB::table('hasil')
                     ->where('hasil.karyawan_id', $request->id_kar)
                     ->update([
                         "sanksi_id" => $request->id_sanksi,
                         "tgl_pengajuan" => $request->tgl_pengajuan
                     ]);
-                //menghapus data normalisasi
-                DB::table('normalisasi')->where('id_karyawan', $request->id_kar)->delete();
 
                 return redirect('/hasil')->with('success', 'sanki telah ditentukan');
             } else {
                 return redirect('/hasil')->with('warning', 'sanki sudah  ditentukan!');
             }
         } elseif (session('role') == 1) {
+
+            $request->validate([
+                'tgl_approve' => 'required',
+            ]);
             if ($cek2->tgl_approve == null) {
                 DB::table('hasil')
                     ->where('hasil.karyawan_id', $request->idkar)
@@ -123,31 +126,48 @@ class SanksiController extends Controller
                         "status_pengajuan" => $request->approve,
                         "tgl_approve" => $request->tgl_approve
                     ]);
-                // hapus tabel normalisasi
-                DB::table('normalisasi')->where('id_karyawan', '=', $request->idkar)->delete();
                 return redirect('/hasil')->with('success', 'sanki telah disetujui');
             } else {
                 return redirect('/hasil')->with('warning', 'sanki Sudah disetujui!');
             }
         } elseif (session('role') == 3) {
 
-            DB::table('hasil')
-                ->where('hasil.karyawan_id', $request->id_kar)
-                ->update([
-                    "sanksi_id" => $request->id_sanksi,
-                    "tgl_pengajuan" => $request->tgl_pengajuan
-                ]);
-            // DB::table('normalisasi')->where('id_karyawan', $request->id_kar)->delete();
-
-
-            DB::table('hasil')
-                ->where('hasil.karyawan_id', $request->idkar)
-                ->update([
-                    "status_pengajuan" => $request->approve,
-                    "tgl_approve" => $request->tgl_approve
+            if (!empty($request->tgl_pengajuan)) {
+                $request->validate([
+                    'tgl_pengajuan' => 'required',
                 ]);
 
-            return redirect('/hasil')->with('success', 'perubahan data berhasil');
+
+                if ($cek1->sanksi_id == null) {
+
+                    DB::table('normalisasi')->where('id_karyawan', $request->id_kar)->delete();
+                    DB::table('hasil')
+                        ->where('hasil.karyawan_id', $request->id_kar)
+                        ->update([
+                            "sanksi_id" => $request->id_sanksi,
+                            "tgl_pengajuan" => $request->tgl_pengajuan
+                        ]);
+
+                    return redirect('/hasil')->with('success', 'sanki telah ditentukan');
+                } else {
+                    return redirect('/hasil')->with('warning', 'sanki sudah  ditentukan!');
+                }
+            } else {
+                $request->validate([
+                    'tgl_approve' => 'required',
+                ]);
+                if ($cek2->tgl_approve == null) {
+                    DB::table('hasil')
+                        ->where('hasil.karyawan_id', $request->idkar)
+                        ->update([
+                            "status_pengajuan" => $request->approve,
+                            "tgl_approve" => $request->tgl_approve
+                        ]);
+                    return redirect('/hasil')->with('success', 'sanki telah disetujui');
+                } else {
+                    return redirect('/hasil')->with('warning', 'sanki Sudah disetujui!');
+                }
+            }
         }
     }
 
