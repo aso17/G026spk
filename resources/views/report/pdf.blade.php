@@ -1,4 +1,5 @@
 <div class="container-fluid">
+
     <style>
         h3 {
             text-align: left;
@@ -35,6 +36,21 @@
             width: 70px
         }
 
+        .m {
+            text-align: right;
+            margin-right: 30px;
+            margin-top: 80px;
+        }
+
+
+
+        .table {
+            text-align: left;
+            margin-right: 30px;
+            margin-top: 50px;
+
+        }
+
     </style>
     <div class="row">
         <div class="col-lg-12">
@@ -49,7 +65,7 @@
                         <h3 class="mt-2 pl-2">PT.Indomarco Prismatama</h3><br>
                         <h3 class="mt-2 pl-2">GO26 DC Tangerang</h3>
                         <div class="card-header  ">
-                            <h4 class=" text-dark text-center pl-2"> Laporan Kinerja Sanksi karyawan</h4>
+                            <h4 class=" text-dark text-center pl-2"> Laporan Sanksi Kinerja karyawan</h4>
                             <h5 class=" text-dark text-center"><span class="text-primary">
                                     Tanggal: </span>{{ $tgl_awal }} <span class="text-primary">
                                     s/d</span> {{ $tgl_ahir }} <br>
@@ -113,6 +129,47 @@
 
                                 </div>
                             </div>
+                            <table class="table" border="0">
+                                <tr>
+
+                                    <td style="width:350px;text-align:center;">Disetujui(Manager)</td>
+
+                                    <td class="m" style="width:350px;text-align:center;">Mengetahui(SPV)
+                                    </td>
+                                </tr>
+
+                                <tr>
+
+                                    <td style="width:350px;text-align:center;height:200px">
+                                        (.................................................)</td>
+
+                                    <td class="m" style="width:350px;text-align:center; ">
+                                        (.................................................)</td>
+                                </tr>
+
+                            </table>
+                            {{-- <div class="row">
+                                <div class="col-md-6">
+
+                                    <p id="mengetahui" class="m">Mengetahui(SPV)</p>
+                                </div>
+
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <p class="page1" align='right'>(........................................)</p>
+                                <div class="col-md-6">
+
+                                    <p id="mengetahui" class="n">Disetujui(Manager)</p>
+                                </div>
+
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <p class="n">(........................................)</p>
+                            </div> --}}
 
                         </div>
 

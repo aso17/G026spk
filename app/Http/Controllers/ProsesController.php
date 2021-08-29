@@ -139,8 +139,10 @@ class ProsesController extends Controller
             // var_dump($bobot_w);
             // var_dump($row);
             // var_dump($v);
-            // die;
             $hasil = round($v, 2);
+            // var_dump($hasil);
+            // die;
+
             hasil::create([
                 'karyawan_id' => $id_karya,
                 'hasil' => $hasil,
